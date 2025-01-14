@@ -10,6 +10,11 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
         message:
           'What is the name of the package? (You can skip the `@repo/` prefix)',
       },
+      {
+        type: 'confirm',
+        name: 'keys',
+        message: 'Do you want to generate a keys file?',
+      },
     ],
     actions: [
       (answers) => {
@@ -31,6 +36,21 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
         type: 'add',
         path: 'packages/{{ name }}/tsconfig.json',
         templateFile: 'templates/tsconfig.json.hbs',
+      },
+      {
+        type: 'add',
+        skip: (answers) => {
+          if (!answers.keys) {
+            return 'Skipping keys file generation';
+          }
+        },
+        path: 'packages/{{ name }}/keys.ts',
+        templateFile: 'templates/keys.ts.hbs',
+      },
+      {
+        type: 'add',
+        path: 'packages/{{ name }}/index.ts',
+        template: '// This is a placeholder file for the package {{ name }}',
       },
     ],
   });
