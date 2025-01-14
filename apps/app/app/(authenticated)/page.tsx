@@ -1,5 +1,13 @@
 import { Badge } from '@repo/design-system/components/ui/badge';
 import { Button } from '@repo/design-system/components/ui/button';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@repo/design-system/components/ui/card';
 import type { Metadata } from 'next';
 import { Header } from './components/header';
 
@@ -36,20 +44,56 @@ const App = async () => {
       </Header>
       <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
         <div className="grid auto-rows-min gap-4 md:grid-cols-3">
+          <Card>
+            <CardHeader>
+              <CardTitle>Card Title</CardTitle>
+              <CardDescription>Card Description</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p>Card Content</p>
+            </CardContent>
+            <CardFooter>
+              <p>Card Footer</p>
+            </CardFooter>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Card Title</CardTitle>
+              <CardDescription>Card Description</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p>Card Content</p>
+            </CardContent>
+            <CardFooter>
+              <p>Card Footer</p>
+            </CardFooter>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>Card Title</CardTitle>
+              <CardDescription>Card Description</CardDescription>
+              <div>
+                <Badge>Hello bro</Badge>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <p>Card Content</p>
+            </CardContent>
+            <CardFooter className="flex justify-between">
+              <Button variant="outline">Cancel</Button>
+              <Button>Deploy</Button>
+            </CardFooter>
+          </Card>
+
           {/* {pages.map((page) => (
             <div key={page.id} className="aspect-video rounded-xl bg-muted/50">
               {page.name}
             </div>
           ))} */}
         </div>
-        <Button>Hello</Button>
-        <div className="flex gap-4">
-          <Button variant="outline">Hello</Button>
-          <Badge>Hello bro</Badge>
-          <Badge variant="outline">Hello bro</Badge>
-          <Badge variant="destructive">Hello bro</Badge>
-          <Badge variant="secondary">Hello bro</Badge>
-        </div>
+        {/* <Button>Hello</Button> */}
+
         <div className="min-h-[100vh] flex-1 rounded bg-muted/50 md:min-h-min" />
       </div>
     </>
