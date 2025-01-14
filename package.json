@@ -13,7 +13,8 @@
     "test": "turbo test",
     "analyze": "turbo analyze",
     "bump-deps": "npx npm-check-updates --deep -u -x react-day-picker && pnpm install",
-    "bump-ui": "npx shadcn@latest add --all --overwrite -c packages/design-system",
+    "ui:update": "shadcn add --all --overwrite -c packages/design-system",
+    "ui:add": "shadcn add -c packages/design-system",
     "migrate": "cd packages/database && npx prisma format && npx prisma generate && npx prisma db push",
     "clean": "turbo clean",
     "typecheck": "turbo typecheck"
@@ -24,6 +25,7 @@
     "@repo/typescript-config": "workspace:*",
     "@turbo/gen": "^2.3.3",
     "mintlify": "^4.0.319",
+    "shadcn": "2.1.6",
     "turbo": "^2.3.3",
     "typescript": "^5.7.2",
     "ultracite": "^4.1.14"

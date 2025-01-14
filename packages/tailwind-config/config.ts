@@ -23,6 +23,15 @@ export const config: Config = {
         '2xl': '1400px',
       },
     },
+    borderRadius: {
+      sm: 'calc(var(--radius) * 0.5)',
+      DEFAULT: 'var(--radius)',
+      md: 'calc(var(--radius) * 1.5)',
+      lg: 'calc(var(--radius) * 2)',
+      xl: 'calc(var(--radius) * 2.5)',
+      '2xl': 'calc(var(--radius) * 3)',
+      '3xl': 'calc(var(--radius) * 3.5)',
+    },
     extend: {
       colors: {
         border: 'hsl(var(--border) / <alpha-value>)',
