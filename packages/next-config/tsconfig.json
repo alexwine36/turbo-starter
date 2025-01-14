@@ -3,6 +3,6 @@
   "compilerOptions": {
     "baseUrl": "."
   },
-  "include": ["**/*.ts", "**/*.tsx", "keys.mts", "keys.mts"],
+  "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }
