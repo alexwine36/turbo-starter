@@ -1,3 +1,5 @@
+import { Badge } from '@repo/design-system/components/ui/badge';
+import { Button } from '@repo/design-system/components/ui/button';
 import type { Metadata } from 'next';
 import { Header } from './components/header';
 
@@ -40,7 +42,15 @@ const App = async () => {
             </div>
           ))} */}
         </div>
-        <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
+        <Button>Hello</Button>
+        <div className="flex gap-4">
+          <Button variant="outline">Hello</Button>
+          <Badge>Hello bro</Badge>
+          <Badge variant="outline">Hello bro</Badge>
+          <Badge variant="destructive">Hello bro</Badge>
+          <Badge variant="secondary">Hello bro</Badge>
+        </div>
+        <div className="min-h-[100vh] flex-1 rounded bg-muted/50 md:min-h-min" />
       </div>
     </>
   );

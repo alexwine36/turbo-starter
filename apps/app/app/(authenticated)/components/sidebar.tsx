@@ -2,7 +2,6 @@
 
 // import { OrganizationSwitcher, UserButton } from '@repo/auth/client';
 import { ModeToggle } from '@repo/design-system/components/mode-toggle';
-import { Button } from '@repo/design-system/components/ui/button';
 import {
   Collapsible,
   CollapsibleContent,
@@ -322,7 +321,7 @@ export const GlobalSidebar = ({ children }: GlobalSidebarProperties) => {
         </SidebarContent>
         <SidebarFooter>
           <SidebarMenu>
-            <SidebarMenuItem className="flex items-center gap-2">
+            <SidebarMenuItem className="flex items-center justify-end gap-2">
               {/* <UserButton
                 showName
                 appearance={{
@@ -335,9 +334,6 @@ export const GlobalSidebar = ({ children }: GlobalSidebarProperties) => {
               /> */}
               <div className="flex shrink-0 items-center gap-px">
                 <ModeToggle />
-                <Button variant="ghost" size="icon" className="shrink-0">
-                  {/* <NotificationsTrigger /> */}
-                </Button>
               </div>
             </SidebarMenuItem>
           </SidebarMenu>
