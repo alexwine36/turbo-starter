@@ -26,6 +26,9 @@
     },
     "typecheck": {
       "dependsOn": ["^build"]
-    }
+    },
+    "db:migrate:deploy": {},
+    "db:push": {},
+    "db:seed": {}
   }
 }

@@ -1,16 +1,6 @@
-import { Badge } from '@repo/design-system/components/ui/badge';
-import { Button } from '@repo/design-system/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@repo/design-system/components/ui/card';
+import { database } from '@repo/database';
 import type { Metadata } from 'next';
 import { Header } from './components/header';
-
 const title = 'Acme Inc';
 const description = 'My application.';
 
@@ -19,9 +9,9 @@ export const metadata: Metadata = {
   description,
 };
 
-// biome-ignore lint/suspicious/useAwait: no need yet
 const App = async () => {
-  //   const pages = await database.page.findMany();
+  const pages = await database.page.findMany();
+  console.log(pages);
   //   const { orgId } = await auth();
 
   //   if (!orgId) {
@@ -44,7 +34,7 @@ const App = async () => {
       </Header>
       <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
         <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-          <Card>
+          {/* <Card>
             <CardHeader>
               <CardTitle>Card Title</CardTitle>
               <CardDescription>Card Description</CardDescription>
@@ -84,13 +74,13 @@ const App = async () => {
               <Button variant="outline">Cancel</Button>
               <Button>Deploy</Button>
             </CardFooter>
-          </Card>
+          </Card> */}
 
-          {/* {pages.map((page) => (
+          {pages.map((page) => (
             <div key={page.id} className="aspect-video rounded-xl bg-muted/50">
               {page.name}
             </div>
-          ))} */}
+          ))}
         </div>
         {/* <Button>Hello</Button> */}
 

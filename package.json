@@ -1,10 +1,7 @@
 {
-  "name": "next-forge",
-  "version": "3.1.13",
-  "bin": {
-    "next-forge": "scripts/init.mjs"
-  },
-  "files": ["scripts/init.mjs"],
+  "name": "turbo-starter",
+  "version": "1.0.0",
+
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
@@ -16,7 +13,12 @@
     "ui:update": "shadcn add --all --overwrite -c packages/design-system",
     "ui:add": "shadcn add -c packages/design-system",
     "migrate": "cd packages/database && npx prisma format && npx prisma generate && npx prisma db push",
-    "clean": "turbo clean",
+    "clean": "pnpm clean:modules && pnpm clean:main",
+    "clean:modules": "turbo clean",
+    "clean:main": "git clean -xdf .turbo node_modules",
+    "db:push": "turbo run db:push",
+    "db:seed": "turbo run db:seed",
+    "db:up": "docker compose up -d",
     "typecheck": "turbo typecheck"
   },
   "devDependencies": {
