@@ -29,12 +29,12 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
       },
       {
         type: 'add',
-        path: 'packages/{{ name }}/package.json',
+        path: 'packages/{{ dashCase name }}/package.json',
         templateFile: 'templates/package.json.hbs',
       },
       {
         type: 'add',
-        path: 'packages/{{ name }}/tsconfig.json',
+        path: 'packages/{{ dashCase name }}/tsconfig.json',
         templateFile: 'templates/tsconfig.json.hbs',
       },
       {
@@ -44,12 +44,12 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
             return 'Skipping keys file generation';
           }
         },
-        path: 'packages/{{ name }}/keys.ts',
+        path: 'packages/{{ dashCase name }}/keys.ts',
         templateFile: 'templates/keys.ts.hbs',
       },
       {
         type: 'add',
-        path: 'packages/{{ name }}/index.ts',
+        path: 'packages/{{ dashCase name }}/index.ts',
         template: '// This is a placeholder file for the package {{ name }}',
       },
     ],

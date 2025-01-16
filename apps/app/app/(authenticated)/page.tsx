@@ -1,4 +1,5 @@
 import { database } from '@repo/database';
+import { RichTextInput } from '@repo/design-system/components/inputs/rich-text-input';
 import type { Metadata } from 'next';
 import { Header } from './components/header';
 const title = 'Acme Inc';
@@ -84,7 +85,9 @@ const App = async () => {
         </div>
         {/* <Button>Hello</Button> */}
 
-        <div className="min-h-[100vh] flex-1 rounded bg-muted/50 md:min-h-min" />
+        <div className="min-h-[100vh] flex-1 rounded md:min-h-min">
+          <RichTextInput />
+        </div>
       </div>
     </>
   );

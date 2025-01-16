@@ -28,7 +28,7 @@
     --chart-3: 76 68% 41%;
     --chart-4: 196 68% 41%;
     --chart-5: 256 68% 41%;
-    --radius: 0.15rem;
+    --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -38,6 +38,12 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif,
+      "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+      "Noto Color Emoji";
+
+    --font-mono: var(--font-roboto-mono);
   }
   .dark {
     --background: 0 0% 2%;

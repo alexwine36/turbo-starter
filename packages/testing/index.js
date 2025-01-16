@@ -6,6 +6,7 @@ const config = defineConfig({
   plugins: [react()],
   test: {
     environment: 'jsdom',
+    globals: true,
   },
   resolve: {
     alias: {

@@ -2,7 +2,7 @@
   "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
   "extends": ["ultracite"],
   "javascript": {
-    "globals": ["Liveblocks"]
+    "globals": ["Liveblocks", "describe", "test", "expect"]
   },
   "files": {
     "ignore": [
@@ -11,7 +11,30 @@
       "packages/design-system/hooks/**",
       "packages/collaboration/config.ts",
       "apps/docs/**/*.json",
-      "apps/email/.react-email/**"
+      "apps/email/.react-email/**",
+      "packages/rich-text/types.ts"
     ]
-  }
+  },
+  "linter": {
+    "rules": {
+      "complexity": {
+        "noForEach": "off"
+      }
+    }
+  },
+  "overrides": [
+    {
+      "include": ["packages/rich-text/**"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noExplicitAny": "off"
+          },
+          "style": {
+            "noArguments": "off"
+          }
+        }
+      }
+    }
+  ]
 }
