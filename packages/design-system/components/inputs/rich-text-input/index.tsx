@@ -2,7 +2,7 @@
 
 import { type Ops, RichTextParser, useQuill } from '@repo/rich-text';
 import type React from 'react';
-import { type ReactNode, useEffect, useMemo, useState } from 'react';
+import { type ReactNode, useEffect, useState } from 'react';
 import { cn } from '../../../lib/utils';
 import { RichTextDisplay } from '../../custom/rich-text-display';
 
@@ -109,6 +109,7 @@ export const RichTextInput = ({
 
         // console.log(quill.getText()); // Get text only
         const contents = quill.getContents();
+        console.log('OPS', contents.ops);
         const parser = new RichTextParser(contents.ops);
         // console.log('CONTENTS', contents); // Get delta contents
 
@@ -126,16 +127,16 @@ export const RichTextInput = ({
   }, [quill]);
 
   // console.log(value);
-  const sections = useMemo(() => {
-    return new RichTextParser(value).getSections();
-  }, [value]);
+  // const sections = useMemo(() => {
+  //   return new RichTextParser(value).getSections();
+  // }, [value]);
 
   return (
     <div className=" w-full ">
       <div ref={quillRef} />
 
       <div>
-        <RichTextDisplay sections={sections} />
+        <RichTextDisplay ops={value} />
       </div>
     </div>
   );

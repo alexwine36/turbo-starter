@@ -13,7 +13,8 @@
     "build": "prisma generate --no-hints",
     "clean": "git clean -xdf .cache .turbo dist node_modules",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false",
-    "generate": "prisma generate"
+    "generate": "prisma generate",
+    "studio": "prisma studio"
   },
   "dependencies": {
     "@neondatabase/serverless": "^0.10.4",
@@ -28,6 +29,7 @@
   "devDependencies": {
     "@faker-js/faker": "^9.3.0",
     "@repo/typescript-config": "workspace:*",
+    "@repo/rich-text": "workspace:*",
     "@types/node": "22.10.5",
     "@types/ws": "^8.5.13",
     "bufferutil": "^4.0.9",

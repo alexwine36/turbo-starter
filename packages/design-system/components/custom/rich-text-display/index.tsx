@@ -1,4 +1,11 @@
-import type { LineData, Ops, SectionData } from '@repo/rich-text';
+'use client';
+
+import {
+  type LineData,
+  type Ops,
+  RichTextParser,
+  type SectionData,
+} from '@repo/rich-text';
 import type React from 'react';
 import { cn } from '../../../lib/utils';
 import { List } from '../../ui/list';
@@ -6,7 +13,7 @@ import { Heading, Text } from '../typography';
 
 export type RichTextDisplayProps = {
   //   lines: LineData[];
-  sections: SectionData[];
+  ops: Ops;
 };
 
 // const getTag = (line: LineData) => {
@@ -146,9 +153,9 @@ const SectionsComponent = ({ section }: { section: SectionData }) => {
   );
 };
 
-export const RichTextDisplay: React.FC<RichTextDisplayProps> = ({
-  sections,
-}) => {
+export const RichTextDisplay: React.FC<RichTextDisplayProps> = ({ ops }) => {
+  const sections = new RichTextParser(ops).getSections();
+  console.log(sections, ops);
   //   console.log('SECTIONS', sections);
   return (
     <div>

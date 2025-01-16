@@ -1,4 +1,5 @@
 import { database } from '@repo/database';
+import { RichTextDisplay } from '@repo/design-system/components/custom/rich-text-display';
 import { RichTextInput } from '@repo/design-system/components/inputs/rich-text-input';
 import type { Metadata } from 'next';
 import { Header } from './components/header';
@@ -80,6 +81,7 @@ const App = async () => {
           {pages.map((page) => (
             <div key={page.id} className="aspect-video rounded-xl bg-muted/50">
               {page.name}
+              <RichTextDisplay ops={page.content} />
             </div>
           ))}
         </div>

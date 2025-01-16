@@ -126,6 +126,7 @@ export const objCompare = <T extends Record<PropertyKey, unknown>>(
   return hasSubObject(some, all as any);
 };
 
+// TODO: needs a lot more work
 const parseSection = (
   curLine: ListNode<LineData>
 ): SectionData & {

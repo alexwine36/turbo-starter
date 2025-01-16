@@ -164,6 +164,9 @@ importers:
       '@faker-js/faker':
         specifier: ^9.3.0
         version: 9.3.0
+      '@repo/rich-text':
+        specifier: workspace:*
+        version: link:../rich-text
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
