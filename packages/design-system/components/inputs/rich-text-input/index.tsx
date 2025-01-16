@@ -1,12 +1,12 @@
 'use client';
 
-import { RichTextParser, useQuill } from '@repo/rich-text';
+import { type Ops, RichTextParser, useQuill } from '@repo/rich-text';
 import type React from 'react';
 import { type ReactNode, useEffect, useState } from 'react';
 import { cn } from '../../../lib/utils';
 
 type RichTextInputProps = {
-  initialValue?: string;
+  initialValue?: Ops;
 };
 
 const Prose: React.FC<{ children: ReactNode }> = ({ children }) => {
@@ -17,78 +17,59 @@ const Prose: React.FC<{ children: ReactNode }> = ({ children }) => {
   );
 };
 
-export const RichTextInput = ({ initialValue }: RichTextInputProps) => {
+const TEST_VALUE: Ops = [
+  {
+    insert: 'const language = "JavaScript";',
+  },
+  {
+    attributes: {
+      'code-block': 'javascript',
+    },
+    insert: '\n',
+  },
+  {
+    insert: 'console.log("I love " + language + "!");',
+  },
+  {
+    attributes: {
+      'code-block': 'javascript',
+    },
+    insert: '\n\n',
+  },
+  {
+    insert: '\n',
+  },
+  {
+    attributes: {
+      bold: true,
+    },
+    insert: 'Hey ',
+  },
+  {
+    attributes: {
+      italic: true,
+    },
+    insert: 'Wassup',
+  },
+  {
+    insert: '\n',
+  },
+];
+
+export const RichTextInput = ({
+  initialValue = TEST_VALUE,
+}: RichTextInputProps) => {
   const { quill, quillRef } = useQuill({
     placeholder: 'Write something...',
-    modules: {
-      syntax: true,
-      toolbar: [
-        [{ header: [1, 2, 3, 4, 5, 6, false] }],
-        [{ align: [] }],
-        ['bold', 'italic', 'underline', 'strike'],
-        ['blockquote', 'code-block'],
-        [
-          { list: 'ordered' },
-          { list: 'bullet' },
-          //  { list: 'check' }
-        ],
-        // [{ script: 'sub' }, { script: 'super' }], // superscript/subscript
-        [{ indent: '-1' }, { indent: '+1' }],
-        [
-          'link',
-          'image',
-          // 'video'
-        ],
-
-        ['clean'],
-      ],
-    },
-    // formats: ['bold', 'italic', 'underline', 'strike', 'link', 'blockquote'],
   });
 
-  const [value, setValue] = useState(initialValue);
+  // const [value, setValue] = useState(initialValue);
+  const [value, setValue] = useState<Ops>(initialValue);
 
   useEffect(() => {
-    if (quill && !initialValue) {
+    if (quill && initialValue) {
       // quill.clipboard.dangerouslyPasteHTML(initialValue);
-      const p = new RichTextParser([
-        {
-          insert: 'const language = "JavaScript";',
-        },
-        {
-          attributes: {
-            'code-block': 'javascript',
-          },
-          insert: '\n',
-        },
-        {
-          insert: 'console.log("I love " + language + "!");',
-        },
-        {
-          attributes: {
-            'code-block': 'javascript',
-          },
-          insert: '\n\n',
-        },
-        {
-          insert: '\n',
-        },
-        {
-          attributes: {
-            bold: true,
-          },
-          insert: 'Hey ',
-        },
-        {
-          attributes: {
-            italic: true,
-          },
-          insert: 'Wassup',
-        },
-        {
-          insert: '\n',
-        },
-      ]);
+      const p = new RichTextParser(initialValue);
       quill.setContents(p.delta);
     }
   }, [quill, initialValue]);
@@ -111,8 +92,8 @@ export const RichTextInput = ({ initialValue }: RichTextInputProps) => {
         // console.log(quillRef.current.firstChild.innerHTML); // Get innerHTML using quillRef
 
         // console.log('LINES', quill.getLines());
-
-        setValue(quill.getSemanticHTML());
+        setValue(contents.ops);
+        // setValue(quill.getSemanticHTML());
       });
     }
   }, [quill]);

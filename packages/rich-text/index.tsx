@@ -38,6 +38,7 @@ export const modules: ModuleTypes = {
       { list: 'bullet' },
       //  { list: 'check' }
     ],
+    [{ color: [false, 'gray'] }],
     // [{ script: 'sub' }, { script: 'super' }], // superscript/subscript
     [{ indent: '-1' }, { indent: '+1' }],
     [
@@ -66,6 +67,7 @@ export const DEFAULT_FORMATS = [
   'header',
   'link',
   'image',
+  'color',
   // 'video',
 ];
 
