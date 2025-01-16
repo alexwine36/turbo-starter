@@ -7,13 +7,14 @@ import {
 describe('Use Quill', () => {
   test('should work with defaults', () => {
     const res = includeModuleFormats(DEFAULT_MODULES);
+
     expect(res).toEqual(expect.arrayContaining(DEFAULT_FORMATS));
     expect(res?.length).toEqual(DEFAULT_FORMATS.length);
   });
   test('should keep added formats', () => {
     const newFormats = ['new-format'];
     const res = includeModuleFormats(DEFAULT_MODULES, newFormats);
-    console.log(res);
+
     expect(res).toEqual(expect.arrayContaining(newFormats));
     expect(res).toEqual(
       expect.arrayContaining([...newFormats, ...DEFAULT_FORMATS])
@@ -27,7 +28,6 @@ describe('Use Quill', () => {
       ...DEFAULT_MODULES,
       toolbar: [...DEFAULT_MODULES.toolbar, newToolbarOpts],
     });
-    console.log(res);
 
     expect(res).toEqual(
       expect.arrayContaining([...newToolbarOpts, ...DEFAULT_FORMATS])

@@ -5,6 +5,9 @@ import './styles.css';
 import type { Quill, QuillOptions } from './types';
 export * from './parse';
 
+// REFERENCE https://www.npmjs.com/package/react-quilljs
+// USEFUL FOR ADDING IMAGE HANDLER
+
 declare global {
   interface Window {
     hljs: any;
@@ -26,16 +29,22 @@ type ModuleTypes = {
 };
 export const modules: ModuleTypes = {
   toolbar: [
-    ['bold', 'italic', 'underline', 'strike'],
-    [{ align: [] }],
-
-    [{ list: 'ordered' }, { list: 'bullet' }],
-    [{ indent: '-1' }, { indent: '+1' }],
-
-    // [{ size: ['small', false, 'large', 'huge'] }],
     [{ header: [1, 2, 3, 4, 5, 6, false] }],
-    ['link', 'image', 'video'],
-    // [{ color: [] }, { background: [] }],
+    [{ align: [] }],
+    ['bold', 'italic', 'underline', 'strike'],
+    ['blockquote', 'code-block'],
+    [
+      { list: 'ordered' },
+      { list: 'bullet' },
+      //  { list: 'check' }
+    ],
+    // [{ script: 'sub' }, { script: 'super' }], // superscript/subscript
+    [{ indent: '-1' }, { indent: '+1' }],
+    [
+      'link',
+      'image',
+      // 'video'
+    ],
 
     ['clean'],
   ],
@@ -45,6 +54,8 @@ export const modules: ModuleTypes = {
 };
 
 export const DEFAULT_FORMATS = [
+  'blockquote',
+  'code-block',
   'bold',
   'italic',
   'underline',
@@ -55,7 +66,7 @@ export const DEFAULT_FORMATS = [
   'header',
   'link',
   'image',
-  'video',
+  // 'video',
 ];
 
 function assign(target: any, _varArgs: any) {
@@ -63,7 +74,7 @@ function assign(target: any, _varArgs: any) {
     throw new TypeError('Cannot convert undefined or null to object');
   }
 
-  const to = Object(target);
+  const to: any = new Object(target);
 
   for (let index = 1; index < arguments.length; index++) {
     const nextSource = arguments[index];
@@ -85,7 +96,9 @@ export const includeModuleFormats = (
 ) => {
   const newFormats = new Set([...(formats || [])]);
   const toolbar = modules?.toolbar;
-  if (!toolbar) return formats;
+  if (!toolbar) {
+    return formats;
+  }
   toolbar.forEach((section) => {
     section.forEach((button) => {
       if (typeof button === 'object') {
