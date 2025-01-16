@@ -449,6 +449,9 @@ importers:
       react:
         specifier: ^19.0.0
         version: 19.0.0
+      remeda:
+        specifier: ^2.19.1
+        version: 2.19.1
     devDependencies:
       '@repo/testing':
         specifier: workspace:*
@@ -6225,6 +6228,9 @@ packages:
 
   remark@15.0.1:
     resolution: {integrity: sha512-Eht5w30ruCXgFmxVUSlNWQ9iiimq07URKeFS3hNc8cUWy1llX4KDWfyEDZRycMc+znsN9Ux5/tJ/BFdgdOwA3A==}
+
+  remeda@2.19.1:
+    resolution: {integrity: sha512-IZ1NwntA2xwksQgn6zRFZB9lsVWW1GoRZZno3UIHE0tUh1B62ZSIhFIDIRssUfgqOBG2kL7g3GXx4e+CK59OPw==}
 
   require-directory@2.1.1:
     resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==}
@@ -14221,6 +14227,10 @@ snapshots:
       unified: 11.0.5
     transitivePeerDependencies:
       - supports-color
+
+  remeda@2.19.1:
+    dependencies:
+      type-fest: 4.32.0
 
   require-directory@2.1.1: {}
 

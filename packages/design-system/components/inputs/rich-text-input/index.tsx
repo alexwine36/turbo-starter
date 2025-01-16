@@ -2,8 +2,9 @@
 
 import { type Ops, RichTextParser, useQuill } from '@repo/rich-text';
 import type React from 'react';
-import { type ReactNode, useEffect, useState } from 'react';
+import { type ReactNode, useEffect, useMemo, useState } from 'react';
 import { cn } from '../../../lib/utils';
+import { RichTextDisplay } from '../../custom/rich-text-display';
 
 type RichTextInputProps = {
   initialValue?: Ops;
@@ -18,40 +19,66 @@ const Prose: React.FC<{ children: ReactNode }> = ({ children }) => {
 };
 
 const TEST_VALUE: Ops = [
+  // {
+  //   insert: 'const language = "JavaScript";',
+  // },
+  // {
+  //   attributes: {
+  //     'code-block': 'javascript',
+  //   },
+  //   insert: '\n',
+  // },
+  // {
+  //   insert: 'console.log("I love " + language + "!");',
+  // },
+  // {
+  //   attributes: {
+  //     'code-block': 'javascript',
+  //   },
+  //   insert: '\n\n',
+  // },
+  // {
+  //   insert: '\n',
+  // },
+  // {
+  //   attributes: {
+  //     bold: true,
+  //   },
+  //   insert: 'Hey ',
+  // },
+  // {
+  //   attributes: {
+  //     italic: true,
+  //   },
+  //   insert: 'Wassup',
+  // },
   {
-    insert: 'const language = "JavaScript";',
+    insert: '\nasdf',
   },
   {
     attributes: {
-      'code-block': 'javascript',
+      list: 'bullet',
     },
     insert: '\n',
   },
   {
-    insert: 'console.log("I love " + language + "!");',
+    insert: 'asdf',
   },
   {
     attributes: {
-      'code-block': 'javascript',
+      indent: 1,
+      list: 'bullet',
     },
-    insert: '\n\n',
-  },
-  {
     insert: '\n',
   },
   {
-    attributes: {
-      bold: true,
-    },
-    insert: 'Hey ',
+    insert: 'hello',
   },
   {
     attributes: {
-      italic: true,
+      indent: 1,
+      list: 'bullet',
     },
-    insert: 'Wassup',
-  },
-  {
     insert: '\n',
   },
 ];
@@ -99,15 +126,26 @@ export const RichTextInput = ({
   }, [quill]);
 
   // console.log(value);
+  const sections = useMemo(() => {
+    return new RichTextParser(value).getSections();
+  }, [value]);
 
   return (
     <div className=" w-full ">
       <div ref={quillRef} />
 
-      <Prose>
-        {/* biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation> */}
-        <div dangerouslySetInnerHTML={{ __html: value || '' }} />
-      </Prose>
+      <div>
+        <RichTextDisplay sections={sections} />
+      </div>
     </div>
   );
 };
+
+// <Prose>
+//   {/* biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation> */}
+//   <div
+//     dangerouslySetInnerHTML={{
+//       __html: new RichTextParser(value).getHtml(),
+//     }}
+//   />
+// </Prose>;
