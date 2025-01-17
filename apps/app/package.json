@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@prisma/client": "6.1.0",
+    "@repo/auth": "workspace:*",
     "@repo/database": "workspace:*",
     "@repo/design-system": "workspace:*",
     "@repo/rich-text": "workspace:*",

@@ -1,5 +1,6 @@
 'use client';
 
+import type { User } from '@repo/auth/types';
 // import { OrganizationSwitcher, UserButton } from '@repo/auth/client';
 import { ModeToggle } from '@repo/design-system/components/mode-toggle';
 import {
@@ -52,17 +53,19 @@ import {
   Trash2Icon,
 } from 'lucide-react';
 import type { ReactNode } from 'react';
+import { UserButton } from './user-button';
 
 type GlobalSidebarProperties = {
   readonly children: ReactNode;
+  user?: User;
 };
 
 const data = {
-  user: {
-    name: 'shadcn',
-    email: 'm@example.com',
-    avatar: '/avatars/shadcn.jpg',
-  },
+  // user: {
+  //   name: 'shadcn',
+  //   email: 'm@example.com',
+  //   avatar: '/avatars/shadcn.jpg',
+  // },
   navMain: [
     {
       title: 'Playground',
@@ -186,7 +189,7 @@ const data = {
   ],
 };
 
-export const GlobalSidebar = ({ children }: GlobalSidebarProperties) => {
+export const GlobalSidebar = ({ children, user }: GlobalSidebarProperties) => {
   const sidebar = useSidebar();
 
   return (
@@ -322,6 +325,8 @@ export const GlobalSidebar = ({ children }: GlobalSidebarProperties) => {
         <SidebarFooter>
           <SidebarMenu>
             <SidebarMenuItem className="flex items-center justify-end gap-2">
+              {user && <UserButton user={user} />}
+
               {/* <UserButton
                 showName
                 appearance={{
