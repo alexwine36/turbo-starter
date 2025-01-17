@@ -4,11 +4,11 @@ import type {
   NextApiResponse,
 } from 'next';
 import NextAuth, { type NextAuthResult, type Session } from 'next-auth';
-import type { BuiltInProviderType, Provider } from 'next-auth/providers';
+import type { BuiltInProviderType } from 'next-auth/providers';
 
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import { prismaClientHttp } from '@repo/database';
-import Google from 'next-auth/providers/google';
+import authConfig, { providers } from './auth.config';
 import type { User } from './types';
 import { formatUser } from './utils/format-user';
 
@@ -20,8 +20,6 @@ declare module 'next-auth' {
     user: User;
   }
 }
-
-const providers: Provider[] = [Google];
 
 export const {
   handlers,
@@ -67,7 +65,7 @@ export const {
   ) => Promise<R extends false ? any : never>;
 } = NextAuth({
   adapter: PrismaAdapter(prismaClientHttp),
-  providers,
+  session: { strategy: 'jwt' },
   callbacks: {
     session({ session, user }) {
       return {
@@ -77,11 +75,8 @@ export const {
         },
       };
     },
-    // authorized: async ({ auth }) => {
-    //   // Logged in users are authenticated, otherwise redirect to login page
-    //   return !!auth;
-    // },
   },
+  ...authConfig,
 });
 
 export const providerMap = providers

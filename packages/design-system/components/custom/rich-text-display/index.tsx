@@ -155,7 +155,7 @@ const SectionsComponent = ({ section }: { section: SectionData }) => {
 
 export const RichTextDisplay: React.FC<RichTextDisplayProps> = ({ ops }) => {
   const sections = new RichTextParser(ops).getSections();
-  console.log(sections, ops);
+  // console.log(sections, ops);
   //   console.log('SECTIONS', sections);
   return (
     <div>

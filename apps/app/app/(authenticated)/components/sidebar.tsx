@@ -1,8 +1,6 @@
 'use client';
 
 import type { User } from '@repo/auth/types';
-// import { OrganizationSwitcher, UserButton } from '@repo/auth/client';
-import { ModeToggle } from '@repo/design-system/components/mode-toggle';
 import {
   Collapsible,
   CollapsibleContent,
@@ -194,7 +192,7 @@ export const GlobalSidebar = ({ children, user }: GlobalSidebarProperties) => {
 
   return (
     <>
-      <Sidebar variant="sidebar">
+      <Sidebar variant="sidebar" collapsible="icon">
         <SidebarHeader>
           <SidebarMenu>
             <SidebarMenuItem>
@@ -337,9 +335,9 @@ export const GlobalSidebar = ({ children, user }: GlobalSidebarProperties) => {
                   },
                 }}
               /> */}
-              <div className="flex shrink-0 items-center gap-px">
+              {/* <div className="flex shrink-0 items-center gap-px">
                 <ModeToggle />
-              </div>
+              </div> */}
             </SidebarMenuItem>
           </SidebarMenu>
         </SidebarFooter>

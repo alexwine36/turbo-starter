@@ -2,7 +2,7 @@
 
 import { MoonIcon, SunIcon } from '@radix-ui/react-icons';
 import { useTheme } from 'next-themes';
-import { Button } from '../components/ui/button';
+import { Button, type ButtonProps } from '../components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,14 +16,18 @@ const themes = [
   { label: 'System', value: 'system' },
 ];
 
-export const ModeToggle = () => {
+type ModeToggleProps = {
+  variant?: ButtonProps['variant'];
+};
+
+export const ModeToggle = ({ variant = 'ghost' }: ModeToggleProps) => {
   const { setTheme } = useTheme();
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          variant="ghost"
+          variant={variant}
           size="icon"
           className="shrink-0 text-foreground"
         >
