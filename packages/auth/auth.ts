@@ -2,7 +2,7 @@ import type {
   GetServerSidePropsContext,
   NextApiRequest,
   NextApiResponse,
-} from 'next';
+} from '@/next-trpc';
 import NextAuth, { type NextAuthResult, type Session } from 'next-auth';
 import type { BuiltInProviderType } from 'next-auth/providers';
 

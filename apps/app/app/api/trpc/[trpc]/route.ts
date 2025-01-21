@@ -1,3 +1,4 @@
+import { createContext } from '@repo/trpc/server/createContext';
 import { appRouter } from '@repo/trpc/server/routers/_app';
 import { fetchRequestHandler } from '@trpc/server/adapters/fetch';
 // export API handler
@@ -13,7 +14,7 @@ function handler(req: Request) {
     req,
     router: appRouter,
     // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-    createContext: () => ({}) as any,
+    createContext: createContext as any,
     onError({ error }) {
       console.error('TRPC error', error);
     },

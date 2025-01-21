@@ -1,15 +1,17 @@
 import { z } from 'zod';
-import { procedure, router } from '../trpc';
+import publicProcedure from '../procedures/publicProcedure';
+import { router } from '../trpc';
 export const appRouter = router({
-  hello: procedure
+  hello: publicProcedure
     .input(
       z.object({
         text: z.string(),
       })
     )
-    .query((opts) => {
+    .query(({ input, ctx }) => {
+      console.log('SESSION', ctx.session);
       return {
-        greeting: `hello ${opts.input.text}`,
+        greeting: `hello ${input.text}`,
       };
     }),
 });
