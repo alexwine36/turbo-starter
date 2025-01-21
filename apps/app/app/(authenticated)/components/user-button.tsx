@@ -31,10 +31,13 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from '@repo/design-system/components/ui/sidebar';
+import { trpc } from '../../../utils/trpc';
 
 export const UserButton = ({ user }: { user: User }) => {
   const { isMobile } = useSidebar();
+  const { data } = trpc.hello.useQuery({ text: 'world' });
 
+  console.log(data);
   return (
     <SidebarMenu>
       <SidebarMenuItem>
