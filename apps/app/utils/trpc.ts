@@ -1,5 +1,5 @@
 // import { getBaseUrl, type AppRouter } from "@repo/trpc";
-import type { AppRouter } from '@repo/trpc/client';
+import type { AppRouter } from '@repo/trpc';
 import { httpBatchLink } from '@trpc/client';
 import { createTRPCNext } from '@trpc/next';
 // import { ssrPrepass } from '@trpc/next/ssrPrepass';

@@ -1,10 +1,10 @@
-import { router } from '@repo/trpc/server/trpc';
+import { router } from '@/src/server/trpc';
 import { z } from 'zod';
 import publicProcedure from '../procedures/publicProcedure';
 
 // Imports
 
-import { organizationRouter } from '@repo/trpc/server/routers/organization/_router'; //'./organization/_router';
+import { organizationRouter } from '@/src/server/routers/organization/_router'; //'./organization/_router';
 
 export const appRouter = router({
   hello: publicProcedure

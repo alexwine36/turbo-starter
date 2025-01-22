@@ -6,7 +6,7 @@ import type {
   NextApiRequest,
   NextApiResponse,
 } from 'next';
-import { auth } from '../../auth/auth';
+import { auth } from '../../../auth/auth';
 
 type CreateContextOptions = Omit<CreateNextContextOptions, 'info'> & {
   info?: CreateNextContextOptions['info'];

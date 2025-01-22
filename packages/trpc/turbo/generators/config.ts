@@ -30,7 +30,7 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
       };
       console.log(modData);
       console.log(modData.turbo.paths);
-      const basePath = `${modData?.turbo.paths.workspace}/server/routers`;
+      const basePath = `${modData?.turbo.paths.workspace}/src/server/routers`;
       const targetPath = `${basePath}`;
       const templateBasePath = `${
         modData?.turbo.paths.workspace
@@ -87,7 +87,7 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
         type: 'directory',
         name: 'router',
         message: 'Select a router',
-        basePath: './server/routers',
+        basePath: './src/server/routers',
         // biome-ignore lint/suspicious/noExplicitAny: <explanation>
       } as any,
       {

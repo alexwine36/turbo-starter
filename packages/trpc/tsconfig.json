@@ -5,7 +5,6 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "strict": true,
-    "isolatedModules": false,
     "paths": {
       "@/*": ["./*"],
       "@repo/*": ["../../packages/*"]

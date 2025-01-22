@@ -1,4 +1,4 @@
-import { router } from '@/server/trpc';
+import { router } from '@/src/server/trpc';
 import publicProcedure from '../../procedures/publicProcedure';
 
 // Imports
