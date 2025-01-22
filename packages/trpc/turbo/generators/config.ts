@@ -1,7 +1,7 @@
 import type { PlopTypes } from '@turbo/gen';
 // @ts-ignore
 import directoryPrompt from 'inquirer-directory';
-import { toCamelCase, toKebabCase } from 'remeda';
+import { capitalize, pipe, toCamelCase, toKebabCase } from 'remeda';
 
 type TurboAnswers = {
   turbo: {
@@ -103,39 +103,60 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
       };
       console.log(modData);
       console.log(modData.turbo.paths);
-      const basePath = `${modData?.turbo.paths.workspace}/server/routers`;
+      const basePath = `${modData?.turbo.paths.workspace}/src/server/routers`;
       const targetPath = `${basePath}/${modData.router}`;
       const templateBasePath = `${
         modData?.turbo.paths.workspace
-      }/turbo/generators/templates/add-route`;
+      }/turbo/generators/templates/add-handler`;
 
-      const routeName = toCamelCase(modData.name);
-      const routerName = `${routeName}Router`;
-      const routerFile = toKebabCase(modData.name);
-      const routerPath = `${targetPath}/${routerFile}/_router.ts`;
+      // const routeName = toCamelCase(modData.name);
+      // const routerName = `${routeName}Router`;
+      const baseHandlerFile = toKebabCase(modData.name);
+      const baseHandlerPath = `${targetPath}/${baseHandlerFile}`;
+
+      const schemaName = `${pipe(modData.name, toCamelCase(), capitalize())}Schema`;
+      const handlerKey = `${toCamelCase(modData.name)}`;
+      const handlerName = `${handlerKey}Handler`;
+      const handlerOptions = `${pipe(modData.name, toCamelCase(), capitalize())}Options`;
+      const handlerResponse = `${pipe(modData.name, toCamelCase(), capitalize())}Response`;
 
       // TODO: use this to make sure that paths are correctly implemnted
 
-      const importPath = routerPath
-        .replace(modData?.turbo.paths.workspace, '@')
-        .replace('.ts', '');
+      // const importPath = routerPath
+      //   .replace(modData?.turbo.paths.workspace, '@')
+      //   .replace('.ts', '');
 
       const data = {
         ...modData,
-        importPath,
-        routerName,
-        routeName,
-        routerFile,
-        routerPath,
+        // importPath,
+        // routerName,
+        // routeName,
+        // routerFile,
+        // routerPath,
+        baseHandlerFile,
+        baseHandlerPath,
+        schemaName,
+        handlerName,
+        handlerResponse,
+        handlerOptions,
+        handlerKey,
       };
 
       const actions: PlopTypes.Actions = [];
 
       console.log(data);
+      // Handler
       actions.push({
         type: 'add',
-        path: routerPath,
-        templateFile: `${templateBasePath}/router.ts.hbs`,
+        path: `${baseHandlerPath}-handler.ts`,
+        templateFile: `${templateBasePath}/handler.ts.hbs`,
+        data,
+      });
+
+      actions.push({
+        type: 'add',
+        path: `${baseHandlerPath}-schema.ts`,
+        templateFile: `${templateBasePath}/schema.ts.hbs`,
         data,
       });
 
@@ -144,7 +165,8 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
         path: `${targetPath}/_router.ts`,
         pattern: 'Handlers\n',
         data,
-        template: '{{routeName}}: {{routerName}},\n',
+        template:
+          '{{handlerKey}}: authedProcedure.input({{ schemaName }}).query({{handlerName}}),\n',
         // template: `import {{ routerName }} from './{{ routerFile }}/_router';\n`,
       });
 
@@ -154,7 +176,10 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
         pattern: 'Imports\n',
         data,
         // template: '{{routeName}}: {{routerName}},\n',
-        template: `import { {{ routerName }} } from './{{ routerFile }}/_router';\n`,
+        template: [
+          `import { {{ schemaName }} } from './{{ baseHandlerFile }}-schema'`,
+          `import { {{ handlerName }} } from './{{ baseHandlerFile }}-handler'`,
+        ].join('\n'),
       });
 
       // return [];

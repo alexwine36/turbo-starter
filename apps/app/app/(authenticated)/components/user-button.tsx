@@ -36,7 +36,7 @@ import { trpc } from '../../../utils/trpc';
 
 export const UserButton = ({ user }: { user: User }) => {
   const { isMobile } = useSidebar();
-  const { data } = trpc.organization.getAll.useQuery();
+  const { data } = trpc.organization.getOne.useQuery({});
   const { data: hello } = trpc.hello.useQuery({ text: 'world' });
   console.log(data, hello);
   return (

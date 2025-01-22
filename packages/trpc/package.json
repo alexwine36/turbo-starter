@@ -5,7 +5,9 @@
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "files": ["dist/**"],
+  "files": [
+    "dist/**"
+  ],
   "scripts": {
     "clean": "git clean -xdf .cache .turbo dist node_modules",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false",
@@ -20,8 +22,8 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
-    "@repo/database": "workspace:*",
     "@repo/auth": "workspace:*",
+    "@repo/database": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@tanstack/react-query": "^5.64.2",
     "@trpc/client": "11.0.0-rc.708",
@@ -34,6 +36,7 @@
     "inquirer-directory": "^2.2.0",
     "tsup": "^8.3.5",
     "typescript": "^5.7.2",
+    "utf-8-validate": "^6.0.5",
     "vitest": "^2.1.8"
   }
 }
