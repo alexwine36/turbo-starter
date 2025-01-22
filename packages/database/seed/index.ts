@@ -1,12 +1,15 @@
 import { faker } from '@faker-js/faker';
 import { type Prisma, PrismaClient } from '@prisma/client';
 import type { Ops } from '@repo/rich-text';
+
 const prisma = new PrismaClient();
 
-const getOrganization = async () => {
+const getOrganization = async (
+  data: Omit<Prisma.OrganizationCreateInput, 'type'>
+) => {
   const org = await prisma.organization.findFirst({
     where: {
-      name: 'Acme Inc',
+      name: data.name,
     },
   });
   if (org) {
@@ -14,8 +17,7 @@ const getOrganization = async () => {
   }
   return prisma.organization.create({
     data: {
-      name: 'Acme Inc',
-      slug: 'acme-inc',
+      ...data,
       type: 'Something',
       members: {
         create: {
@@ -88,7 +90,14 @@ const generatePageContent = (): Ops => {
 
 (async () => {
   try {
-    const org = await getOrganization();
+    const org = await getOrganization({
+      name: 'Acme Inc.',
+      slug: 'acme-inc',
+    });
+    const otherOrg = await getOrganization({
+      name: "Bob's Burgers",
+      slug: 'bobs-burgers',
+    });
     const pages = await Promise.all(
       ['index', 'about', 'contact'].map(async (page) => {
         const p = await prisma.page.findFirst({

@@ -9,7 +9,18 @@ type GetOneOptions = {
 export const getOneHandler = async ({ ctx, input }: GetOneOptions) => {
   const { prisma, session } = ctx;
 
-  const res = await prisma.organization.findMany();
+  const res = await prisma.organization.findFirst({
+    where: {
+      OR: [
+        {
+          id: input.id,
+        },
+        {
+          slug: input.slug,
+        },
+      ],
+    },
+  });
 
   return res;
 };

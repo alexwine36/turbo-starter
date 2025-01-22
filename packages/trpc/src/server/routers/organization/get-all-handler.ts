@@ -9,9 +9,23 @@ type GetAllOptions = {
 export const getAllHandler = async ({ ctx, input }: GetAllOptions) => {
   const { prisma, session } = ctx;
 
-  const res = await prisma.organization.findMany();
+  const res = await prisma.member.findMany({
+    where: {
+      email: session?.user.email,
+    },
+    select: {
+      role: true,
+      organization: true,
+    },
+  });
 
-  return res;
+  return res.map((member) => {
+    const { organization, ...rest } = member;
+    return {
+      ...organization,
+      ...rest,
+    };
+  });
 };
 
 export type GetAllResponse = ReturnType<typeof getAllHandler>;

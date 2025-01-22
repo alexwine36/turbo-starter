@@ -5,6 +5,7 @@ export interface User {
   email: string;
   image: string;
   initials: string;
+  currentOrganizationId?: string;
 }
 
 export interface Session extends DefaultSession {

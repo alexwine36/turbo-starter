@@ -7,10 +7,10 @@ import NextAuth, { type NextAuthResult, type Session } from 'next-auth';
 import type { BuiltInProviderType } from 'next-auth/providers';
 
 import { PrismaAdapter } from '@auth/prisma-adapter';
-import { prismaClientHttp } from '@repo/database';
+import { database, prismaClientHttp } from '@repo/database';
 import authConfig, { providers } from './auth.config';
 import type { User } from './types';
-import { formatUser } from './utils/format-user';
+import { populateUser } from './utils/format-user';
 
 declare module 'next-auth' {
   /**
@@ -18,6 +18,7 @@ declare module 'next-auth' {
    */
   interface Session {
     user: User;
+    currentOrganizationId?: string;
   }
 }
 
@@ -67,11 +68,14 @@ export const {
   adapter: PrismaAdapter(prismaClientHttp),
   session: { strategy: 'jwt' },
   callbacks: {
-    session({ session, user }) {
+    async session({ session, user }) {
+      const res = await populateUser(session.user, database);
+
       return {
         ...session,
         user: {
-          ...formatUser(session.user),
+          ...user,
+          ...res,
         },
       };
     },

@@ -7,6 +7,7 @@ import type {
   NextApiResponse,
 } from 'next';
 import { auth } from '../../../auth/auth';
+import { populateUser } from '../../../auth/utils/format-user';
 
 type CreateContextOptions = Omit<CreateNextContextOptions, 'info'> & {
   info?: CreateNextContextOptions['info'];
@@ -40,7 +41,17 @@ export async function createContextInner(
 
 const sessionGetter: GetSessionFn = async () => {
   const session = await auth();
-  return session;
+  if (!session) {
+    return null;
+  }
+  const user = await populateUser(session.user, database);
+  return {
+    ...session,
+    user: {
+      ...session.user,
+      ...user,
+    },
+  };
 };
 
 type Context = InnerContext & {

@@ -39,7 +39,7 @@ export const UserButton = ({ user }: { user: User }) => {
   const { data } = trpc.organization.getAll.useQuery({});
   const { data: hello } = trpc.hello.useQuery({ text: 'world' });
   const { data: me } = trpc.user.me.useQuery({});
-  console.log(data, hello, me);
+  console.log('USER BUTTON', data, hello, me);
   return (
     <SidebarMenu>
       <SidebarMenuItem>

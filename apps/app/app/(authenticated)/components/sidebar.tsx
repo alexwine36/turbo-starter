@@ -31,7 +31,6 @@ import {
   SidebarMenuSubItem,
   useSidebar,
 } from '@repo/design-system/components/ui/sidebar';
-import { cn } from '@repo/design-system/lib/utils';
 // import { NotificationsTrigger } from '@repo/notifications/components/trigger';
 import {
   AnchorIcon,
@@ -51,6 +50,7 @@ import {
   Trash2Icon,
 } from 'lucide-react';
 import type { ReactNode } from 'react';
+import { OrgSwitcher } from './org-switcher';
 import { UserButton } from './user-button';
 
 type GlobalSidebarProperties = {
@@ -193,23 +193,7 @@ export const GlobalSidebar = ({ children, user }: GlobalSidebarProperties) => {
   return (
     <>
       <Sidebar variant="sidebar" collapsible="icon">
-        <SidebarHeader>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <div
-                className={cn(
-                  'h-[36px] overflow-hidden transition-all [&>div]:w-full',
-                  sidebar.open ? '' : '-mx-1'
-                )}
-              >
-                {/* <OrganizationSwitcher
-                  hidePersonal
-                  afterSelectOrganizationUrl="/"
-                /> */}
-              </div>
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarHeader>
+        <SidebarHeader>{user && <OrgSwitcher />}</SidebarHeader>
         <SidebarContent>
           <SidebarGroup>
             <SidebarGroupLabel>Platform</SidebarGroupLabel>
