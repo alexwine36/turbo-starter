@@ -1,6 +1,6 @@
+import { router } from '@repo/trpc/server/trpc';
 import { z } from 'zod';
 import publicProcedure from '../procedures/publicProcedure';
-import { router } from '../trpc';
 
 // Imports
 

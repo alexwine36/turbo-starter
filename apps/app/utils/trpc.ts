@@ -1,8 +1,8 @@
 // import { getBaseUrl, type AppRouter } from "@repo/trpc";
-import type { AppRouter } from '@repo/trpc/server/routers/_app';
+import type { AppRouter } from '@repo/trpc/client';
 import { httpBatchLink } from '@trpc/client';
 import { createTRPCNext } from '@trpc/next';
-import { ssrPrepass } from '@trpc/next/ssrPrepass';
+// import { ssrPrepass } from '@trpc/next/ssrPrepass';
 import superjson from 'superjson';
 function getBaseUrl() {
   if (typeof window !== 'undefined')
@@ -21,20 +21,20 @@ function getBaseUrl() {
 export const trpc = createTRPCNext<AppRouter>({
   config(opts) {
     const { ctx } = opts;
-    if (typeof window !== 'undefined') {
-      // during client requests
-      return {
-        // transformer: superjson, // optional - adds superjson serialization
-        links: [
-          httpBatchLink({
-            transformer: superjson,
-            url: '/api/trpc',
-          }),
-        ],
-      };
-    }
+    // if (typeof window !== 'undefined') {
+    //   // during client requests
+    //   return {
+    //     // transformer: superjson, // optional - adds superjson serialization
+    //     links: [
+    //       httpBatchLink({
+    //         transformer: superjson,
+    //         url: '/api/trpc',
+    //       }),
+    //     ],
+    //   };
+    // }
     return {
-      transformer: superjson,
+      // transformer: superjson,
       links: [
         httpBatchLink({
           transformer: superjson,
@@ -61,6 +61,6 @@ export const trpc = createTRPCNext<AppRouter>({
   /**
    * @see https://trpc.io/docs/ssr
    **/
-  ssr: true,
-  ssrPrepass,
+  ssr: false,
+  transformer: superjson,
 });

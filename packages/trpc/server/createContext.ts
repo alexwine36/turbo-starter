@@ -28,6 +28,7 @@ export type InnerContext = CreateInnerContextOptions & {
   //   insightsDb: typeof readonlyPrisma;
 };
 
+// biome-ignore lint/suspicious/useAwait: <explanation>
 export async function createContextInner(
   opts: CreateInnerContextOptions
 ): Promise<InnerContext> {
