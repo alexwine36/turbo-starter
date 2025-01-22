@@ -2,8 +2,8 @@
 import type { AppRouter } from '@repo/trpc/server/routers/_app';
 import { httpBatchLink } from '@trpc/client';
 import { createTRPCNext } from '@trpc/next';
+import { ssrPrepass } from '@trpc/next/ssrPrepass';
 import superjson from 'superjson';
-
 function getBaseUrl() {
   if (typeof window !== 'undefined')
     // browser should use relative path
@@ -24,7 +24,7 @@ export const trpc = createTRPCNext<AppRouter>({
     if (typeof window !== 'undefined') {
       // during client requests
       return {
-        transformer: superjson, // optional - adds superjson serialization
+        // transformer: superjson, // optional - adds superjson serialization
         links: [
           httpBatchLink({
             transformer: superjson,
@@ -61,5 +61,6 @@ export const trpc = createTRPCNext<AppRouter>({
   /**
    * @see https://trpc.io/docs/ssr
    **/
-  ssr: false,
+  ssr: true,
+  ssrPrepass,
 });
