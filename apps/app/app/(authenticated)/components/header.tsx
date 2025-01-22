@@ -32,7 +32,10 @@ export const Header = ({ pages, page, children }: HeaderProps) => (
               </BreadcrumbItem>
             </Fragment>
           ))}
-          <BreadcrumbSeparator className="hidden md:block" />
+          {pages.length > 0 && (
+            <BreadcrumbSeparator className="hidden md:block" />
+          )}
+
           <BreadcrumbItem>
             <BreadcrumbPage>{page}</BreadcrumbPage>
           </BreadcrumbItem>

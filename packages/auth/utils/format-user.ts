@@ -43,6 +43,14 @@ export const populateUser = async <
     where: {
       email: user?.email,
     },
+    select: {
+      currentOrganizationId: true,
+      currentMembership: {
+        select: {
+          role: true,
+        },
+      },
+    },
   });
   if (dbUser && !dbUser.currentOrganizationId) {
     const userOrgs = await prisma.member.findMany({
@@ -58,6 +66,15 @@ export const populateUser = async <
         data: {
           currentOrganizationId: userOrgs[0].organizationId,
         },
+
+        select: {
+          currentOrganizationId: true,
+          currentMembership: {
+            select: {
+              role: true,
+            },
+          },
+        },
       });
     }
   }
@@ -66,6 +83,7 @@ export const populateUser = async <
     ...user,
 
     currentOrganizationId: dbUser?.currentOrganizationId,
+    currentRole: dbUser?.currentMembership?.role,
     ...formatUser(user),
   };
 };

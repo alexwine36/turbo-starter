@@ -1,4 +1,5 @@
 'use client';
+import type { User } from '@repo/auth/types';
 import {
   Avatar,
   AvatarFallback,
@@ -25,11 +26,14 @@ import { ChevronsUpDown, Plus } from 'lucide-react';
 import Link from 'next/link';
 import * as React from 'react';
 import { trpc } from '../../../utils/trpc';
-export const OrgSwitcher = () => {
+
+export const OrgSwitcher = ({
+  user,
+}: {
+  user: User;
+}) => {
   const { isMobile } = useSidebar();
   const utils = trpc.useUtils();
-
-  const { data: user } = trpc.user.me.useQuery({});
 
   const { data: organizations, isLoading } = trpc.organization.getAll.useQuery(
     {}
@@ -47,30 +51,8 @@ export const OrgSwitcher = () => {
     }
     return undefined;
   }, [organizations, currentOrganizationId]);
-  // const [activeTeam, setActiveTeam] = React.useState(organizations[0]);
-
-  //   const handleOrgChange = (team?: User['organizations'][0]) => {
-  //     setActiveTeam(team);
-  //     if (team) {
-  //       router.push(`/organization/${team.id}`);
-  //     }
-  //   };
-
-  //   React.useEffect(() => {
-  //     if (!activeTeam && organizations.length > 0) {
-  //       handleOrgChange(organizations[0]);
-  //     }
-  //     if (activeTeam && !organizations.includes(activeTeam)) {
-  //       if (!organizations.length) {
-  //         handleOrgChange(undefined);
-  //       } else {
-  //         handleOrgChange(organizations[0]);
-  //       }
-  //     }
-  //   }, [activeTeam, organizations]);
 
   const handleOrgChange = (team: RouterOutput['organization']['getAll'][0]) => {
-    console.log(team);
     mutate({ organizationId: team.id });
   };
 

@@ -117,6 +117,9 @@ importers:
       react-dom:
         specifier: 19.0.0
         version: 19.0.0(react@19.0.0)
+      remeda:
+        specifier: ^2.19.1
+        version: 2.19.1
       require-in-the-middle:
         specifier: ^7.4.0
         version: 7.4.0

@@ -1,6 +1,4 @@
 'use client';
-
-import type { User } from '@repo/auth/types';
 import {
   Collapsible,
   CollapsibleContent,
@@ -29,171 +27,40 @@ import {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
-  useSidebar,
 } from '@repo/design-system/components/ui/sidebar';
 // import { NotificationsTrigger } from '@repo/notifications/components/trigger';
 import {
-  AnchorIcon,
-  BookOpenIcon,
-  BotIcon,
   ChevronRightIcon,
   FolderIcon,
-  FrameIcon,
-  LifeBuoyIcon,
-  MapIcon,
   MoreHorizontalIcon,
-  PieChartIcon,
-  SendIcon,
-  Settings2Icon,
   ShareIcon,
-  SquareTerminalIcon,
   Trash2Icon,
 } from 'lucide-react';
-import type { ReactNode } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { type ReactNode, useMemo } from 'react';
+import { getSidebarLinks } from '../../../utils/constants/links';
+import { trpc } from '../../../utils/trpc';
 import { OrgSwitcher } from './org-switcher';
 import { UserButton } from './user-button';
 
 type GlobalSidebarProperties = {
   readonly children: ReactNode;
-  user?: User;
+  // user?: User;
 };
 
-const data = {
-  // user: {
-  //   name: 'shadcn',
-  //   email: 'm@example.com',
-  //   avatar: '/avatars/shadcn.jpg',
-  // },
-  navMain: [
-    {
-      title: 'Playground',
-      url: '#',
-      icon: SquareTerminalIcon,
-      isActive: true,
-      items: [
-        {
-          title: 'History',
-          url: '#',
-        },
-        {
-          title: 'Starred',
-          url: '#',
-        },
-        {
-          title: 'Settings',
-          url: '#',
-        },
-      ],
-    },
-    {
-      title: 'Models',
-      url: '#',
-      icon: BotIcon,
-      items: [
-        {
-          title: 'Genesis',
-          url: '#',
-        },
-        {
-          title: 'Explorer',
-          url: '#',
-        },
-        {
-          title: 'Quantum',
-          url: '#',
-        },
-      ],
-    },
-    {
-      title: 'Documentation',
-      url: '#',
-      icon: BookOpenIcon,
-      items: [
-        {
-          title: 'Introduction',
-          url: '#',
-        },
-        {
-          title: 'Get Started',
-          url: '#',
-        },
-        {
-          title: 'Tutorials',
-          url: '#',
-        },
-        {
-          title: 'Changelog',
-          url: '#',
-        },
-      ],
-    },
-    {
-      title: 'Settings',
-      url: '#',
-      icon: Settings2Icon,
-      items: [
-        {
-          title: 'General',
-          url: '#',
-        },
-        {
-          title: 'Team',
-          url: '#',
-        },
-        {
-          title: 'Billing',
-          url: '#',
-        },
-        {
-          title: 'Limits',
-          url: '#',
-        },
-      ],
-    },
-  ],
-  navSecondary: [
-    {
-      title: 'Webhooks',
-      url: '/webhooks',
-      icon: AnchorIcon,
-    },
-    {
-      title: 'Support',
-      url: '#',
-      icon: LifeBuoyIcon,
-    },
-    {
-      title: 'Feedback',
-      url: '#',
-      icon: SendIcon,
-    },
-  ],
-  projects: [
-    {
-      name: 'Design Engineering',
-      url: '#',
-      icon: FrameIcon,
-    },
-    {
-      name: 'Sales & Marketing',
-      url: '#',
-      icon: PieChartIcon,
-    },
-    {
-      name: 'Travel',
-      url: '#',
-      icon: MapIcon,
-    },
-  ],
-};
+export const GlobalSidebar = ({ children }: GlobalSidebarProperties) => {
+  const { data: user } = trpc.user.me.useQuery({});
+  const pathname = usePathname();
+  // console.log('loc', window.location, pathname);
 
-export const GlobalSidebar = ({ children, user }: GlobalSidebarProperties) => {
-  const sidebar = useSidebar();
-
+  const data = useMemo(() => {
+    return getSidebarLinks(pathname, user);
+  }, [user, pathname]);
   return (
     <>
       <Sidebar variant="sidebar" collapsible="icon">
-        <SidebarHeader>{user && <OrgSwitcher />}</SidebarHeader>
+        <SidebarHeader>{user && <OrgSwitcher user={user} />}</SidebarHeader>
         <SidebarContent>
           <SidebarGroup>
             <SidebarGroupLabel>Platform</SidebarGroupLabel>
@@ -203,13 +70,15 @@ export const GlobalSidebar = ({ children, user }: GlobalSidebarProperties) => {
                   key={item.title}
                   asChild
                   defaultOpen={item.isActive}
+                  open={item.isActive}
                 >
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild tooltip={item.title}>
-                      <a href={item.url}>
-                        <item.icon />
+                      <Link href={item.url}>
+                        {item.icon && <item.icon />}
+
                         <span>{item.title}</span>
-                      </a>
+                      </Link>
                     </SidebarMenuButton>
                     {item.items?.length ? (
                       <>
@@ -224,9 +93,9 @@ export const GlobalSidebar = ({ children, user }: GlobalSidebarProperties) => {
                             {item.items?.map((subItem) => (
                               <SidebarMenuSubItem key={subItem.title}>
                                 <SidebarMenuSubButton asChild>
-                                  <a href={subItem.url}>
+                                  <Link href={subItem.url}>
                                     <span>{subItem.title}</span>
-                                  </a>
+                                  </Link>
                                 </SidebarMenuSubButton>
                               </SidebarMenuSubItem>
                             ))}
@@ -243,12 +112,12 @@ export const GlobalSidebar = ({ children, user }: GlobalSidebarProperties) => {
             <SidebarGroupLabel>Projects</SidebarGroupLabel>
             <SidebarMenu>
               {data.projects.map((item) => (
-                <SidebarMenuItem key={item.name}>
+                <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <a href={item.url}>
-                      <item.icon />
-                      <span>{item.name}</span>
-                    </a>
+                    <Link href={item.url}>
+                      {item.icon && <item.icon />}
+                      <span>{item.title}</span>
+                    </Link>
                   </SidebarMenuButton>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -293,10 +162,10 @@ export const GlobalSidebar = ({ children, user }: GlobalSidebarProperties) => {
                 {data.navSecondary.map((item) => (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton asChild>
-                      <a href={item.url}>
-                        <item.icon />
+                      <Link href={item.url}>
+                        {item.icon && <item.icon />}
                         <span>{item.title}</span>
-                      </a>
+                      </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 ))}
@@ -308,20 +177,6 @@ export const GlobalSidebar = ({ children, user }: GlobalSidebarProperties) => {
           <SidebarMenu>
             <SidebarMenuItem className="flex items-center justify-end gap-2">
               {user && <UserButton user={user} />}
-
-              {/* <UserButton
-                showName
-                appearance={{
-                  elements: {
-                    rootBox: 'flex overflow-hidden w-full',
-                    userButtonBox: 'flex-row-reverse',
-                    userButtonOuterIdentifier: 'truncate pl-0',
-                  },
-                }}
-              /> */}
-              {/* <div className="flex shrink-0 items-center gap-px">
-                <ModeToggle />
-              </div> */}
             </SidebarMenuItem>
           </SidebarMenu>
         </SidebarFooter>

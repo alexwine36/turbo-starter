@@ -1,3 +1,4 @@
+import type { MemberRole } from '@repo/database';
 import type { Session as DefaultSession } from 'next-auth';
 
 export interface User {
@@ -6,6 +7,7 @@ export interface User {
   image: string;
   initials: string;
   currentOrganizationId?: string;
+  currentRole?: MemberRole;
 }
 
 export interface Session extends DefaultSession {
