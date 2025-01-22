@@ -5,9 +5,7 @@
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "files": [
-    "dist/**"
-  ],
+  "files": ["dist/**"],
   "scripts": {
     "clean": "git clean -xdf .cache .turbo dist node_modules",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false",
@@ -36,7 +34,6 @@
     "inquirer-directory": "^2.2.0",
     "tsup": "^8.3.5",
     "typescript": "^5.7.2",
-    "utf-8-validate": "^6.0.5",
     "vitest": "^2.1.8"
   }
 }

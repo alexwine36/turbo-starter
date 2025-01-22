@@ -1,4 +1,4 @@
-import type { TRPCContextInner } from '@/src/server/createContext';
+import type { TRPCContextInner } from '@/server/createContext';
 import type { GetOneSchema } from './get-one-schema.ts';
 
 type GetOneOptions = {
@@ -9,7 +9,7 @@ type GetOneOptions = {
 export const getOneHandler = async ({ ctx, input }: GetOneOptions) => {
   const { prisma, session } = ctx;
 
-  const res = await prisma.user.findMany();
+  const res = await prisma.organization.findMany();
 
   return res;
 };

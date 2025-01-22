@@ -33,6 +33,8 @@ model User {
   sessions      Session[]
   // Optional for WebAuthn support
   Authenticator Authenticator[]
+
+  members Member[]
  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -92,4 +94,48 @@ model Authenticator {
  
   @@id([userId, credentialID])
 }
+// #endregion
+
+
+// #region Organization
+
+model Organization {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  image       String?
+  type        String
+  description String?
+  website     String?
+  social      Json?
+  members     Member[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+enum MemberRole {
+  OWNER
+  ADMIN
+  MEMBER
+}
+
+model Member {
+
+  email         String
+  organizationId String
+  role           MemberRole @default(MEMBER)
+  active Boolean @default(true)
+  title          String?
+  description    String?
+  image          String?
+  social         Json?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+ 
+  user         User         @relation(fields: [email], references: [email], onDelete: Cascade)
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+ 
+  @@id([email, organizationId])
+}
+
 // #endregion

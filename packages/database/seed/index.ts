@@ -3,6 +3,30 @@ import { type Prisma, PrismaClient } from '@prisma/client';
 import type { Ops } from '@repo/rich-text';
 const prisma = new PrismaClient();
 
+const getOrganization = async () => {
+  const org = await prisma.organization.findFirst({
+    where: {
+      name: 'Acme Inc',
+    },
+  });
+  if (org) {
+    return org;
+  }
+  return prisma.organization.create({
+    data: {
+      name: 'Acme Inc',
+      slug: 'acme-inc',
+      type: 'Something',
+      members: {
+        create: {
+          role: 'OWNER',
+          email: 'alexwine36@gmail.com',
+        },
+      },
+    },
+  });
+};
+
 const contentGenerate = (): Ops => {
   const type = faker.helpers.arrayElement(['heading', 'list', 'text']);
   switch (type) {
@@ -64,6 +88,7 @@ const generatePageContent = (): Ops => {
 
 (async () => {
   try {
+    const org = await getOrganization();
     const pages = await Promise.all(
       ['index', 'about', 'contact'].map(async (page) => {
         const p = await prisma.page.findFirst({
