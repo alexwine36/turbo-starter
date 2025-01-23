@@ -1,4 +1,4 @@
-import type { TRPCContextInner } from '@/server/createContext';
+import type { TRPCContextInner } from '@/server/create-context';
 import type { SetCurrentOrgSchema } from './set-current-org-schema.ts';
 
 type SetCurrentOrgOptions = {

@@ -1,4 +1,4 @@
-import type { TRPCContextInner } from '@/server/createContext';
+import type { TRPCContextInner } from '@/server/create-context';
 import type { GetOneSchema } from './get-one-schema.ts';
 
 type GetOneOptions = {

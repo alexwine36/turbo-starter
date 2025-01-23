@@ -1,5 +1,5 @@
 import { router } from '@/server/trpc';
-import authedProcedure from '../../procedures/authedProcedure';
+import authedProcedure from '../../procedures/authed-procedure';
 // Imports
 
 import { createHandler } from './create-handler';

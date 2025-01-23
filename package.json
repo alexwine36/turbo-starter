@@ -6,6 +6,7 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "ultracite lint",
+    "lint:ci": "biome check --diagnostic-level=error",
     "format": "ultracite format",
     "test": "turbo test",
     "analyze": "turbo analyze",

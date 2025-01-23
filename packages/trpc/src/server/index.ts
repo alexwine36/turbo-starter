@@ -1,3 +1,3 @@
 // export * from '@trpc/server';
-export * from './createContext';
+export * from './create-context';
 export * from './routers/_app';

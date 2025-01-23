@@ -1,5 +1,5 @@
-import captureErrorsMiddleware from '../middlewares/captureErrorsMiddleware';
-import perfMiddleware from '../middlewares/perfMiddleware';
+import captureErrorsMiddleware from '../middlewares/capture-errors-middleware';
+import perfMiddleware from '../middlewares/perf-middleware';
 import { procedure } from '../trpc';
 
 const publicProcedure = procedure

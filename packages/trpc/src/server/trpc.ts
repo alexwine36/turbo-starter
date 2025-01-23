@@ -1,4 +1,4 @@
-import type { createContextInner } from '@/server/createContext';
+import type { createContextInner } from '@/server/create-context';
 import { initTRPC } from '@trpc/server';
 import superjson from 'superjson';
 // Avoid exporting the entire t-object

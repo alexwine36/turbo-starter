@@ -1,4 +1,4 @@
-import { createContext } from '@repo/trpc/dist/server/createContext';
+import { createContext } from '@repo/trpc/dist/server/create-context';
 import { appRouter } from '@repo/trpc/dist/server/routers/_app';
 import { fetchRequestHandler } from '@trpc/server/adapters/fetch';
 // export API handler

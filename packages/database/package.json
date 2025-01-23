@@ -10,7 +10,7 @@
     "db:reset": "prisma migrate reset --force",
     "db:seed": "tsx seed/index.ts",
     "analyze": "prisma generate --no-hints",
-    "build": "prisma generate --no-hints",
+    "postinstall": "prisma generate --no-hints",
     "clean": "git clean -xdf .cache .turbo dist node_modules",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false",
     "generate": "prisma generate",

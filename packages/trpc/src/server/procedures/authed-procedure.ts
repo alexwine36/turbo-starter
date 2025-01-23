@@ -1,12 +1,12 @@
-import captureErrorsMiddleware from '../middlewares/captureErrorsMiddleware';
-import perfMiddleware from '../middlewares/perfMiddleware';
+import captureErrorsMiddleware from '../middlewares/capture-errors-middleware';
+import perfMiddleware from '../middlewares/perf-middleware';
 import {
   isAdminMiddleware,
   isAuthed,
   isOrgAdminMiddleware,
-} from '../middlewares/sessionMiddleware';
+} from '../middlewares/session-middleware';
 import { procedure } from '../trpc';
-import publicProcedure from './publicProcedure';
+import publicProcedure from './public-procedure';
 
 /*interface IRateLimitOptions {
   intervalInMs: number;

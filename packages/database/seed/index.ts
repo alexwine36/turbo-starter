@@ -90,15 +90,15 @@ const generatePageContent = (): Ops => {
 
 (async () => {
   try {
-    const org = await getOrganization({
+    const _org = await getOrganization({
       name: 'Acme Inc.',
       slug: 'acme-inc',
     });
-    const otherOrg = await getOrganization({
+    const _otherOrg = await getOrganization({
       name: "Bob's Burgers",
       slug: 'bobs-burgers',
     });
-    const pages = await Promise.all(
+    const _pages = await Promise.all(
       ['index', 'about', 'contact'].map(async (page) => {
         const p = await prisma.page.findFirst({
           where: {

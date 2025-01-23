@@ -1,4 +1,6 @@
+import { auth } from '@repo/auth/auth';
 import type { Session } from '@repo/auth/types';
+import { populateUser } from '@repo/auth/utils/format-user';
 import { database } from '@repo/database/database';
 import type { CreateNextContextOptions } from '@trpc/server/adapters/next';
 import type {
@@ -6,8 +8,6 @@ import type {
   NextApiRequest,
   NextApiResponse,
 } from 'next';
-import { auth } from '../../../auth/auth';
-import { populateUser } from '../../../auth/utils/format-user';
 
 type CreateContextOptions = Omit<CreateNextContextOptions, 'info'> & {
   info?: CreateNextContextOptions['info'];

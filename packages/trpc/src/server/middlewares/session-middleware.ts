@@ -2,7 +2,7 @@ import { auth } from '@repo/auth/auth';
 import type { Session } from '@repo/auth/types';
 import { formatUser } from '@repo/auth/utils/format-user';
 import { TRPCError } from '@trpc/server';
-import type { TRPCContextInner } from '../createContext';
+import type { TRPCContextInner } from '../create-context';
 import { middleware } from '../trpc';
 
 type Maybe<T> = T | null | undefined;

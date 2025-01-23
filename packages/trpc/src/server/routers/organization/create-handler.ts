@@ -1,4 +1,4 @@
-import type { TRPCContextInner } from '@/server/createContext';
+import type { TRPCContextInner } from '@/server/create-context';
 import { toKebabCase } from 'remeda';
 import type { CreateSchema } from './create-schema.ts';
 

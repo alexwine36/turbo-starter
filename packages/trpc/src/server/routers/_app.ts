@@ -1,6 +1,6 @@
 import { router } from '@/server/trpc';
 import { z } from 'zod';
-import publicProcedure from '../procedures/publicProcedure';
+import publicProcedure from '../procedures/public-procedure';
 
 // Imports
 
