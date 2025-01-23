@@ -1,5 +1,5 @@
 import type { Session } from '@repo/auth/types';
-import { database } from '@repo/database';
+import { database } from '@repo/database/database';
 import type { CreateNextContextOptions } from '@trpc/server/adapters/next';
 import type {
   GetServerSidePropsContext,

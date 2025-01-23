@@ -17,12 +17,13 @@ export const createHandler = async ({ ctx, input }: CreateOptions) => {
     throw new Error('Not authenticated');
   }
   const user = session.user;
-  const { name, slug } = input;
+  const { social, ...rest } = input;
   const res = await prisma.organization.create({
     data: {
-      name,
-      slug: slug || slugify(name),
-      type: 'Something',
+      // name,
+      // slug: slug || slugify(name),
+      // type: 'Something',
+      ...rest,
       members: {
         create: {
           role: 'OWNER',

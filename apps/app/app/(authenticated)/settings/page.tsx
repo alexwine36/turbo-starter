@@ -1,24 +1,37 @@
 import { auth } from '@repo/auth/auth';
-import { Heading } from '@repo/design-system/components/custom/typography';
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from '@repo/design-system/components/ui/card';
 import { redirect } from 'next/navigation';
 import { Header } from '../components/header';
-
+import { OrganizationProvider } from './components/organization-provider';
 const Settings = async () => {
   const session = await auth();
-  if (!session) {
-    return null;
-  }
+
   if (
-    !session.user.currentOrganizationId ||
+    !session?.user.currentOrganizationId ||
     session.user.currentRole === 'MEMBER'
   ) {
     redirect('/');
   }
+
   return (
     <>
       <Header page="Settings" pages={[]} />
       <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-        <Heading>Wassup</Heading>
+        <Card>
+          <CardHeader>
+            <CardTitle>Organization Properties</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <OrganizationProvider
+              organizationId={session.user.currentOrganizationId}
+            />
+          </CardContent>
+        </Card>
       </div>
     </>
   );

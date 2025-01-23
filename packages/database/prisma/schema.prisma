@@ -6,6 +6,13 @@ generator client {
   previewFeatures = ["driverAdapters"]
 }
 
+generator zod {
+  provider       = "zod-prisma-types"
+  output = "../types/generated"
+  prismaClientPath = "@repo/database"
+  useMultipleFiles = true
+}
+
 datasource db {
   provider     = "postgresql"
   url          = env("DATABASE_URL")
@@ -104,11 +111,14 @@ model Authenticator {
 
 model Organization {
   id          String   @id @default(cuid())
+  /// @zod.string.min(3, {message: "name must be at least 3 characters"})
   name        String
+  /// @zod.string.min(3, {message: "must be at least 3 characters"}).regex(/^[a-z](-?[a-z])*$/, 'Slug must only contain "-" and lowercase letters'),
   slug        String   @unique
   image       String?
   type        String
   description String?
+  /// @zod.string.url({message: "must be a valid URL"})
   website     String?
   social      Json?
   members     Member[]

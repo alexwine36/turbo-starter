@@ -1,9 +1,6 @@
-import { z } from 'zod';
+import { OrganizationInput } from '@repo/database/types';
+import type { z } from 'zod';
 
-export const CreateSchema = z.object({
-  // Define your schema here
-  name: z.string(),
-  slug: z.string().optional(),
-});
+export const CreateSchema = OrganizationInput;
 
 export type CreateSchema = z.infer<typeof CreateSchema>;

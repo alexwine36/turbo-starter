@@ -8,8 +8,12 @@ import { getAllHandler } from './get-all-handler';
 import { GetAllSchema } from './get-all-schema';
 import { getOneHandler } from './get-one-handler';
 import { GetOneSchema } from './get-one-schema';
+import { updateHandler } from './update-handler';
+import { UpdateSchema } from './update-schema';
 export const organizationRouter = router({
   // Handlers
+
+  update: authedProcedure.input(UpdateSchema).mutation(updateHandler),
 
   getAll: authedProcedure.input(GetAllSchema).query(getAllHandler),
 

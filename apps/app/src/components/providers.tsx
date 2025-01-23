@@ -1,5 +1,4 @@
 'use client';
-
 import type React from 'react';
 import type { ReactNode } from 'react';
 import { DesignSystemProvider } from '../../../../packages/design-system';

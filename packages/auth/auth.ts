@@ -7,7 +7,7 @@ import NextAuth, { type NextAuthResult, type Session } from 'next-auth';
 import type { BuiltInProviderType } from 'next-auth/providers';
 
 import { PrismaAdapter } from '@auth/prisma-adapter';
-import { database, prismaClientHttp } from '@repo/database';
+import { database, prismaClientHttp } from '@repo/database/database';
 import authConfig, { providers } from './auth.config';
 import type { User } from './types';
 import { populateUser } from './utils/format-user';
