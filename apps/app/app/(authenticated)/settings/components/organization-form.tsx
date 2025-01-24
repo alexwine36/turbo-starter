@@ -106,9 +106,11 @@ export const OrganizationForm: React.FC<OrganizationFormProps> = ({
           control={form.control}
           name="description"
         />
-        <Button disabled={form.formState.isSubmitting} type="submit">
-          Save
-        </Button>
+        <div className="flex justify-end">
+          <Button disabled={form.formState.isSubmitting} type="submit">
+            Save
+          </Button>
+        </div>
       </form>
     </Form>
   );

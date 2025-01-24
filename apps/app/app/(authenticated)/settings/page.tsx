@@ -7,6 +7,7 @@ import {
 } from '@repo/design-system/components/ui/card';
 import { redirect } from 'next/navigation';
 import { Header } from '../components/header';
+import { MemberTable } from './components/member-table';
 import { OrganizationProvider } from './components/organization-provider';
 const Settings = async () => {
   const session = await auth();
@@ -30,6 +31,14 @@ const Settings = async () => {
             <OrganizationProvider
               organizationId={session.user.currentOrganizationId}
             />
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader>
+            <CardTitle>Members</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <MemberTable />
           </CardContent>
         </Card>
       </div>

@@ -1,4 +1,4 @@
-import authedProcedure from '@/server/procedures/authedProcedure';
+import authedProcedure from '@/server/procedures/authed-procedure';
 import { router } from '@/server/trpc';
 
 // Imports

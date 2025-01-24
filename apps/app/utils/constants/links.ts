@@ -108,25 +108,25 @@ export const SidebarLinks: SidebarLinks = {
       title: 'Settings',
       url: '/settings',
       icon: Settings2Icon,
-      items: [
-        {
-          title: 'General',
-          url: '/settings',
-        },
-        {
-          title: 'Team',
-          url: '#',
-        },
-        {
-          title: 'Billing',
-          url: '#',
-          permissions: ['ADMIN', 'OWNER'],
-        },
-        {
-          title: 'Limits',
-          url: '#',
-        },
-      ],
+      // items: [
+      //   {
+      //     title: 'General',
+      //     url: '/settings',
+      //   },
+      //   {
+      //     title: 'Team',
+      //     url: '#',
+      //   },
+      //   {
+      //     title: 'Billing',
+      //     url: '#',
+      //     permissions: ['ADMIN', 'OWNER'],
+      //   },
+      //   {
+      //     title: 'Limits',
+      //     url: '#',
+      //   },
+      // ],
     },
   ],
   navSecondary: [
@@ -190,7 +190,10 @@ const filterLinks = (links: SidebarLink[], user?: User): SidebarLink[] => {
 export const getSidebarLinks = (pathname: string, user?: User) => {
   return mapValues(SidebarLinks, (value, key) => {
     return filterLinks(value, user).map((link) => {
-      if (pathname.startsWith(link.url)) {
+      if (
+        (link.url !== '/' && pathname.startsWith(link.url)) ||
+        link.items?.some((item) => pathname.startsWith(item.url))
+      ) {
         return {
           ...link,
           isActive: true,

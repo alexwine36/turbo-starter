@@ -4,6 +4,8 @@ import publicProcedure from '../procedures/public-procedure';
 
 // Imports
 
+import { memberRouter } from './member/_router';
+
 import { userRouter } from './user/_router';
 
 import { organizationRouter } from '@/server/routers/organization/_router'; //'./organization/_router';
@@ -21,6 +23,8 @@ export const appRouter = router({
       };
     }),
   // Handlers
+
+member: memberRouter,
 
   user: userRouter,
 

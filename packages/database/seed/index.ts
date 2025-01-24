@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-import { type Prisma, PrismaClient } from '@prisma/client';
+import { type Organization, type Prisma, PrismaClient } from '@prisma/client';
 import type { Ops } from '@repo/rich-text';
 
 const prisma = new PrismaClient();
@@ -26,6 +26,27 @@ const getOrganization = async (
         },
       },
     },
+  });
+};
+
+const seedMembers = async (org: Organization) => {
+  const members = await prisma.member.count({
+    where: {
+      organizationId: org.id,
+    },
+  });
+  if (members > 5) {
+    return;
+  }
+
+  new Array(faker.number.int({ min: 5, max: 10 })).fill(0).map(async () => {
+    await prisma.member.create({
+      data: {
+        role: faker.helpers.arrayElement(['ADMIN', 'MEMBER']),
+        email: faker.internet.email(),
+        organizationId: org.id,
+      },
+    });
   });
 };
 
@@ -90,10 +111,11 @@ const generatePageContent = (): Ops => {
 
 (async () => {
   try {
-    const _org = await getOrganization({
+    const org = await getOrganization({
       name: 'Acme Inc.',
       slug: 'acme-inc',
     });
+    await seedMembers(org);
     const _otherOrg = await getOrganization({
       name: "Bob's Burgers",
       slug: 'bobs-burgers',
