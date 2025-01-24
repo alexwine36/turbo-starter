@@ -9,6 +9,7 @@
     "lint:ci": "biome check --diagnostic-level=error",
     "format": "ultracite format",
     "test": "turbo test",
+    "test:ci": "turbo test -- --passWithNoTests",
     "analyze": "turbo analyze",
     "bump-deps": "npx npm-check-updates --deep -u -x react-day-picker && pnpm install",
     "ui:update": "shadcn add --all --overwrite -c packages/design-system",
