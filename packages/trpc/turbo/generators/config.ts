@@ -1,4 +1,5 @@
 import type { PlopTypes } from '@turbo/gen';
+import path from 'node:path';
 // @ts-ignore
 import directoryPrompt from 'inquirer-directory';
 import { capitalize, pipe, toCamelCase, toKebabCase } from 'remeda';
@@ -13,8 +14,13 @@ type TurboAnswers = {
   };
 };
 
+// console.log('DIRNAME', __dirname);
+const routerPath = path.resolve(__dirname, '../../src/server/routers');
+// console.log(routerPath);
+
 export default function generator(plop: PlopTypes.NodePlopAPI): void {
-  plop.setPrompt('directory', directoryPrompt);
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  plop.setPrompt('directory', directoryPrompt as any);
   plop.setGenerator('add route', {
     description: 'Generate a new route',
     prompts: [
@@ -39,7 +45,8 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
       const routeName = toCamelCase(modData.name);
       const routerName = `${routeName}Router`;
       const routerFile = toKebabCase(modData.name);
-      const routerPath = `${targetPath}/${routerFile}/_router.ts`;
+      const routerDir = `${targetPath}/${routerFile}`;
+      const routerPath = `${routerDir}/_router.ts`;
 
       const data = {
         ...modData,
@@ -57,6 +64,12 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
         templateFile: `${templateBasePath}/router.ts.hbs`,
         data,
       });
+      actions.push({
+        type: 'add',
+        path: `${routerDir}/handlers.ts`,
+        templateFile: `${templateBasePath}/handlers.ts.hbs`,
+        data,
+      });
 
       actions.push({
         type: 'append',
@@ -65,6 +78,24 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
         data,
         template: '{{routeName}}: {{routerName}},\n',
         // template: `import {{ routerName }} from './{{ routerFile }}/_router';\n`,
+      });
+
+      actions.push({
+        type: 'append',
+        path: `${targetPath}/_app.ts`,
+        pattern: 'Handlers\n',
+        data,
+        template: '{{routeName}}: {{routerName}},\n',
+        // template: `import {{ routerName }} from './{{ routerFile }}/_router';\n`,
+      });
+
+      actions.push({
+        type: 'append',
+        path: `${targetPath}/handlers.ts`,
+        pattern: 'Exports\n',
+        data,
+        // template: '{{routeName}}: {{routerName}},\n',
+        template: `export * from './{{ routerFile }}/handlers';\n`,
       });
 
       actions.push({
@@ -87,7 +118,7 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
         type: 'directory',
         name: 'router',
         message: 'Select a router',
-        basePath: './src/server/routers',
+        basePath: routerPath,
         // biome-ignore lint/suspicious/noExplicitAny: <explanation>
       } as any,
       {
@@ -97,7 +128,10 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
       },
     ],
     actions: (rawData) => {
-      const modData = rawData as TurboAnswers & {
+      const modData = {
+        ...rawData,
+        name: `${rawData?.router} ${rawData?.name}`,
+      } as TurboAnswers & {
         router: string;
         name: string;
       };
@@ -116,6 +150,7 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
 
       const schemaName = `${pipe(modData.name, toCamelCase(), capitalize())}Schema`;
       const handlerKey = `${toCamelCase(modData.name)}`;
+      const routerKey = `${toCamelCase(modData.name.replace(modData.router, ''))}`;
       const handlerName = `${handlerKey}Handler`;
       const handlerOptions = `${pipe(modData.name, toCamelCase(), capitalize())}Options`;
       const handlerResponse = `${pipe(modData.name, toCamelCase(), capitalize())}Response`;
@@ -140,6 +175,7 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
         handlerResponse,
         handlerOptions,
         handlerKey,
+        routerKey,
       };
 
       const actions: PlopTypes.Actions = [];
@@ -166,8 +202,20 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
         pattern: 'Handlers\n',
         data,
         template:
-          '{{handlerKey}}: authedProcedure.input({{ schemaName }}).query({{handlerName}}),\n',
+          '{{routerKey}}: authedProcedure.input({{ schemaName }}).query({{handlerName}}),\n',
         // template: `import {{ routerName }} from './{{ routerFile }}/_router';\n`,
+      });
+
+      actions.push({
+        type: 'append',
+        path: `${targetPath}/handlers.ts`,
+        pattern: 'Exports\n',
+        data,
+        // template: '{{routeName}}: {{routerName}},\n',
+        template: [
+          `export * from './{{ baseHandlerFile }}-schema'`,
+          `export * from './{{ baseHandlerFile }}-handler'`,
+        ].join('\n'),
       });
 
       actions.push({

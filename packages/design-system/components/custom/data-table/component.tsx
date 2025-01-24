@@ -20,6 +20,9 @@ import { DataTablePagination } from './pagination';
 import type { UseDataTableReturn } from './types';
 import { getFacetedUniqueValues } from './utils/get-faceted-values';
 
+// TODO: Improve functionality of DataTable
+// https://github.com/sadmann7/shadcn-table/tree/main
+
 export function DataTable<TData, TValue>({
   columns,
   selectable,

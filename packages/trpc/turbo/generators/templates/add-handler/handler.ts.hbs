@@ -15,4 +15,4 @@ export const {{ handlerName }} = async ({ ctx, input }: {{handlerOptions}}) => {
     return res;
 }
 
-export type {{ handlerResponse }} = ReturnType<typeof {{ handlerName }}>;
+export type {{ handlerResponse }} = Awaited<ReturnType<typeof {{ handlerName }}>>;

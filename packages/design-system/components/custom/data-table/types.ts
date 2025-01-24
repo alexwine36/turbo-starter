@@ -3,6 +3,7 @@ import type {
   Column as OrigColumn,
   ColumnDef as OrigColumnDef,
   Header as OrigHeader,
+  Row,
   RowSelectionState,
   SortingState,
   VisibilityState,
@@ -57,3 +58,8 @@ export interface TableComponentType<TData, TValue>
 export type UseDataTableReturn<TData, TValue> = Required<
   TableComponentType<TData, TValue>
 >;
+
+export interface DataTableRowAction<TData> {
+  row: Row<TData>;
+  type: 'update' | 'delete';
+}

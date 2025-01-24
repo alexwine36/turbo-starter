@@ -24,7 +24,7 @@ export const appRouter = router({
     }),
   // Handlers
 
-member: memberRouter,
+  member: memberRouter,
 
   user: userRouter,
 
