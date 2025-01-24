@@ -1,12 +1,15 @@
 import type { TRPCContextInner } from '@/server/create-context';
-import type { GetAllSchema } from './get-all-schema.ts';
+import type { OrganizationGetAllSchema } from './organization-get-all-schema.ts';
 
-type GetAllOptions = {
+type OrganizationGetAllOptions = {
   ctx: TRPCContextInner;
-  input: GetAllSchema;
+  input: OrganizationGetAllSchema;
 };
 
-export const getAllHandler = async ({ ctx, input }: GetAllOptions) => {
+export const organizationGetAllHandler = async ({
+  ctx,
+  input,
+}: OrganizationGetAllOptions) => {
   const { prisma, session } = ctx;
 
   const res = await prisma.member.findMany({
@@ -28,4 +31,6 @@ export const getAllHandler = async ({ ctx, input }: GetAllOptions) => {
   });
 };
 
-export type GetAllResponse = ReturnType<typeof getAllHandler>;
+export type OrganizationGetAllResponse = Awaited<
+  ReturnType<typeof organizationGetAllHandler>
+>;

@@ -3,10 +3,10 @@ import { router } from '@/server/trpc';
 
 // Imports
 
-import { getAllHandler } from './get-all-handler';
-import { GetAllSchema } from './get-all-schema';
+import { memberGetAllHandler } from './member-get-all-handler';
+import { MemberGetAllSchema } from './member-get-all-schema';
 export const memberRouter = router({
   // Handlers
 
-  getAll: authedProcedure.input(GetAllSchema).query(getAllHandler),
+  getAll: authedProcedure.input(MemberGetAllSchema).query(memberGetAllHandler),
 });

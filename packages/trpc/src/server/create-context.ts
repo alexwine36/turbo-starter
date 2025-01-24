@@ -88,3 +88,7 @@ export type TRPCContextInner = Awaited<ReturnType<typeof createContextInner>>;
 // biome-ignore lint/suspicious/noExplicitAny: Fine
 export type WithSession<T extends TRPCContext = any> = T &
   Required<Pick<CreateInnerContextOptions, 'session'>>;
+
+export type TRPCContextInnerWithSession = TRPCContextInner & {
+  session: Session;
+};

@@ -15,13 +15,15 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from '@repo/design-system/components/ui/dropdown-menu';
+import type { MemberGetAllResponse } from '@repo/trpc';
 import { Ellipsis } from 'lucide-react';
 import React from 'react';
 import { trpc } from '../../../../utils/trpc';
 export const MemberTable = () => {
   const { data } = trpc.member.getAll.useQuery({});
-  const [rowAction, setRowAction] =
-    React.useState<DataTableRowAction<any> | null>(null);
+  const [rowAction, setRowAction] = React.useState<DataTableRowAction<
+    MemberGetAllResponse[0]
+  > | null>(null);
   const table = useDataTable({
     selectable: true,
     columns: [

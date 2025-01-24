@@ -49,6 +49,10 @@ export const SidebarLinks: SidebarLinks = {
       //   isActive: true,
       items: [
         {
+          title: 'All',
+          url: '/companies',
+        },
+        {
           title: 'History',
           url: '#',
         },

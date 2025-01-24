@@ -122,6 +122,9 @@ model Organization {
   website     String?
   social      Json?
   members     Member[]
+
+  companies  Company[]
+
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
@@ -151,6 +154,26 @@ model Member {
   @@id([email, organizationId])
   User User[] @relation("CurrentMembership")
   @@unique([organizationId, email])
+}
+
+// #endregion
+
+// #region Company
+
+model Company {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  image       String?
+  type        String
+  description String?
+  website     String?
+  social      Json?
+  organizationId String
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 // #endregion
