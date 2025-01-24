@@ -31,10 +31,15 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from '@repo/design-system/components/ui/sidebar';
+import { trpc } from '../../../utils/trpc';
+// import { trpc } from '@repo/trpc/trpc';
 
 export const UserButton = ({ user }: { user: User }) => {
   const { isMobile } = useSidebar();
-
+  const { data } = trpc.organization.getAll.useQuery({});
+  const { data: hello } = trpc.hello.useQuery({ text: 'world' });
+  const { data: me } = trpc.user.me.useQuery({});
+  // console.log('USER BUTTON', data, hello, me);
   return (
     <SidebarMenu>
       <SidebarMenuItem>

@@ -1,4 +1,4 @@
-import { database } from '@repo/database';
+import { database } from '@repo/database/database';
 import { RichTextDisplay } from '@repo/design-system/components/custom/rich-text-display';
 import { RichTextInput } from '@repo/design-system/components/inputs/rich-text-input';
 import {

@@ -18,7 +18,7 @@ const AppLayout = async ({ children }: AppLayoutProperties) => {
 
   return (
     <SidebarProvider>
-      <GlobalSidebar user={session?.user}>{children}</GlobalSidebar>
+      <GlobalSidebar>{children}</GlobalSidebar>
     </SidebarProvider>
   );
 };
