@@ -8,7 +8,6 @@
     "db:migrate:dev": "prisma migrate dev",
     "db:push": "prisma db push",
     "db:reset": "prisma migrate reset --force",
-    "db:seed": "tsx seed/index.ts",
     "analyze": "prisma generate --no-hints",
     "postinstall": "prisma generate --no-hints",
     "clean": "git clean -xdf .cache .turbo dist node_modules",
@@ -28,14 +27,12 @@
     "zod-prisma-types": "^3.2.1"
   },
   "devDependencies": {
-    "@faker-js/faker": "^9.3.0",
     "@repo/rich-text": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/node": "22.10.5",
     "@types/ws": "^8.5.13",
     "bufferutil": "^4.0.9",
     "prisma": "6.1.0",
-    "tsx": "^4.19.2",
     "typescript": "^5.7.2"
   }
 }

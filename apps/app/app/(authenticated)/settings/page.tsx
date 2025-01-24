@@ -5,6 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@repo/design-system/components/ui/card';
+import { Container } from '@repo/design-system/components/ui/container';
 import { redirect } from 'next/navigation';
 import { Header } from '../components/header';
 import { MemberTable } from './components/member-table';
@@ -22,7 +23,7 @@ const Settings = async () => {
   return (
     <>
       <Header page="Settings" pages={[]} />
-      <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+      <Container className="flex flex-1 flex-col gap-4 ">
         <Card>
           <CardHeader>
             <CardTitle>Organization Properties</CardTitle>
@@ -41,7 +42,7 @@ const Settings = async () => {
             <MemberTable />
           </CardContent>
         </Card>
-      </div>
+      </Container>
     </>
   );
 };
