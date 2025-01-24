@@ -108,25 +108,6 @@ export const SidebarLinks: SidebarLinks = {
       title: 'Settings',
       url: '/settings',
       icon: Settings2Icon,
-      // items: [
-      //   {
-      //     title: 'General',
-      //     url: '/settings',
-      //   },
-      //   {
-      //     title: 'Team',
-      //     url: '#',
-      //   },
-      //   {
-      //     title: 'Billing',
-      //     url: '#',
-      //     permissions: ['ADMIN', 'OWNER'],
-      //   },
-      //   {
-      //     title: 'Limits',
-      //     url: '#',
-      //   },
-      // ],
     },
   ],
   navSecondary: [
