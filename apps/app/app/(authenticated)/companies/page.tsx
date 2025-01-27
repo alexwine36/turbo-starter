@@ -99,8 +99,10 @@ const CompaniesPage = async () => {
         <Card>
           <CardHeader>
             <CardTitle>
-              Companies
-              <CompanyDialog />
+              <div className="flex items-center gap-2">
+                Companies
+                <CompanyDialog />
+              </div>
             </CardTitle>
           </CardHeader>
           <CardContent>
