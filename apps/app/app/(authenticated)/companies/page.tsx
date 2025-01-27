@@ -10,10 +10,9 @@ import {
   CardTitle,
 } from '@repo/design-system/components/ui/card';
 import { Container } from '@repo/design-system/components/ui/container';
-import { companyGetAllHandler } from '@repo/trpc';
 import { BriefcaseBusiness, Calendar, DollarSign, Users } from 'lucide-react';
 import { redirect } from 'next/navigation';
-import { getContext } from '../../../utils/get-context';
+import { trpcCaller } from '../../../utils/trpc-server';
 import { Header } from '../components/header';
 import { CompanyTable } from './components/company-table';
 const CompaniesPage = async () => {
@@ -25,10 +24,10 @@ const CompaniesPage = async () => {
   ) {
     redirect('/');
   }
-  const companies = await companyGetAllHandler({
-    ctx: { ...(await getContext(session)), session },
-    input: {},
-  });
+
+  const caller = await trpcCaller();
+
+  const companies = await caller.company.getAll({});
 
   const stats: BanCardProps[] = [
     {
