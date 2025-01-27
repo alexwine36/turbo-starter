@@ -26,7 +26,7 @@ const CompaniesPage = async () => {
     redirect('/');
   }
   const companies = await companyGetAllHandler({
-    ctx: await getContext(session),
+    ctx: { ...(await getContext(session)), session },
     input: {},
   });
 
