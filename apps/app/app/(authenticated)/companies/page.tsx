@@ -18,10 +18,7 @@ import { CompanyTable } from './components/company-table';
 const CompaniesPage = async () => {
   const session = await auth();
 
-  if (
-    !session?.user.currentOrganizationId ||
-    session.user.currentRole === 'MEMBER'
-  ) {
+  if (!session?.user.currentOrganizationId) {
     redirect('/');
   }
 
@@ -75,7 +72,7 @@ const CompaniesPage = async () => {
     },
     {
       title: 'Companies',
-      value: companies.length,
+      value: companies.length || 0,
       description: 'Total number of companies in your organization',
       icon: (
         <BriefcaseBusiness
