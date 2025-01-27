@@ -5,11 +5,8 @@ import {
   BookOpenIcon,
   BotIcon,
   BriefcaseBusiness,
-  FrameIcon,
   LifeBuoyIcon,
   type LucideProps,
-  MapIcon,
-  PieChartIcon,
   SendIcon,
   Settings2Icon,
 } from 'lucide-react';
@@ -132,21 +129,21 @@ export const SidebarLinks: SidebarLinks = {
     },
   ],
   projects: [
-    {
-      title: 'Design Engineering',
-      url: '#',
-      icon: FrameIcon,
-    },
-    {
-      title: 'Sales & Marketing',
-      url: '#',
-      icon: PieChartIcon,
-    },
-    {
-      title: 'Travel',
-      url: '#',
-      icon: MapIcon,
-    },
+    // {
+    //   title: 'Design Engineering',
+    //   url: '#',
+    //   icon: FrameIcon,
+    // },
+    // {
+    //   title: 'Sales & Marketing',
+    //   url: '#',
+    //   icon: PieChartIcon,
+    // },
+    // {
+    //   title: 'Travel',
+    //   url: '#',
+    //   icon: MapIcon,
+    // },
   ],
 };
 
