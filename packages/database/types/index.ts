@@ -23,15 +23,20 @@ export const Social = z
   })
   .default({});
 
-export const CompanyUpdateInput = CompanySchema.omit({
+export const CompanyData = CompanySchema.extend({
+  social: Social.optional().nullable().default({}),
+});
+
+export const CompanyUpdateInput = CompanyData.omit({
   createdAt: true,
   updatedAt: true,
-  social: true,
-}).extend({
-  social: Social.optional(),
 });
+
 export type CompanyUpdateInput = z.infer<typeof CompanyUpdateInput>;
 export const CompanyInput = CompanyUpdateInput.partial({
   id: true,
+  image: true,
 });
 export type CompanyInput = z.infer<typeof CompanyInput>;
+
+export type CompanyData = z.infer<typeof CompanyData>;

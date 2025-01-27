@@ -14,6 +14,7 @@ import { BriefcaseBusiness, Calendar, DollarSign, Users } from 'lucide-react';
 import { redirect } from 'next/navigation';
 import { trpcCaller } from '../../../utils/trpc-server';
 import { Header } from '../components/header';
+import { CompanyDialog } from './components/company-dialog';
 import { CompanyTable } from './components/company-table';
 const CompaniesPage = async () => {
   const session = await auth();
@@ -97,7 +98,10 @@ const CompaniesPage = async () => {
         </div>
         <Card>
           <CardHeader>
-            <CardTitle>Companies</CardTitle>
+            <CardTitle>
+              Companies
+              <CompanyDialog />
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <CompanyTable />

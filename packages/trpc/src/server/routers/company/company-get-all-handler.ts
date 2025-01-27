@@ -1,5 +1,6 @@
 import type { TRPCContextInnerWithSession } from '@/server/create-context';
-import type { CompanyGetAllSchema } from './company-get-all-schema.ts';
+import { CompanyData } from '@repo/database/types';
+import type { CompanyGetAllSchema } from './company-get-all-schema';
 
 type CompanyGetAllOptions = {
   ctx: TRPCContextInnerWithSession;
@@ -18,7 +19,7 @@ export const companyGetAllHandler = async ({
     },
   });
 
-  return res;
+  return res.map((company) => CompanyData.parse(company));
 };
 
 export type CompanyGetAllResponse = Awaited<
