@@ -13,6 +13,7 @@
   "dependencies": {
     "@prisma/client": "6.1.0",
     "@repo/auth": "workspace:*",
+    "@repo/common-types": "workspace:*",
     "@repo/database": "workspace:*",
     "@repo/design-system": "workspace:*",
     "@repo/next-config": "workspace:*",

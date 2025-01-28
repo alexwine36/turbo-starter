@@ -1,16 +1,5 @@
 import { z } from 'zod';
-import { CompanySchema, OrganizationSchema } from './generated';
-
-export const OrganizationUpdateInput = OrganizationSchema.omit({
-  createdAt: true,
-  updatedAt: true,
-  //   social: true,
-});
-export type OrganizationUpdateInput = z.infer<typeof OrganizationUpdateInput>;
-export const OrganizationInput = OrganizationUpdateInput.partial({
-  id: true,
-});
-export type OrganizationInput = z.infer<typeof OrganizationInput>;
+import { CompanySchema } from './generated';
 
 export const Social = z
   .object({

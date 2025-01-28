@@ -1,4 +1,4 @@
-import { CompanyUpdateInput } from '@repo/database/types';
+import { CompanyUpdateInput } from '@repo/common-types';
 import type { z } from 'zod';
 
 export const CompanyEditSchema = CompanyUpdateInput;

@@ -1,4 +1,4 @@
-import type { CompanyData } from '@repo/database/types';
+import type { CompanyData } from '@repo/common-types';
 import type { DataTableRowAction } from '@repo/design-system/components/custom/data-table';
 import { useState } from 'react';
 

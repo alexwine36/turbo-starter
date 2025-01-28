@@ -1,4 +1,4 @@
-import { OrganizationInput } from '@repo/database/types';
+import { OrganizationInput } from '@repo/common-types';
 import type { z } from 'zod';
 
 export const CreateSchema = OrganizationInput;

@@ -1,4 +1,4 @@
-import { CompanyInput } from '@repo/database/types';
+import { CompanyInput } from '@repo/common-types';
 import type { z } from 'zod';
 
 export const CompanyCreateSchema = CompanyInput;

@@ -13,6 +13,7 @@
     "dev": "rm -rf dist && tsup --watch"
   },
   "peerDependencies": {
+    "@repo/common-types": "workspace:*",
     "@repo/database": "workspace:*"
   },
   "dependencies": {

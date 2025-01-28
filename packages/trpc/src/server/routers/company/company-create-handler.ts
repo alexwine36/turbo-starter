@@ -1,5 +1,5 @@
 import type { TRPCContextInnerWithSession } from '@/server/create-context';
-import { CompanyData } from '@repo/database/types';
+import { CompanyData } from '@repo/common-types';
 import type { CompanyCreateSchema } from './company-create-schema';
 
 type CompanyCreateOptions = {

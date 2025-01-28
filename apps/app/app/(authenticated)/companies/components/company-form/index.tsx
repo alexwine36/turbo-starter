@@ -1,11 +1,11 @@
-import { useToast } from '@repo/design-system/hooks/use-toast';
-import type React from 'react';
-import { useForm } from 'react-hook-form';
 import {
   type CompanyData,
   CompanyInput,
   type CompanyUpdateInput,
-} from '../../../../../../../packages/database/types';
+} from '@repo/common-types';
+import { useToast } from '@repo/design-system/hooks/use-toast';
+import type React from 'react';
+import { useForm } from 'react-hook-form';
 import {
   Form,
   FormInput,

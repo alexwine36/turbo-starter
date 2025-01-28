@@ -8,7 +8,7 @@ generator client {
 
 generator zod {
   provider       = "zod-prisma-types"
-  output = "../types/generated"
+  output = "../../common-types/lib/generated"
   prismaClientPath = "@repo/database"
   useMultipleFiles = true
 }

@@ -54,6 +54,9 @@ importers:
       '@repo/auth':
         specifier: workspace:*
         version: link:../../packages/auth
+      '@repo/common-types':
+        specifier: workspace:*
+        version: link:../../packages/common-types
       '@repo/database':
         specifier: workspace:*
         version: link:../../packages/database
@@ -219,6 +222,40 @@ importers:
         specifier: ^2.1.8
         version: 2.1.8(@types/node@22.10.5)(jsdom@25.0.1(bufferutil@4.0.9)(utf-8-validate@6.0.5))(terser@5.37.0)
 
+  packages/common-types:
+    dependencies:
+      '@repo/database':
+        specifier: workspace:*
+        version: link:../database
+      react:
+        specifier: ^19.0.0
+        version: 19.0.0
+      zod:
+        specifier: ^3.24.1
+        version: 3.24.1
+    devDependencies:
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      '@types/node':
+        specifier: 22.10.5
+        version: 22.10.5
+      '@types/react':
+        specifier: 19.0.2
+        version: 19.0.2
+      '@types/react-dom':
+        specifier: ^19.0.2
+        version: 19.0.2(@types/react@19.0.2)
+      tsup:
+        specifier: ^8.3.5
+        version: 8.3.5(jiti@1.21.7)(postcss@8.5.1)(tsx@4.19.2)(typescript@5.7.3)(yaml@2.7.0)
+      typescript:
+        specifier: ^5.7.2
+        version: 5.7.3
+      vitest:
+        specifier: ^2.1.8
+        version: 2.1.8(@types/node@22.10.5)(jsdom@25.0.1(bufferutil@4.0.9)(utf-8-validate@6.0.5))(terser@5.37.0)
+
   packages/database:
     dependencies:
       '@neondatabase/serverless':
@@ -273,6 +310,9 @@ importers:
 
   packages/database-seed:
     dependencies:
+      '@repo/common-types':
+        specifier: workspace:*
+        version: link:../common-types
       '@repo/database':
         specifier: workspace:*
         version: link:../database
@@ -651,6 +691,9 @@ importers:
       '@repo/auth':
         specifier: workspace:*
         version: link:../auth
+      '@repo/common-types':
+        specifier: workspace:*
+        version: link:../common-types
       '@repo/database':
         specifier: workspace:*
         version: link:../database

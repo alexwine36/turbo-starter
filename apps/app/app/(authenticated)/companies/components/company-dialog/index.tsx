@@ -1,6 +1,6 @@
 'use client';
 
-import type { CompanyData } from '@repo/database/types';
+import type { CompanyData } from '@repo/common-types';
 import {
   Dialog,
   DialogContent,

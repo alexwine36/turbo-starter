@@ -1,6 +1,6 @@
 'use client';
 
-import { OrganizationInput } from '@repo/database/types';
+import { OrganizationInput } from '@repo/common-types';
 import {
   Form,
   FormInput,
