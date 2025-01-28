@@ -1,8 +1,8 @@
-import type { TRPCContextInner } from '@/server/create-context';
+import type { TRPCContextInnerWithSession } from '@/server/create-context';
 import type { {{ schemaName }} } from './{{ baseHandlerFile }}-schema'
 
 type {{ handlerOptions }} = {
-    ctx: TRPCContextInner;
+    ctx: TRPCContextInnerWithSession;
     input: {{ schemaName }};
 }
 
