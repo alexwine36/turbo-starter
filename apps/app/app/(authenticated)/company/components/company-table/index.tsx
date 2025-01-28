@@ -27,7 +27,7 @@ export const CompanyTable = () => {
   >(undefined);
 
   const handleDelete = async (data: CompanyData[]) => {
-    const promise = new Promise((resolve, reject) => {
+    const promise = new Promise((resolve, _reject) => {
       setTimeout(() => resolve('Data from promise'), 1000);
     });
     await promise;
