@@ -12,25 +12,27 @@ interface FeatureProps {
   description: string;
   image: string;
 }
-const image = 'https://placehold.co/300x300';
+const getImage = (idx: number) => {
+  return `https://picsum.photos/32${idx}`;
+};
 const features: FeatureProps[] = [
   {
     title: 'Responsive Design',
     description:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi nesciunt est nostrum omnis ab sapiente.',
-    image,
+    image: getImage(0),
   },
   {
     title: 'Intuitive user interface',
     description:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi nesciunt est nostrum omnis ab sapiente.',
-    image,
+    image: getImage(1),
   },
   {
     title: 'AI-Powered insights',
     description:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi nesciunt est nostrum omnis ab sapiente.',
-    image: image,
+    image: getImage(2),
   },
 ];
 

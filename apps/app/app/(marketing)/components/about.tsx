@@ -7,7 +7,7 @@ export const About = () => {
       <div className="rounded-lg border bg-muted/50 py-12">
         <div className="flex flex-col-reverse gap-8 px-6 md:flex-row md:gap-12">
           <img
-            src={'https://placehold.co/300x300'}
+            src={'https://picsum.photos/200'}
             alt=""
             className="w-[300px] rounded-lg object-contain"
           />

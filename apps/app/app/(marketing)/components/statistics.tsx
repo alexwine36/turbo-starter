@@ -9,6 +9,7 @@ export const Statistics = async () => {
     decimalPlaces?: number;
   }
   const userCount = await database.user.count();
+  const companyCount = await database.company.count();
   const stats: statsProps[] = [
     {
       quantity: userCount,
@@ -23,8 +24,8 @@ export const Statistics = async () => {
       description: 'Downloads',
     },
     {
-      quantity: 4,
-      description: 'Products',
+      quantity: companyCount,
+      description: 'Companies',
     },
   ];
   const displayStats = stats.map((stat) => {

@@ -71,7 +71,7 @@ export const Services = () => {
         </div>
 
         <img
-          src={'https://placehold.co/300x300'}
+          src={'https://picsum.photos/600'}
           className="w-[300px] object-contain md:w-[500px] lg:w-[600px]"
           alt="About services"
         />
