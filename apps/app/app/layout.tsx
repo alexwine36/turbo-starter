@@ -1,8 +1,8 @@
 import { fonts } from '@repo/design-system/lib/fonts';
 import '@repo/design-system/styles/globals.css';
-
 import type { ReactNode } from 'react';
 import { Providers } from '../src/components/providers';
+import './index.css';
 
 type RootLayoutProperties = {
   readonly children: ReactNode;

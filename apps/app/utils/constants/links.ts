@@ -37,23 +37,23 @@ export const SidebarLinks: SidebarLinks = {
   // user: {
   //   name: 'shadcn',
   //   email: 'm@example.com',
-  //   avatar: '/avatars/shadcn.jpg',
+  //   avatar: '/app/avatars/shadcn.jpg',
   // },
   navMain: [
     {
       title: 'Dashboard',
-      url: '/',
+      url: '/app/',
       icon: LayoutDashboard,
     },
     {
       title: 'Companies',
-      url: '/company',
+      url: '/app/company',
       icon: BriefcaseBusiness,
       //   isActive: true,
       items: [
         {
           title: 'All',
-          url: '/company',
+          url: '/app/company',
         },
         {
           title: 'History',
@@ -113,14 +113,14 @@ export const SidebarLinks: SidebarLinks = {
     },
     {
       title: 'Settings',
-      url: '/settings',
+      url: '/app/settings',
       icon: Settings2Icon,
     },
   ],
   navSecondary: [
     {
       title: 'Webhooks',
-      url: '/webhooks',
+      url: '/app/webhooks',
       icon: AnchorIcon,
     },
     {
@@ -179,7 +179,7 @@ export const getSidebarLinks = (pathname: string, user?: User) => {
   return mapValues(SidebarLinks, (value, key) => {
     return filterLinks(value, user).map((link) => {
       if (
-        (link.url !== '/' && pathname.startsWith(link.url)) ||
+        (link.url !== '/app/' && pathname.startsWith(link.url)) ||
         link.items?.some((item) => pathname.startsWith(item.url))
       ) {
         return {
