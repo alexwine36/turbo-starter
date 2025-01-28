@@ -25,6 +25,8 @@ export const Social = z
 
 export const CompanyData = CompanySchema.extend({
   social: Social.optional().nullable().default({}),
+  website: z.string().nullish().optional(),
+  image: z.string().nullish().optional(),
 });
 
 export const CompanyUpdateInput = CompanyData.omit({
@@ -35,7 +37,6 @@ export const CompanyUpdateInput = CompanyData.omit({
 export type CompanyUpdateInput = z.infer<typeof CompanyUpdateInput>;
 export const CompanyInput = CompanyUpdateInput.partial({
   id: true,
-  image: true,
 });
 export type CompanyInput = z.infer<typeof CompanyInput>;
 

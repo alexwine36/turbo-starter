@@ -72,7 +72,6 @@ export const CompanyForm: React.FC<CompanyFormProps> = ({
       // update
       update({
         id: company.id,
-        image: data.image || '',
         ...data,
       });
     } else {

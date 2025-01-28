@@ -25,6 +25,7 @@ export const seedCompanies = async (
     await prisma.company.create({
       data: {
         ...companyMock,
+        social: companyMock.social || {},
         name: faker.company.name(),
         description: faker.company.catchPhrase(),
         website: faker.internet.url(),

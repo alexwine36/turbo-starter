@@ -15,9 +15,11 @@ import { Ellipsis, Eye } from 'lucide-react';
 import Link from 'next/link';
 import { trpc } from '../../../../../utils/trpc';
 import { CompanyDialog } from '../company-dialog';
+import { useCompanyDialog } from '../company-dialog/hook';
 
 export const CompanyTable = () => {
   const { data } = trpc.company.getAll.useQuery({});
+  const { rowAction, setRowAction } = useCompanyDialog();
   console.log(data);
   const table = useDataTable({
     data: data || [],
@@ -110,8 +112,10 @@ export const CompanyTable = () => {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-40">
-                <DropdownMenuItem asChild>
-                  <CompanyDialog company={row.original} />
+                <DropdownMenuItem
+                  onSelect={() => setRowAction({ row, type: 'update' })}
+                >
+                  Edit
                 </DropdownMenuItem>
                 {/* <DropdownMenuSub>
                   <DropdownMenuSubTrigger>Labels</DropdownMenuSubTrigger>
@@ -165,5 +169,18 @@ export const CompanyTable = () => {
     ],
   });
 
-  return <DataTable {...table} />;
+  return (
+    <>
+      <DataTable {...table} />
+      <CompanyDialog
+        company={rowAction?.row?.original}
+        open={rowAction?.type === 'update'}
+        onOpenChange={(isOpen) => {
+          if (!isOpen) {
+            setRowAction(undefined);
+          }
+        }}
+      />
+    </>
+  );
 };

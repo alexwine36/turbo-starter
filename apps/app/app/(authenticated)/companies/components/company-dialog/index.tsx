@@ -1,41 +1,34 @@
 'use client';
 
 import type { CompanyData } from '@repo/database/types';
-import { Button } from '@repo/design-system/components/ui/button';
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from '@repo/design-system/components/ui/dialog';
-import { PlusIcon } from 'lucide-react';
-import React from 'react';
+import type React from 'react';
 import { trpc } from '../../../../../utils/trpc';
 import { CompanyForm } from '../company-form';
 
-export type CompanyDialogProps = {
+export interface CompanyDialogProps
+  extends React.ComponentPropsWithoutRef<typeof Dialog> {
   company?: CompanyData;
-};
+}
 
-export const CompanyDialog: React.FC<CompanyDialogProps> = ({ company }) => {
-  const [open, setOpen] = React.useState(false);
+export const CompanyDialog: React.FC<CompanyDialogProps> = ({
+  company,
+  open,
+  onOpenChange,
+}) => {
+  // const [open, setOpen] = React.useState(false);
   const { data: me } = trpc.user.me.useQuery({});
   if (!me || !me.currentOrganizationId) {
     return null;
   }
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        {company ? (
-          <Button variant={'ghost'}>Edit</Button>
-        ) : (
-          <Button variant="outline" size="icon">
-            <PlusIcon />
-          </Button>
-        )}
-      </DialogTrigger>
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>{company ? 'Edit' : 'Create'} Company</DialogTitle>
@@ -48,7 +41,7 @@ export const CompanyDialog: React.FC<CompanyDialogProps> = ({ company }) => {
           company={company}
           organizationId={me.currentOrganizationId}
           onSuccess={() => {
-            setOpen(false);
+            onOpenChange?.(false);
           }}
         />
       </DialogContent>
