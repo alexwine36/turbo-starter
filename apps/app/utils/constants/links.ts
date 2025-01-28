@@ -5,6 +5,7 @@ import {
   BookOpenIcon,
   BotIcon,
   BriefcaseBusiness,
+  LayoutDashboard,
   LifeBuoyIcon,
   type LucideProps,
   SendIcon,
@@ -40,8 +41,13 @@ export const SidebarLinks: SidebarLinks = {
   // },
   navMain: [
     {
-      title: 'Companies',
+      title: 'Dashboard',
       url: '/',
+      icon: LayoutDashboard,
+    },
+    {
+      title: 'Companies',
+      url: '/companies',
       icon: BriefcaseBusiness,
       //   isActive: true,
       items: [

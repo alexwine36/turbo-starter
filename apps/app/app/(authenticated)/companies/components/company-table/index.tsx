@@ -43,6 +43,14 @@ export const CompanyTable = () => {
         header: 'Name',
         enableSorting: true,
       },
+      {
+        accessorKey: 'slug',
+        header: 'Slug',
+        cell: ({ cell }) => {
+          const slug = cell.getValue<string>();
+          return <code>/{slug}</code>;
+        },
+      },
       //   {
       //     accessorKey: 'image',
       //     header: 'Image',

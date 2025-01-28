@@ -34,7 +34,7 @@ export const CompanyForm: React.FC<CompanyFormProps> = ({
     defaultValues: {
       name: '',
       slug: '',
-      website: null,
+      website: undefined,
       social: {},
       type: 'Something',
       //   image: '',
@@ -65,7 +65,6 @@ export const CompanyForm: React.FC<CompanyFormProps> = ({
       handleSuccess(d);
     },
   });
-  console.log(form.formState.errors);
 
   const onSubmit = (data: CompanyInput) => {
     console.log(data);
