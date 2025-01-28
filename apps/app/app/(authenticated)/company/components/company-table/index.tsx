@@ -4,6 +4,7 @@ import { trpc } from '@/utils/trpc';
 import type { CompanyData } from '@repo/common-types';
 import type { DataTableRowAction } from '@repo/design-system/components/custom/data-table';
 import { DataTable } from '@repo/design-system/components/custom/data-table';
+import { DeleteDialog } from '@repo/design-system/components/custom/delete-dialog';
 import { Button } from '@repo/design-system/components/ui/button';
 import {
   DropdownMenu,
@@ -24,6 +25,14 @@ export const CompanyTable = () => {
   const [rowAction, setRowAction] = useState<
     DataTableRowAction<CompanyData> | undefined
   >(undefined);
+
+  const handleDelete = async (data: CompanyData[]) => {
+    const promise = new Promise((resolve, reject) => {
+      setTimeout(() => resolve('Data from promise'), 1000);
+    });
+    await promise;
+    console.log(data);
+  };
 
   const table = useDataTable({
     data: data || [],
@@ -128,6 +137,14 @@ export const CompanyTable = () => {
             setRowAction(undefined);
           }
         }}
+      />
+      <DeleteDialog
+        label="company"
+        handleDelete={handleDelete}
+        data={rowAction?.row?.original ? [rowAction.row.original] : []}
+        open={rowAction?.type === 'delete'}
+        onOpenChange={() => setRowAction(undefined)}
+        onSuccess={() => rowAction?.row.toggleSelected(false)}
       />
     </>
   );

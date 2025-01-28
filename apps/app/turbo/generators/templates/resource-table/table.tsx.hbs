@@ -10,6 +10,7 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from '@repo/design-system/components/ui/dropdown-menu';
+import { DeleteDialog } from '@repo/design-system/components/custom/delete-dialog';
 import { useDataTable } from '@repo/design-system/hooks/use-datatable';
 import { Ellipsis, Eye } from 'lucide-react';
 import Link from 'next/link';
@@ -26,6 +27,15 @@ export const {{ capitalizedName }}Table = () => {
     DataTableRowAction<{{ dataType }}> | undefined
   >(undefined);
   
+  const handleDelete = async (data: {{ dataType }}[]) => {
+    const promise = new Promise((resolve, reject) => {
+      setTimeout(() => resolve('Data from promise'), 1000);
+    });
+    await promise;
+    console.log(data);
+  };
+
+
   const table = useDataTable({
     data: data || [],
 
@@ -130,6 +140,14 @@ export const {{ capitalizedName }}Table = () => {
             setRowAction(undefined);
           }
         }}
+      />
+      <DeleteDialog
+        label="{{ propertyName }}"
+        handleDelete={handleDelete}
+        data={rowAction?.row?.original ? [rowAction.row.original] : []}
+        open={rowAction?.type === 'delete'}
+        onOpenChange={() => setRowAction(undefined)}
+        onSuccess={() => rowAction?.row.toggleSelected(false)}
       />
     </>
   );
