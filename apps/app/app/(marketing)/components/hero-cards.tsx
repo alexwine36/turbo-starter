@@ -1,14 +1,10 @@
-import { GitHubLogoIcon } from '@radix-ui/react-icons';
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from '@repo/design-system/components/ui/avatar';
 import { Badge } from '@repo/design-system/components/ui/badge';
-import {
-  Button,
-  buttonVariants,
-} from '@repo/design-system/components/ui/button';
+import { Button } from '@repo/design-system/components/ui/button';
 import {
   Card,
   CardContent,
@@ -17,12 +13,15 @@ import {
   CardHeader,
   CardTitle,
 } from '@repo/design-system/components/ui/card';
-import { Check, LightbulbIcon, Linkedin } from 'lucide-react';
+import { Check, LightbulbIcon } from 'lucide-react';
+import { cn } from '../../../../../packages/design-system/lib/utils';
+import { MarketingLinks } from '../../../utils/constants/marketing-links';
+import { TeamCard } from './team';
 // import { LightBulbIcon } from './Icons';
 
 export const HeroCards = () => {
   return (
-    <div className="relative hidden h-[500px] w-[700px] flex-row flex-wrap gap-8 lg:flex">
+    <div className="relative hidden h-[500px] w-[700px] flex-row flex-wrap gap-8 lg:flex ">
       {/* Testimonial */}
       <Card className="-top-[15px] absolute w-[340px] shadow-black/10 drop-shadow-xl dark:shadow-white/10">
         <CardHeader className="flex flex-row items-center gap-4 pb-2">
@@ -41,76 +40,23 @@ export const HeroCards = () => {
       </Card>
 
       {/* Team */}
-      <Card className="absolute top-4 right-[20px] flex w-80 flex-col items-center justify-center shadow-black/10 drop-shadow-xl dark:shadow-white/10">
-        <CardHeader className="mt-8 flex items-center justify-center pb-2">
-          <img
-            src="https://i.pravatar.cc/150?img=58"
-            alt="user avatar"
-            className="-top-12 absolute aspect-square h-24 w-24 rounded-full object-cover grayscale-[0%]"
-          />
-          <CardTitle className="text-center">Leo Miranda</CardTitle>
-          <CardDescription className="font-normal text-primary">
-            Frontend Developer
-          </CardDescription>
-        </CardHeader>
-
-        <CardContent className="pb-2 text-center">
-          <p>
-            I really enjoy transforming ideas into functional software that
-            exceeds expectations
-          </p>
-        </CardContent>
-
-        <CardFooter>
-          <div>
-            <a
-              rel="noreferrer noopener"
-              href="https://github.com/leoMirandaa"
-              target="_blank"
-              className={buttonVariants({
-                variant: 'ghost',
-                size: 'sm',
-              })}
-            >
-              <span className="sr-only">Github icon</span>
-              <GitHubLogoIcon className="h-5 w-5" />
-            </a>
-            <a
-              rel="noreferrer noopener"
-              href="https://twitter.com/leo_mirand4"
-              target="_blank"
-              className={buttonVariants({
-                variant: 'ghost',
-                size: 'sm',
-              })}
-            >
-              <span className="sr-only">X icon</span>
-              <svg
-                role="img"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 fill-foreground"
-              >
-                <title>X</title>
-                <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
-              </svg>
-            </a>
-
-            <a
-              rel="noreferrer noopener"
-              href="https://www.linkedin.com/in/leopoldo-miranda/"
-              target="_blank"
-              className={buttonVariants({
-                variant: 'ghost',
-                size: 'sm',
-              })}
-            >
-              <span className="sr-only">Linkedin icon</span>
-              <Linkedin size="20" />
-            </a>
-          </div>
-        </CardFooter>
-      </Card>
+      <TeamCard
+        imageUrl="https://i.pravatar.cc/150"
+        position="Developer"
+        // description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi nesciunt est nostrum omnis ab sapiente."
+        className={cn(
+          'absolute top-4 right-[20px] ',
+          'bg-card',
+          'flex w-80 flex-col items-center justify-center shadow-black/10 drop-shadow-xl dark:shadow-white/10'
+        )}
+        name="Some Name"
+        socialNetworks={MarketingLinks.socialLinks.map((l) => {
+          return {
+            name: l.label,
+            url: l.href,
+          };
+        })}
+      />
 
       {/* Pricing */}
       <Card className="absolute top-[150px] left-[50px] w-72 shadow-black/10 drop-shadow-xl dark:shadow-white/10">
@@ -152,7 +98,7 @@ export const HeroCards = () => {
       </Card>
 
       {/* Service */}
-      <Card className="-right-[10px] absolute bottom-[35px] w-[350px] shadow-black/10 drop-shadow-xl dark:shadow-white/10">
+      <Card className="absolute right-[20px] bottom-[35px] w-80 shadow-black/10 drop-shadow-xl dark:shadow-white/10">
         <CardHeader className="flex items-start justify-start gap-4 space-y-1 md:flex-row">
           <div className="mt-1 rounded-2xl bg-primary/20 p-1">
             <LightbulbIcon />

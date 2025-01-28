@@ -22,6 +22,7 @@ import {
   SheetTrigger,
 } from '../../../../../packages/design-system/components/ui/sheet';
 import { LogoIcon } from '../../../src/components/logo-icon';
+import { COMPANY_NAME } from '../../../utils/constants';
 import { MarketingLinks } from '../../../utils/constants/marketing-links';
 
 export const Navbar: React.FC = () => {
@@ -37,7 +38,7 @@ export const Navbar: React.FC = () => {
               className="ml-2 flex font-bold text-xl"
             >
               <LogoIcon />
-              ShadcnUI/React
+              {COMPANY_NAME}
             </a>
           </NavigationMenuItem>
 
@@ -56,7 +57,7 @@ export const Navbar: React.FC = () => {
               <SheetContent side={'left'}>
                 <SheetHeader>
                   <SheetTitle className="font-bold text-xl">
-                    Shadcn/React
+                    {COMPANY_NAME}
                   </SheetTitle>
                 </SheetHeader>
                 <nav className="mt-4 flex flex-col items-center justify-center gap-2">

@@ -1,16 +1,17 @@
 import { NumberTicker } from '@repo/design-system/components/ui/number-ticker';
+import { database } from '../../../../../packages/database/database';
 
-export const Statistics = () => {
+export const Statistics = async () => {
   interface statsProps {
     quantity: number;
     description: string;
     suffix?: string;
     decimalPlaces?: number;
   }
-
+  const userCount = await database.user.count();
   const stats: statsProps[] = [
     {
-      quantity: 2700,
+      quantity: userCount,
       description: 'Users',
     },
     {
@@ -39,7 +40,7 @@ export const Statistics = () => {
   });
   return (
     <section id="statistics">
-      <div className="grid grid-cols-2 gap-8 lg:grid-cols-4">
+      <div className="flex flex-wrap justify-evenly gap-8">
         {displayStats.map(
           ({ quantity, description, suffix, decimalPlaces }: statsProps) => (
             <div key={description} className="space-y-2 text-center">

@@ -1,3 +1,4 @@
+import { InstagramLogoIcon, LinkedInLogoIcon } from '@radix-ui/react-icons';
 import { buttonVariants } from '@repo/design-system/components/ui/button';
 import {
   Card,
@@ -7,12 +8,14 @@ import {
   CardHeader,
   CardTitle,
 } from '@repo/design-system/components/ui/card';
-import { Facebook, Instagram, Linkedin } from 'lucide-react';
+import { FacebookIcon } from 'lucide-react';
+import { cn } from '../../../../../packages/design-system/lib/utils';
 
 interface TeamProps {
   imageUrl: string;
   name: string;
   position: string;
+  description?: string;
   socialNetworks: SociaNetworkslProps[];
 }
 
@@ -93,20 +96,81 @@ const teamList: TeamProps[] = [
   },
 ];
 
-export const Team = () => {
+type TeamCardProps = TeamProps & {
+  className?: string;
+};
+
+export const TeamCard = ({
+  imageUrl,
+  position,
+  name,
+  socialNetworks,
+  description,
+  className,
+}: TeamCardProps) => {
   const socialIcon = (iconName: string) => {
     switch (iconName) {
       case 'Linkedin':
-        return <Linkedin size="20" />;
+        return <LinkedInLogoIcon className="h-5 w-5" />;
 
       case 'Facebook':
-        return <Facebook size="20" />;
+        return <FacebookIcon size="20" />;
 
       case 'Instagram':
-        return <Instagram size="20" />;
+        return <InstagramLogoIcon className="h-5 w-5" />;
+
+      default:
+        return null;
     }
   };
 
+  return (
+    <Card
+      className={cn(
+        'relative mt-8 flex flex-col items-center justify-center bg-muted/50',
+        className
+      )}
+    >
+      <CardHeader className="mt-8 flex items-center justify-center pb-2">
+        <img
+          src={imageUrl}
+          alt={`${name} ${position}`}
+          className="-top-12 absolute aspect-square h-24 w-24 rounded-full object-cover"
+        />
+        <CardTitle className="text-center">{name}</CardTitle>
+        <CardDescription className="text-primary">{position}</CardDescription>
+      </CardHeader>
+
+      <CardContent className="pb-2 text-center">
+        <p>
+          {description ||
+            'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'}
+        </p>
+      </CardContent>
+
+      <CardFooter>
+        {socialNetworks.map(({ name, url }: SociaNetworkslProps) => (
+          <div key={name}>
+            <a
+              rel="noreferrer noopener"
+              href={url}
+              target="_blank"
+              className={buttonVariants({
+                variant: 'ghost',
+                size: 'sm',
+              })}
+            >
+              <span className="sr-only">{name} icon</span>
+              {socialIcon(name)}
+            </a>
+          </div>
+        ))}
+      </CardFooter>
+    </Card>
+  );
+};
+
+export const Team = () => {
   return (
     <section id="team" className="container py-24 sm:py-32">
       <h2 className="font-bold text-3xl md:text-4xl">
@@ -122,49 +186,9 @@ export const Team = () => {
       </p>
 
       <div className="grid gap-8 gap-y-10 md:grid-cols-2 lg:grid-cols-4">
-        {teamList.map(
-          ({ imageUrl, name, position, socialNetworks }: TeamProps) => (
-            <Card
-              key={name}
-              className="relative mt-8 flex flex-col items-center justify-center bg-muted/50"
-            >
-              <CardHeader className="mt-8 flex items-center justify-center pb-2">
-                <img
-                  src={imageUrl}
-                  alt={`${name} ${position}`}
-                  className="-top-12 absolute aspect-square h-24 w-24 rounded-full object-cover"
-                />
-                <CardTitle className="text-center">{name}</CardTitle>
-                <CardDescription className="text-primary">
-                  {position}
-                </CardDescription>
-              </CardHeader>
-
-              <CardContent className="pb-2 text-center">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-              </CardContent>
-
-              <CardFooter>
-                {socialNetworks.map(({ name, url }: SociaNetworkslProps) => (
-                  <div key={name}>
-                    <a
-                      rel="noreferrer noopener"
-                      href={url}
-                      target="_blank"
-                      className={buttonVariants({
-                        variant: 'ghost',
-                        size: 'sm',
-                      })}
-                    >
-                      <span className="sr-only">{name} icon</span>
-                      {socialIcon(name)}
-                    </a>
-                  </div>
-                ))}
-              </CardFooter>
-            </Card>
-          )
-        )}
+        {teamList.map((props: TeamProps) => (
+          <TeamCard key={props.imageUrl} {...props} />
+        ))}
       </div>
     </section>
   );

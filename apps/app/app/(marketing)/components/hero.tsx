@@ -1,19 +1,19 @@
-import {
-  Button,
-  buttonVariants,
-} from '@repo/design-system/components/ui/button';
-
-import { GitHubLogoIcon } from '@radix-ui/react-icons';
+import { Button } from '@repo/design-system/components/ui/button';
+import Link from 'next/link';
+import { COMPANY_NAME } from '../../../utils/constants';
+import { MarketingLinks } from '../../../utils/constants/marketing-links';
 import { HeroCards } from './hero-cards';
 
 export const Hero = () => {
+  const { getStarted, githubRepo } = MarketingLinks;
+
   return (
     <section className="container grid place-items-center gap-10 overflow-x-hidden py-20 md:py-32 lg:grid-cols-2">
       <div className="space-y-6 text-center lg:text-start">
         <main className="font-bold text-5xl md:text-6xl">
           <h1 className="inline">
             <span className="inline bg-gradient-to-r from-[#F596D3] to-[#D247BF] bg-clip-text text-transparent">
-              Shadcn
+              {COMPANY_NAME}
             </span>{' '}
             landing page
           </h1>{' '}
@@ -32,19 +32,15 @@ export const Hero = () => {
         </p>
 
         <div className="space-y-4 md:space-x-4 md:space-y-0">
-          <Button className="w-full md:w-1/3">Get Started</Button>
+          <Button className="w-full md:w-1/3" asChild>
+            <Link href={getStarted.href}>{getStarted.label}</Link>
+          </Button>
 
-          <a
-            rel="noreferrer noopener"
-            href="https://github.com/leoMirandaa/shadcn-landing-page.git"
-            target="_blank"
-            className={`w-full md:w-1/3 ${buttonVariants({
-              variant: 'outline',
-            })}`}
-          >
-            Github Repository
-            <GitHubLogoIcon className="ml-2 h-5 w-5" />
-          </a>
+          <Button className="w-full md:w-1/3" variant={'outline'} asChild>
+            <a rel="noreferrer noopener" href={githubRepo.href} target="_blank">
+              {githubRepo.label} <githubRepo.icon className="ml-2 h-5 w-5" />
+            </a>
+          </Button>
         </div>
       </div>
 
@@ -54,7 +50,7 @@ export const Hero = () => {
       </div>
 
       {/* Shadow effect */}
-      <div className="shadow"></div>
+      <div className="shadow" />
     </section>
   );
 };
