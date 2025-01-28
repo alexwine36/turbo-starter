@@ -47,13 +47,13 @@ export const SidebarLinks: SidebarLinks = {
     },
     {
       title: 'Companies',
-      url: '/companies',
+      url: '/company',
       icon: BriefcaseBusiness,
       //   isActive: true,
       items: [
         {
           title: 'All',
-          url: '/companies',
+          url: '/company',
         },
         {
           title: 'History',

@@ -1,5 +1,8 @@
 'use client';
 
+import { trpc } from '@/utils/trpc';
+import type { CompanyData } from '@repo/common-types';
+import type { DataTableRowAction } from '@repo/design-system/components/custom/data-table';
 import { DataTable } from '@repo/design-system/components/custom/data-table';
 import { Button } from '@repo/design-system/components/ui/button';
 import {
@@ -13,17 +16,18 @@ import {
 import { useDataTable } from '@repo/design-system/hooks/use-datatable';
 import { Ellipsis, Eye } from 'lucide-react';
 import Link from 'next/link';
-import { trpc } from '../../../../../utils/trpc';
+import { useState } from 'react';
 import { CompanyDialog } from '../company-dialog';
-import { useCompanyDialog } from '../company-dialog/hook';
 
 export const CompanyTable = () => {
   const { data } = trpc.company.getAll.useQuery({});
-  const { rowAction, setRowAction } = useCompanyDialog();
-  console.log(data);
+  const [rowAction, setRowAction] = useState<
+    DataTableRowAction<CompanyData> | undefined
+  >(undefined);
+
   const table = useDataTable({
     data: data || [],
-
+    enablePagination: true,
     columns: [
       {
         accessorKey: 'id',
@@ -53,21 +57,6 @@ export const CompanyTable = () => {
           return <code>/{slug}</code>;
         },
       },
-      //   {
-      //     accessorKey: 'image',
-      //     header: 'Image',
-
-      //     cell: ({ cell }) => {
-      //       const image = cell.getValue<string>();
-      //       return (
-      //         <img
-      //           src={image}
-      //           alt="Company Logo"
-      //           className="h-8 w-8 rounded-full"
-      //         />
-      //       );
-      //     },
-      //   },
       {
         accessorKey: 'description',
         header: 'Description',
@@ -94,12 +83,7 @@ export const CompanyTable = () => {
         id: 'actions',
         header: '',
         size: 40,
-        // accessorFn(row) {
-        //   return `${row.email}-${row.email}`;
-        // },
         cell: ({ row }) => {
-          // const email = row.getValue<string>('email');
-          // console.log(email);
           return (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -117,45 +101,10 @@ export const CompanyTable = () => {
                 >
                   Edit
                 </DropdownMenuItem>
-                {/* <DropdownMenuSub>
-                  <DropdownMenuSubTrigger>Labels</DropdownMenuSubTrigger>
-                  <DropdownMenuSubContent>
-                    <DropdownMenuRadioGroup
-                      value={row.original.label}
-                      onValueChange={(value) => {
-                        startUpdateTransition(() => {
-                          toast.promise(
-                            updateTask({
-                              id: row.original.id,
-                              label: value as Task['label'],
-                            }),
-                            {
-                              loading: 'Updating...',
-                              success: 'Label updated',
-                              error: (err) => getErrorMessage(err),
-                            }
-                          );
-                        });
-                      }}
-                    >
-                      {tasks.label.enumValues.map((label) => (
-                        <DropdownMenuRadioItem
-                          key={label}
-                          value={label}
-                          className="capitalize"
-                          disabled={isUpdatePending}
-                        >
-                          {label}
-                        </DropdownMenuRadioItem>
-                      ))}
-                    </DropdownMenuRadioGroup>
-                  </DropdownMenuSubContent>
-                </DropdownMenuSub> */}
+
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
-                  onSelect={() => {
-                    console.log('delete', row);
-                  }}
+                  onSelect={() => setRowAction({ row, type: 'delete' })}
                 >
                   Delete
                   <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
@@ -163,7 +112,6 @@ export const CompanyTable = () => {
               </DropdownMenuContent>
             </DropdownMenu>
           );
-          // return <a href={`/programs/${value}`}>View</a>;
         },
       },
     ],

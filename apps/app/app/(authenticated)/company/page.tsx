@@ -1,22 +1,15 @@
-import { auth } from '@repo/auth/auth';
 import {
   BanCard,
   type BanCardProps,
 } from '@repo/design-system/components/custom/ban-card';
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from '@repo/design-system/components/ui/card';
 import { Container } from '@repo/design-system/components/ui/container';
 import { BriefcaseBusiness, Calendar, DollarSign, Users } from 'lucide-react';
 import { redirect } from 'next/navigation';
+import { auth } from '../../../../../packages/auth/auth';
 import { trpcCaller } from '../../../utils/trpc-server';
 import { Header } from '../components/header';
-import { CompanyDialogWrapper } from './components/company-dialog/wrapper';
-import { CompanyTable } from './components/company-table';
-const CompaniesPage = async () => {
+import { CompanyCard } from './components/company-card';
+const CompanyPage = async () => {
   const session = await auth();
 
   if (!session?.user.currentOrganizationId) {
@@ -85,7 +78,6 @@ const CompaniesPage = async () => {
       ),
     },
   ];
-
   return (
     <>
       <Header page="Companies" pages={[]} />
@@ -96,22 +88,10 @@ const CompaniesPage = async () => {
             <BanCard key={idx} {...stat} />
           ))}
         </div>
-        <Card>
-          <CardHeader>
-            <CardTitle>
-              <div className="flex items-center gap-2">
-                Companies
-                <CompanyDialogWrapper />
-              </div>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <CompanyTable />
-          </CardContent>
-        </Card>
+        <CompanyCard />
       </Container>
     </>
   );
 };
 
-export default CompaniesPage;
+export default CompanyPage;

@@ -1,7 +1,9 @@
+'use client';
+
+import { trpc } from '@/utils/trpc';
 import {
-  type CompanyData,
-  CompanyInput,
-  type CompanyUpdateInput,
+  type {{ dataType }},
+  {{ inputType }},
 } from '@repo/common-types';
 import { useToast } from '@repo/design-system/hooks/use-toast';
 import type React from 'react';
@@ -10,68 +12,59 @@ import {
   Form,
   FormInput,
   zodResolver,
-} from '../../../../../../../packages/design-system/components/inputs';
-import { Button } from '../../../../../../../packages/design-system/components/ui/button';
-import { trpc } from '../../../../../utils/trpc';
+} from '@repo/design-system/components/inputs';
+import { Button } from '@repo/design-system/components/ui/button';
 
-type CompanyFormProps = {
-  onSuccess: (value: CompanyData) => void;
-  company?: CompanyUpdateInput;
-  organizationId: string;
+
+
+type {{ formName }}Props = {
+  onSuccess: (value: {{ dataType }}) => void;
+  {{ propertyName }}?: {{ dataType }};
 };
 
-export const CompanyForm: React.FC<CompanyFormProps> = ({
-  company,
-  organizationId,
+export const {{ formName }}: React.FC<{{ formName }}Props> = ({
+  {{ propertyName }},
   onSuccess,
 }) => {
   const { toast } = useToast();
 
   const utils = trpc.useUtils();
 
-  const form = useForm<CompanyInput>({
-    resolver: zodResolver(CompanyInput),
+  const form = useForm<{{ inputType }}>({
+    resolver: zodResolver({{ inputType }}),
     defaultValues: {
-      name: '',
-      slug: '',
-      website: undefined,
-      social: {},
-      type: 'Something',
-      //   image: '',
-      description: '',
-      organizationId,
-      ...company,
+      ...{{ propertyName }},
     },
   });
 
-  const handleSuccess = (data: CompanyData) => {
+  const handleSuccess = (data: {{ dataType }}) => {
     toast({
-      title: 'Company saved',
-      // description: 'Organization saved',
+      title: 'Success',
+      description: {{ propertyName }} ? '{{capitalizedName}} saved' : '{{capitalizedName}} created',
       variant: 'success',
     });
-    utils.company.getAll.invalidate();
+    utils.{{ propertyName }}.getAll.invalidate();
     onSuccess(data);
   };
 
-  const { mutate: create } = trpc.company.create.useMutation({
+  const { mutate: create } = trpc.{{ propertyName }}.create.useMutation({
     onSuccess: (d) => {
       handleSuccess(d);
     },
   });
 
-  const { mutate: update } = trpc.company.edit.useMutation({
+  const { mutate: update } = trpc.{{ propertyName }}.edit.useMutation({
     onSuccess: (d) => {
       handleSuccess(d);
     },
   });
 
-  const onSubmit = (data: CompanyInput) => {
+  const onSubmit = (data: {{ inputType }}) => {
     console.log(data);
-    if (company?.id) {
+    if ({{ propertyName }}?.id) {
       // update
       update({
-        id: company.id,
+        id: {{ propertyName }}.id,
         ...data,
       });
     } else {
@@ -93,25 +86,22 @@ export const CompanyForm: React.FC<CompanyFormProps> = ({
             className="min-w-72 flex-auto"
             label="Slug"
             control={form.control}
-            disabled={!!company}
             name="slug"
             prefix={'/'}
           />
           <FormInput
-            // className="flex-1"
             className="min-w-72 flex-auto"
             label="Website"
             control={form.control}
             name="website"
-            //   prefix={'/'}
+
           />
           <FormInput
-            // className="flex-1"
             className="min-w-72 flex-auto"
             label="Image"
             control={form.control}
             name="image"
-            //   prefix={'/'}
+
           />
         </div>
         <FormInput

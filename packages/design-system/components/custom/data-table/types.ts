@@ -59,12 +59,7 @@ export type UseDataTableReturn<TData, TValue> = Required<
   TableComponentType<TData, TValue>
 >;
 
-export type DataTableRowAction<TData> =
-  | {
-      row: Row<TData>;
-      type: 'update' | 'delete';
-    }
-  | {
-      row?: Row<TData>;
-      type: 'create';
-    };
+export type DataTableRowAction<TData> = {
+  row: Row<TData>;
+  type: 'update' | 'delete';
+};

@@ -160,6 +160,9 @@ importers:
       '@types/react-dom':
         specifier: 19.0.2
         version: 19.0.2(@types/react@19.0.2)
+      inquirer-directory:
+        specifier: ^2.2.0
+        version: 2.2.0
       jsdom:
         specifier: ^25.0.1
         version: 25.0.1(bufferutil@4.0.9)(utf-8-validate@6.0.5)
