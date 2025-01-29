@@ -4,19 +4,21 @@ import { cn } from '@repo/design-system/lib/utils';
 import { useInView, useMotionValue, useSpring } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 
+export type NumberTickerProps = {
+value: number;
+	direction?: 'up' | 'down';
+	className?: string;
+	delay?: number; // delay in s
+	decimalPlaces?: number;
+}
+
 export const NumberTicker = ({
 	value,
 	direction = 'up',
 	delay = 0,
 	className,
 	decimalPlaces = 0,
-}: {
-	value: number;
-	direction?: 'up' | 'down';
-	className?: string;
-	delay?: number; // delay in s
-	decimalPlaces?: number;
-}) => {
+}: NumberTickerProps) => {
 	const ref = useRef<HTMLSpanElement>(null);
 	const motionValue = useMotionValue(direction === 'down' ? value : 0);
 	const springValue = useSpring(motionValue, {

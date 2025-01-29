@@ -46,7 +46,7 @@ export const CompanyTable = () => {
           const id = cell.getValue<string>();
           return (
             <Button variant={'ghost'} size={'icon'} asChild>
-              <Link href={`/companies/${id}`}>
+              <Link href={`/app/company/${id}`}>
                 <Eye />
               </Link>
             </Button>
