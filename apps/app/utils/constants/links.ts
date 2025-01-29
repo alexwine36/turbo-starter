@@ -1,4 +1,4 @@
-import type { MemberRole } from '@prisma/client';
+import type { MemberRole } from '@repo/database';
 import type { User } from '@repo/auth/types';
 import {
   AnchorIcon,
