@@ -12,7 +12,7 @@ generator zod {
   prismaClientPath = "@repo/database"
   useMultipleFiles = true
   writeNullishInModelTypes = true
-   createInputTypes = false
+  createInputTypes = false
   
 }
 
