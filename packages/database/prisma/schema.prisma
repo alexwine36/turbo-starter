@@ -11,6 +11,9 @@ generator zod {
   output = "../../common-types/lib/generated"
   prismaClientPath = "@repo/database"
   useMultipleFiles = true
+  writeNullishInModelTypes = true
+   createInputTypes = false
+  
 }
 
 datasource db {
