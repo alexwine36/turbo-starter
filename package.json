@@ -23,12 +23,12 @@
     "sync:format": "syncpack format",
     "sync:lint": "syncpack lint",
     "sync:list": "syncpack list",
+    "sync:update": "pnpm syncpack update",
     "test": "turbo test",
     "test:ci": "turbo test -- --passWithNoTests",
     "typecheck": "turbo typecheck",
     "ui:add": "shadcn add -c packages/design-system",
-    "ui:update": "shadcn add --all --overwrite -c packages/design-system",
-    "sync:update": "pnpm syncpack update"
+    "ui:update": "shadcn add --all --overwrite -c packages/design-system"
   },
   "devDependencies": {
     "@auto-it/first-time-contributor": "^11.3.0",
