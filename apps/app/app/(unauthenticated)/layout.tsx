@@ -1,6 +1,7 @@
-import { GalleryVerticalEnd } from 'lucide-react';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
+import { LogoIcon } from '../../src/components/logo-icon';
+import { COMPANY_NAME } from '../../utils/constants';
 type AuthLayoutProps = {
   readonly children: ReactNode;
 };
@@ -12,9 +13,9 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
         <div className="flex justify-center gap-2 md:justify-start">
           <Link className="flex items-center gap-2 font-medium" href="/">
             <div className="flex h-6 w-6 items-center justify-center rounded-md bg-primary text-primary-foreground">
-              <GalleryVerticalEnd />
+              <LogoIcon />
             </div>
-            Acme Inc.
+            {COMPANY_NAME}
           </Link>
         </div>
         <div className="flex flex-1 items-center justify-center">
