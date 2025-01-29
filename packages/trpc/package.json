@@ -11,9 +11,7 @@
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "files": [
-    "dist/**"
-  ],
+  "files": ["dist/**"],
   "dependencies": {
     "@repo/auth": "workspace:*",
     "@tanstack/react-query": "5.64.2",

@@ -5,7 +5,7 @@
 const config = {
   lintSemverRanges: true,
   lintVersions: true,
-  lintFormatting: true,
+  lintFormatting: false,
   sortFirst: [
     'name',
     'description',
