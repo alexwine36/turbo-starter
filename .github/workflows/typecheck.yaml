@@ -17,6 +17,12 @@ jobs:
 
       - uses: ./.github/actions/ci-setup
 
+      # Checking dependency versions
+      - name: Syncpack...
+        run: pnpm sync:lint
+        env:
+          NODE_OPTIONS: "--max_old_space_size=8192"
+
       # Running Lint with --quiet to only print errors
       - name: Linting...
         run: pnpm lint:ci

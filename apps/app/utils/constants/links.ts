@@ -1,5 +1,5 @@
-import type { MemberRole } from '@prisma/client';
 import type { User } from '@repo/auth/types';
+import type { MemberRole } from '@repo/database';
 import {
   AnchorIcon,
   BookOpenIcon,

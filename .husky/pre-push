@@ -3,3 +3,5 @@
 
 echo "Running linter..."
 pnpm lint:ci
+echo "Checking dependencies..."
+pnpm sync:lint
