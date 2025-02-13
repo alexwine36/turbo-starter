@@ -7,7 +7,7 @@ import typographyConfig from './typography.config';
 export const config: Config = {
   darkMode: ['class'],
   content: [
-    './node_modules/@repo/design-system/components/**/*.{ts,tsx}',
+     './node_modules/@repo/design-system/components/**/*.{ts,tsx}',
     './node_modules/@repo/design-system/lib/**/*.{ts,tsx}',
     './node_modules/@repo/design-system/index.tsx',
     './components/**/*.{ts,tsx}',
@@ -15,6 +15,12 @@ export const config: Config = {
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
     './providers/**/*.{ts,tsx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}', // Note the addition of the `app` directory.
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+
+    // Or if using `src` directory:
+    './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     container: {
