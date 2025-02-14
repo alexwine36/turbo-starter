@@ -3,13 +3,10 @@ import { organizationRouter } from './organization/_router';
 
 import { companyRouter } from './company/_router';
 
-
 import { z } from 'zod';
 import publicProcedure from '../procedures/public-procedure';
 
 import { userRouter } from './user/_router';
-
-
 
 export const appRouter = router({
   hello: publicProcedure
@@ -25,15 +22,11 @@ export const appRouter = router({
     }),
   // Handlers
 
-organization: organizationRouter,
+  organization: organizationRouter,
 
-company: companyRouter,
-
-  
+  company: companyRouter,
 
   user: userRouter,
-
-  
 });
 // export type definition of API
 export type AppRouter = typeof appRouter;

@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import type { z } from 'zod';
 import { OrganizationSchema } from './generated';
 
 export const OrganizationData = OrganizationSchema.extend({
@@ -16,6 +16,6 @@ export const OrganizationUpdateInput = OrganizationData.omit({
 export type OrganizationUpdateInput = z.infer<typeof OrganizationUpdateInput>;
 
 export const OrganizationInput = OrganizationUpdateInput.partial({
-  id: true
+  id: true,
 });
 export type OrganizationInput = z.infer<typeof OrganizationInput>;

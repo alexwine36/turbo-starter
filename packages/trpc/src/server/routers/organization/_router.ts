@@ -1,24 +1,32 @@
 import authedProcedure from '@repo/trpc/src/server/procedures/authed-procedure';
-import { OrganizationUpdateSchema } from './organization-update-schema'
-import { organizationUpdateHandler } from './organization-update-handler'
-import { OrganizationCreateSchema } from './organization-create-schema'
-import { organizationCreateHandler } from './organization-create-handler'
-import { OrganizationGetOneSchema } from './organization-get-one-schema'
-import { organizationGetOneHandler } from './organization-get-one-handler'
-import { OrganizationGetAllSchema } from './organization-get-all-schema'
-import { organizationGetAllHandler } from './organization-get-all-handler'
 import { router } from '@repo/trpc/src/server/trpc';
+import { organizationCreateHandler } from './organization-create-handler';
+import { OrganizationCreateSchema } from './organization-create-schema';
+import { organizationGetAllHandler } from './organization-get-all-handler';
+import { OrganizationGetAllSchema } from './organization-get-all-schema';
+import { organizationGetOneHandler } from './organization-get-one-handler';
+import { OrganizationGetOneSchema } from './organization-get-one-schema';
+import { organizationUpdateHandler } from './organization-update-handler';
+import { OrganizationUpdateSchema } from './organization-update-schema';
 
 // Imports
 
 export const organizationRouter = router({
-// Handlers
+  // Handlers
 
-update: authedProcedure.input(OrganizationUpdateSchema).mutation(organizationUpdateHandler),
+  update: authedProcedure
+    .input(OrganizationUpdateSchema)
+    .mutation(organizationUpdateHandler),
 
-create: authedProcedure.input(OrganizationCreateSchema).mutation(organizationCreateHandler),
+  create: authedProcedure
+    .input(OrganizationCreateSchema)
+    .mutation(organizationCreateHandler),
 
-getOne: authedProcedure.input(OrganizationGetOneSchema).query(organizationGetOneHandler),
+  getOne: authedProcedure
+    .input(OrganizationGetOneSchema)
+    .query(organizationGetOneHandler),
 
-getAll: authedProcedure.input(OrganizationGetAllSchema).query(organizationGetAllHandler),
+  getAll: authedProcedure
+    .input(OrganizationGetAllSchema)
+    .query(organizationGetAllHandler),
 });

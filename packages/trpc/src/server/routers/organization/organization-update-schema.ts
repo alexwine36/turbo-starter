@@ -1,7 +1,6 @@
-import { z } from "zod";
-import { OrganizationUpdateInput } from "@repo/common-types";
+import { OrganizationUpdateInput } from '@repo/common-types';
+import type { z } from 'zod';
 
-export const OrganizationUpdateSchema =
-OrganizationUpdateInput;
+export const OrganizationUpdateSchema = OrganizationUpdateInput;
 
 export type OrganizationUpdateSchema = z.infer<typeof OrganizationUpdateSchema>;

@@ -1,3 +1,3 @@
 export type OrganizationTypes = {
-// Define your schema here
-}
+  // Define your schema here
+};

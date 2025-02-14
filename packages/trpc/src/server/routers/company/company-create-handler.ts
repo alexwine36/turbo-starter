@@ -1,24 +1,25 @@
+import { companySelectFields, formatCompanyData } from '@repo/common-types';
 import type { TRPCContextInnerWithSession } from '@repo/trpc/src/server/create-context';
-import type { CompanyCreateSchema } from './company-create-schema'
-import { z } from 'zod';
-import { formatCompanyData,
-companySelectFields
- } from "@repo/common-types";
+import type { CompanyCreateSchema } from './company-create-schema';
 
 type CompanyCreateOptions = {
-    ctx: TRPCContextInnerWithSession;
-    input: CompanyCreateSchema;
-}
+  ctx: TRPCContextInnerWithSession;
+  input: CompanyCreateSchema;
+};
 
-export const companyCreateHandler = async ({ ctx, input }: CompanyCreateOptions) => {
+export const companyCreateHandler = async ({
+  ctx,
+  input,
+}: CompanyCreateOptions) => {
+  const { prisma, session } = ctx;
 
-    const { prisma, session } = ctx;
-    
-    const res = await prisma.company.create({
-          data: {...input},
-          ...companySelectFields
-        });
-    return formatCompanyData(res);
-}
+  const res = await prisma.company.create({
+    data: { ...input },
+    ...companySelectFields,
+  });
+  return formatCompanyData(res);
+};
 
-export type CompanyCreateResponse = Awaited<ReturnType<typeof companyCreateHandler>>;
+export type CompanyCreateResponse = Awaited<
+  ReturnType<typeof companyCreateHandler>
+>;
