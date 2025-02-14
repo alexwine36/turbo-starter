@@ -714,8 +714,8 @@ importers:
         specifier: 19.0.0
         version: 19.0.0
       remeda:
-        specifier: 2.19.1
-        version: 2.19.1
+        specifier: 2.20.1
+        version: 2.20.1
     devDependencies:
       '@repo/testing':
         specifier: workspace:*
@@ -7300,9 +7300,6 @@ packages:
   remark@15.0.1:
     resolution: {integrity: sha512-Eht5w30ruCXgFmxVUSlNWQ9iiimq07URKeFS3hNc8cUWy1llX4KDWfyEDZRycMc+znsN9Ux5/tJ/BFdgdOwA3A==}
 
-  remeda@2.19.1:
-    resolution: {integrity: sha512-IZ1NwntA2xwksQgn6zRFZB9lsVWW1GoRZZno3UIHE0tUh1B62ZSIhFIDIRssUfgqOBG2kL7g3GXx4e+CK59OPw==}
-
   remeda@2.20.1:
     resolution: {integrity: sha512-gsEsSmjE0CHkNp6xEsWsU/6JVNWq7rqw+ZfzNMbVV4YFIPtTj/i0FfxurTRI6Z9sAnQufU9de2Cb3xHsUTFTMA==}
 
@@ -8118,10 +8115,6 @@ packages:
   type-fest@0.7.1:
     resolution: {integrity: sha512-Ne2YiiGN8bmrmJJEuTWTLJR32nh/JdL1+PSicowtNb0WFpn59GK8/lfD61bVtzguz7b3PBt74nxpv/Pw5po5Rg==}
     engines: {node: '>=8'}
-
-  type-fest@4.32.0:
-    resolution: {integrity: sha512-rfgpoi08xagF3JSdtJlCwMq9DGNDE0IMh3Mkpc1wUypg9vPi786AiqeBBKcqvIkq42azsBM85N490fyZjeUftw==}
-    engines: {node: '>=16'}
 
   type-fest@4.34.1:
     resolution: {integrity: sha512-6kSc32kT0rbwxD6QL1CYe8IqdzN/J/ILMrNK+HMQCKH3insCDRY/3ITb0vcBss0a3t72fzh2YSzj8ko1HgwT3g==}
@@ -16114,10 +16107,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  remeda@2.19.1:
-    dependencies:
-      type-fest: 4.32.0
-
   remeda@2.20.1:
     dependencies:
       type-fest: 4.34.1
@@ -17119,8 +17108,6 @@ snapshots:
   type-fest@0.21.3: {}
 
   type-fest@0.7.1: {}
-
-  type-fest@4.32.0: {}
 
   type-fest@4.34.1: {}
 
