@@ -1,11 +1,18 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import type { ReactNode } from 'react';
 import type {
+  ControllerRenderProps,
   FieldPath,
   FieldValues,
   UseControllerProps,
 } from 'react-hook-form';
+
+const PhoneInput = dynamic(() =>
+  import('../../custom/phone-input').then((mod) => mod.PhoneInput)
+);
+
 import {
   FormControl,
   FormDescription,
@@ -17,6 +24,7 @@ import {
 import { Input } from '../../ui/input';
 import { Textarea } from '../../ui/textarea';
 
+type InputTypeOptions = 'text' | 'textarea' | 'phone';
 interface FormInputProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
@@ -25,9 +33,10 @@ interface FormInputProps<
   label: string;
   description?: string;
   placeholder?: string;
-  type?: 'text' | 'textarea';
+  type?: InputTypeOptions;
   prefix?: ReactNode;
   className?: string;
+  required?: boolean;
 }
 
 export const FormInput = <
@@ -42,16 +51,15 @@ export const FormInput = <
   type = 'text',
   prefix,
   className,
+  disabled,
+  required,
 }: FormInputProps<TFieldValues, TName>) => {
-  let Comp = Input;
-  if (type === 'textarea') {
-    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-    Comp = Textarea as any;
-  }
   return (
     <FormField
+      disabled={disabled}
       control={control}
       name={name}
+      required={required}
       render={({ field }) => {
         return (
           <FormItem className={className}>
@@ -63,15 +71,20 @@ export const FormInput = <
                     {prefix}
                   </div>
                   <div className="-ms-0.5 flex-1">
-                    <Comp
+                    <ComponentRenderer
+                      type={type}
                       className="border-s-0"
                       placeholder={placeholder}
-                      {...field}
+                      field={field}
                     />
                   </div>
                 </div>
               ) : (
-                <Comp placeholder={placeholder} {...field} />
+                <ComponentRenderer
+                  placeholder={placeholder}
+                  type={type}
+                  field={field}
+                />
               )}
             </FormControl>
             {description ? (
@@ -84,4 +97,29 @@ export const FormInput = <
       }}
     />
   );
+};
+
+const ComponentRenderer = <
+  TFieldValues extends FieldValues = FieldValues,
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+>({
+  type,
+  field,
+  placeholder,
+  ...rest
+}: {
+  className?: string;
+  field: ControllerRenderProps<TFieldValues, TName>;
+  placeholder?: string;
+  type: InputTypeOptions;
+}) => {
+  if (type === 'phone') {
+    return <PhoneInput defaultCountry="US" {...rest} {...field} />;
+  }
+
+  if (type === 'textarea') {
+    return <Textarea {...rest} {...field} />;
+  }
+
+  return <Input {...rest} {...field} />;
 };

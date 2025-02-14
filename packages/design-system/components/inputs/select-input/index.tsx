@@ -1,10 +1,3 @@
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@radix-ui/react-select';
 import type {
   FieldPath,
   FieldValues,
@@ -18,6 +11,13 @@ import {
   FormLabel,
   FormMessage,
 } from '../../ui/form';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '../../ui/select';
 
 interface SelectInputProps<
   TFieldValues extends FieldValues = FieldValues,
@@ -31,6 +31,7 @@ interface SelectInputProps<
     value: string;
     label: string;
   }[];
+  className?: string;
 }
 
 export const SelectInput = <
@@ -43,14 +44,17 @@ export const SelectInput = <
   description,
   placeholder,
   options,
+  disabled,
+  className,
 }: SelectInputProps<TFieldValues, TName>) => {
   return (
     <FormField
+      disabled={disabled}
       control={control}
       name={name}
       render={({ field }) => {
         return (
-          <FormItem>
+          <FormItem className={className}>
             <FormLabel>{label}</FormLabel>
             <Select defaultValue={field.value} onValueChange={field.onChange}>
               <FormControl>

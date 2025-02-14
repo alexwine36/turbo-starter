@@ -9,6 +9,7 @@
     "db:push": "prisma db push",
     "db:reset": "prisma migrate reset --force",
     "generate": "prisma generate",
+    "infisical:export": "infisical export > .env",
     "postinstall": "prisma generate --no-hints",
     "studio": "prisma studio",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"

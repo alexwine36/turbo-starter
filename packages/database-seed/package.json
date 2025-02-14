@@ -5,6 +5,7 @@
   "scripts": {
     "clean": "git clean -xdf .cache .turbo dist node_modules",
     "db:seed": "tsx index.ts",
+    "infisical:export": "infisical export > .env",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "dependencies": {

@@ -1,6 +1,5 @@
 'use client';
 
-import { trpc } from '@/utils/trpc';
 import type { CompanyData } from '@repo/common-types';
 import { Button } from '@repo/design-system/components/ui/button';
 import {
@@ -14,9 +13,11 @@ import {
 import { Edit, PlusIcon } from 'lucide-react';
 import type React from 'react';
 import { CompanyForm } from '../company-form';
+import type { CompanyTypes } from '../company-types';
 
 export interface CompanyDialogProps
-  extends React.ComponentPropsWithoutRef<typeof Dialog> {
+  extends React.ComponentPropsWithoutRef<typeof Dialog>,
+    CompanyTypes {
   company?: CompanyData;
   showTrigger?: boolean;
 }
@@ -26,12 +27,8 @@ export const CompanyDialog: React.FC<CompanyDialogProps> = ({
   open,
   onOpenChange,
   showTrigger,
+  ...props
 }) => {
-  const { data: me } = trpc.user.me.useQuery({});
-
-  if (!me || !me.currentOrganizationId) {
-    return null;
-  }
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       {showTrigger ? (
@@ -50,8 +47,8 @@ export const CompanyDialog: React.FC<CompanyDialogProps> = ({
         </DialogHeader>
 
         <CompanyForm
-          organizationId={me.currentOrganizationId}
           company={company}
+          {...props}
           onSuccess={() => {
             onOpenChange?.(false);
           }}

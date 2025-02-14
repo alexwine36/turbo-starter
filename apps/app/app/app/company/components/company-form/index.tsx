@@ -1,7 +1,11 @@
 'use client';
 
 import { trpc } from '@/utils/trpc';
-import { type CompanyData, CompanyInput } from '@repo/common-types';
+import {
+  type CompanyData,
+  CompanyInput,
+  getSchemaDefaults,
+} from '@repo/common-types';
 import {
   Form,
   FormInput,
@@ -11,17 +15,16 @@ import { Button } from '@repo/design-system/components/ui/button';
 import { useToast } from '@repo/design-system/hooks/use-toast';
 import type React from 'react';
 import { useForm } from 'react-hook-form';
+import type { CompanyTypes } from '../company-types';
 
-type CompanyFormProps = {
+type CompanyFormProps = CompanyTypes & {
   onSuccess: (value: CompanyData) => void;
   company?: CompanyData;
-  organizationId: string;
 };
 
 export const CompanyForm: React.FC<CompanyFormProps> = ({
   company,
   onSuccess,
-  organizationId,
 }) => {
   const { toast } = useToast();
 
@@ -30,19 +33,11 @@ export const CompanyForm: React.FC<CompanyFormProps> = ({
   const form = useForm<CompanyInput>({
     resolver: zodResolver(CompanyInput),
     defaultValues: {
-      name: '',
-      slug: '',
-      website: undefined,
-      social: {},
-      type: 'Something',
-      organizationId,
-      //   image: '',
-      description: '',
-
+      ...getSchemaDefaults(CompanyInput),
       ...company,
     },
   });
-  console.log(form.formState.errors);
+
   const handleSuccess = (data: CompanyData) => {
     toast({
       title: 'Success',
@@ -59,7 +54,7 @@ export const CompanyForm: React.FC<CompanyFormProps> = ({
     },
   });
 
-  const { mutate: update } = trpc.company.edit.useMutation({
+  const { mutate: update } = trpc.company.update.useMutation({
     onSuccess: (d) => {
       handleSuccess(d);
     },
@@ -88,34 +83,8 @@ export const CompanyForm: React.FC<CompanyFormProps> = ({
             control={form.control}
             name="name"
           />
-          <FormInput
-            className="min-w-72 flex-auto"
-            label="Slug"
-            control={form.control}
-            name="slug"
-            prefix={'/'}
-          />
-          <FormInput
-            // className="flex-1"
-            className="min-w-72 flex-auto"
-            label="Website"
-            control={form.control}
-            name="website"
-          />
-          <FormInput
-            // className="flex-1"
-            className="min-w-72 flex-auto"
-            label="Image"
-            control={form.control}
-            name="image"
-          />
         </div>
-        <FormInput
-          type="textarea"
-          label="Description"
-          control={form.control}
-          name="description"
-        />
+
         <div className="flex justify-end">
           <Button disabled={form.formState.isSubmitting} type="submit">
             Save

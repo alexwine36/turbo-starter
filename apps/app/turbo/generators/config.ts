@@ -19,7 +19,7 @@ const routerPath = path.resolve(__dirname, '../../');
 export default function generator(plop: PlopTypes.NodePlopAPI): void {
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   plop.setPrompt('directory', directoryPrompt as any);
-  plop.setGenerator('add resource table', {
+  plop.setGenerator('add-resource-table', {
     description: 'Generate resource table',
     prompts: [
       {
@@ -49,6 +49,16 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
         default: ({ name }: { name: string }) =>
           `${pipe(name, toCamelCase(), capitalize())}Input`,
       },
+      {
+        type: 'checkbox',
+        name: 'methods',
+        message: 'Select methods',
+        choices: [
+          { name: 'Create', value: 'create' },
+          { name: 'Update', value: 'update' },
+          { name: 'Delete', value: 'delete' },
+        ],
+      },
     ],
     actions: (rawData) => {
       const modData = rawData as TurboAnswers & {
@@ -56,11 +66,20 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
         directory: string;
         dataType: string;
         inputType: string;
+        methods: ('create' | 'update' | 'delete')[];
       };
+
+      const includeMethods = {
+        create: modData.methods.includes('create'),
+        update: modData.methods.includes('update'),
+        delete: modData.methods.includes('delete'),
+        form:
+          modData.methods.includes('create') ||
+          modData.methods.includes('update'),
+      };
+
       const basePath = `${modData?.turbo.paths.workspace}/${modData.directory}`;
-      const templateBasePath = `${
-        modData?.turbo.paths.workspace
-      }/turbo/generators/templates/resource-table`;
+      const templateBasePath = `${modData?.turbo.paths.workspace}/turbo/generators/templates/resource-table`;
       const propertyName = pipe(modData.name, toCamelCase());
       const pathName = toKebabCase(modData.name);
       const capitalizedName = pipe(modData.name, toCamelCase(), capitalize());
@@ -72,26 +91,41 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
         propertyName,
         capitalizedName,
         pathName,
+        includeMethods,
       };
       console.log(modData);
       const actions: PlopTypes.Actions = [];
 
-      actions.push({
-        type: 'add',
-        templateFile: `${templateBasePath}/form.tsx.hbs`,
-        path: `${basePath}/components/${pathName}-form/index.tsx`,
-      });
+      if (includeMethods.form) {
+        actions.push({
+          type: 'add',
+          templateFile: `${templateBasePath}/form.tsx.hbs`,
+          path: `${basePath}/components/${pathName}-form/index.tsx`,
+        });
 
-      actions.push({
-        type: 'add',
-        templateFile: `${templateBasePath}/dialog.tsx.hbs`,
-        path: `${basePath}/components/${pathName}-dialog/index.tsx`,
-      });
+        actions.push({
+          type: 'add',
+          templateFile: `${templateBasePath}/dialog.tsx.hbs`,
+          path: `${basePath}/components/${pathName}-dialog/index.tsx`,
+        });
+      }
 
       actions.push({
         type: 'add',
         templateFile: `${templateBasePath}/table.tsx.hbs`,
         path: `${basePath}/components/${pathName}-table/index.tsx`,
+      });
+
+      actions.push({
+        type: 'add',
+        templateFile: `${templateBasePath}/columns.tsx.hbs`,
+        path: `${basePath}/components/${pathName}-table/columns.tsx`,
+      });
+
+      actions.push({
+        type: 'add',
+        templateFile: `${templateBasePath}/types.ts.hbs`,
+        path: `${basePath}/components/${pathName}-types/index.ts`,
       });
 
       actions.push({
