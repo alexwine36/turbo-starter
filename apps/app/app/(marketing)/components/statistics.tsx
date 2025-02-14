@@ -1,15 +1,14 @@
 import { NumberTicker } from '@repo/design-system/components/ui/number-ticker';
-import { database } from '../../../../../packages/database/database';
 
-export const Statistics = async () => {
+export const Statistics = () => {
   interface statsProps {
     quantity: number;
     description: string;
     suffix?: string;
     decimalPlaces?: number;
   }
-  const userCount = await database.user.count();
-  const companyCount = await database.company.count();
+  const userCount = 40001;
+  const companyCount = 6002;
   const stats: statsProps[] = [
     {
       quantity: userCount,
