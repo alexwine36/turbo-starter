@@ -1,4 +1,8 @@
 import { router } from '@repo/trpc/src/server/trpc';
+import { organizationRouter } from './organization/_router';
+
+import { companyRouter } from './company/_router';
+
 
 import { z } from 'zod';
 import publicProcedure from '../procedures/public-procedure';
@@ -20,6 +24,10 @@ export const appRouter = router({
       };
     }),
   // Handlers
+
+organization: organizationRouter,
+
+company: companyRouter,
 
   
 

@@ -123,7 +123,7 @@ model Organization {
   description String?
   /// @zod.string.url({message: "must be a valid URL"})
   website     String?
-  social      Json?
+  // social      Json?
   members     Member[]
 
   companies  Company[]
@@ -175,7 +175,7 @@ model Company {
   description String?
   /// @zod.string.url({message: "must be a valid URL"})
   website     String?
-  social      Json?
+  // social      Json?
   organizationId String
   organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 

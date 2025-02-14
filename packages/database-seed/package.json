@@ -5,7 +5,8 @@
   "scripts": {
     "clean": "git clean -xdf .cache .turbo dist node_modules",
     "db:seed": "tsx index.ts",
-    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false",
+    "infisical:export": "infisical export > .env"
   },
   "dependencies": {
     "@repo/common-types": "workspace:*",

@@ -11,6 +11,7 @@
     "generate": "prisma generate",
     "postinstall": "prisma generate --no-hints",
     "studio": "prisma studio",
+    "infisical:export": "infisical export > .env",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "main": "./index.ts",
