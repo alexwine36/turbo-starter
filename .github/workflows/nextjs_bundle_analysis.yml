@@ -4,11 +4,11 @@
 name: 'Next.js Bundle Analysis'
 
 env:
-  DATABASE_URL: TEST_VALUE_REPLACE
+  DATABASE_URL: postgres://postgres:postgres@postgres:5432/main
   AUTH_SECRET: TEST_VALUE_REPLACE
   AUTH_GOOGLE_ID: TEST_VALUE_REPLACE
   AUTH_GOOGLE_SECRET: TEST_VALUE_REPLACE
-  NEXT_PUBLIC_APP_URL: TEST_VALUE_REPLACE
+  NEXT_PUBLIC_APP_URL: http://localhost:3000
 
 on:
   pull_request:
