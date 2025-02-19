@@ -12,6 +12,7 @@
     "clean:modules": "turbo clean",
     "db:push": "turbo run db:push",
     "db:reset": "pnpm run -r db:reset",
+    "db:reset:seed": "pnpm db:reset && pnpm db:push && pnpm db:seed",
     "db:seed": "turbo run db:seed",
     "db:up": "docker compose up",
     "dev": "infisical run --env=dev -- turbo dev",
@@ -30,7 +31,7 @@
     "sync:list": "syncpack list",
     "sync:update": "pnpm syncpack update",
     "test": "turbo test",
-    "test:ci": "turbo test -- --passWithNoTests",
+    "test:ci": "pnpm vitest run",
     "typecheck": "turbo typecheck",
     "ui:add": "shadcn add -c packages/design-system",
     "ui:update": "shadcn add --all --overwrite -c packages/design-system"
@@ -47,7 +48,8 @@
     "syncpack": "^13.0.0",
     "turbo": "^2.3.3",
     "typescript": "^5.7.2",
-    "ultracite": "^4.1.14"
+    "ultracite": "^4.1.14",
+    "vitest": "^2.1.8"
   },
   "engines": {
     "node": ">=18"

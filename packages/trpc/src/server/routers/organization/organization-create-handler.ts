@@ -17,9 +17,26 @@ export const organizationCreateHandler = async ({
   const { prisma, session } = ctx;
 
   const res = await prisma.organization.create({
-    data: { ...input },
+    data: {
+      ...input,
+      members: {
+        create: {
+          role: 'OWNER',
+          email: session.user.email,
+        },
+      },
+    },
     ...organizationSelectFields,
   });
+  await prisma.user.update({
+    where: {
+      email: session.user.email,
+    },
+    data: {
+      currentOrganizationId: res.id,
+    },
+  });
+
   return formatOrganizationData(res);
 };
 
