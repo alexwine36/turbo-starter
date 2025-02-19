@@ -1,15 +1,12 @@
-import type { TRPCContextInner } from '@repo/trpc/src/server/create-context';
-import type { SetCurrentOrgSchema } from './set-current-org-schema.ts';
+import type { TRPCContextInnerWithSession } from '@repo/trpc/src/server/create-context';
+import type { UserSetOrgSchema } from './user-set-org-schema';
 
-type SetCurrentOrgOptions = {
-  ctx: TRPCContextInner;
-  input: SetCurrentOrgSchema;
+type UserSetOrgOptions = {
+  ctx: TRPCContextInnerWithSession;
+  input: UserSetOrgSchema;
 };
 
-export const setCurrentOrgHandler = async ({
-  ctx,
-  input,
-}: SetCurrentOrgOptions) => {
+export const userSetOrgHandler = async ({ ctx, input }: UserSetOrgOptions) => {
   const { prisma, session } = ctx;
 
   if (!session) {
@@ -38,4 +35,4 @@ export const setCurrentOrgHandler = async ({
   return res;
 };
 
-export type SetCurrentOrgResponse = ReturnType<typeof setCurrentOrgHandler>;
+export type UserSetOrgResponse = Awaited<ReturnType<typeof userSetOrgHandler>>;

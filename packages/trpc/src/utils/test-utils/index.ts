@@ -13,7 +13,7 @@ export const getTestCaller = async (userType: TestUserTypes) => {
   const createCaller = createCallerFactory(appRouter);
   const ctx = await getTestContext(userType, prisma);
 
-  const caller = createCaller(ctx);
+  const trpc = createCaller(ctx);
   const refreshCaller = async () => {
     const { session } = ctx;
     if (session?.user) {
@@ -27,8 +27,8 @@ export const getTestCaller = async (userType: TestUserTypes) => {
 
       return createCaller(newCtx);
     }
-    return caller;
+    return trpc;
   };
 
-  return { caller, refreshCaller };
+  return { trpc, refreshCaller };
 };

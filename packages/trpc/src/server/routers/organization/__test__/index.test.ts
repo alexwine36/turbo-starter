@@ -4,7 +4,7 @@ import { getTestCaller } from '../../../../utils/test-utils';
 describe('Organization', () => {
   describe('create', () => {
     test('should first', async () => {
-      const { caller: trpc, refreshCaller } = await getTestCaller('create');
+      const { trpc, refreshCaller } = await getTestCaller('create');
       const currentUser = await trpc.user.me({});
 
       expect(currentUser).toBeTruthy();

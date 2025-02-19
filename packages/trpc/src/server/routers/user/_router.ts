@@ -1,18 +1,18 @@
 import authedProcedure from '@repo/trpc/src/server/procedures/authed-procedure';
 import { router } from '@repo/trpc/src/server/trpc';
+import { userMeHandler } from './user-me-handler';
+import { UserMeSchema } from './user-me-schema';
+import { userSetOrgHandler } from './user-set-org-handler';
+import { UserSetOrgSchema } from './user-set-org-schema';
 
 // Imports
 
-import { meHandler } from './me-handler';
-import { MeSchema } from './me-schema';
-import { setCurrentOrgHandler } from './set-current-org-handler';
-import { SetCurrentOrgSchema } from './set-current-org-schema';
 export const userRouter = router({
   // Handlers
 
   setCurrentOrg: authedProcedure
-    .input(SetCurrentOrgSchema)
-    .mutation(setCurrentOrgHandler),
+    .input(UserSetOrgSchema)
+    .mutation(userSetOrgHandler),
 
-  me: authedProcedure.input(MeSchema).query(meHandler),
+  me: authedProcedure.input(UserMeSchema).query(userMeHandler),
 });
