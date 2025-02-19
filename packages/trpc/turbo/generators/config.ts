@@ -22,6 +22,7 @@ type AddHandlerTypes = TurboAnswers & {
   router: string;
   name: string;
   type: 'query' | 'mutation';
+  procedure: 'authedProcedure' | 'authedOrgMemberProcedure' | 'publicProcedure';
 };
 
 export default function generator(plop: PlopTypes.NodePlopAPI): void {
@@ -47,12 +48,32 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
           { name: 'Delete', value: 'delete' },
         ],
       },
+      {
+        type: 'list',
+        name: 'procedure',
+        message: 'What type of procedure is this?',
+        choices: [
+          {
+            name: 'Authed Procedure',
+            value: 'authedProcedure',
+          },
+          {
+            name: 'Authed Org Member Procedure',
+            value: 'authedOrgMemberProcedure',
+          },
+          {
+            name: 'Public Procedure',
+            value: 'publicProcedure',
+          },
+        ],
+      },
     ],
     actions: (rawData) => {
-      const modData = rawData as TurboAnswers & {
-        name: string;
-        methods: ('get all' | 'get one' | 'create' | 'update' | 'delete')[];
-      };
+      const modData = rawData as TurboAnswers &
+        Pick<AddHandlerTypes, 'procedure'> & {
+          name: string;
+          methods: ('get all' | 'get one' | 'create' | 'update' | 'delete')[];
+        };
       console.log(modData);
       console.log(modData.turbo.paths);
       const basePath = `${modData?.turbo.paths.workspace}/src/server/routers`;
@@ -133,6 +154,7 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
           name: method,
           type,
           router: routerFile,
+          // procedure: 'authedProcedure',
         });
       });
       // console.log(handlers);
@@ -366,6 +388,25 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
           {
             name: 'Mutation',
             value: 'mutation',
+          },
+        ],
+      },
+      {
+        type: 'list',
+        name: 'procedure',
+        message: 'What type of procedure is this?',
+        choices: [
+          {
+            name: 'Authed Procedure',
+            value: 'authedProcedure',
+          },
+          {
+            name: 'Authed Org Member Procedure',
+            value: 'authedOrgMemberProcedure',
+          },
+          {
+            name: 'Public Procedure',
+            value: 'publicProcedure',
           },
         ],
       },

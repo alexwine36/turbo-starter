@@ -4,6 +4,7 @@ import {
   isAdminMiddleware,
   isAuthed,
   isOrgAdminMiddleware,
+  isOrgUser,
 } from '../middlewares/session-middleware';
 import { procedure } from '../trpc';
 import publicProcedure from './public-procedure';
@@ -40,5 +41,9 @@ export const authedAdminProcedure = publicProcedure
 export const authedOrgAdminProcedure = publicProcedure
   .use(captureErrorsMiddleware)
   .use(isOrgAdminMiddleware);
+
+export const authedOrgMemberProcedure = publicProcedure
+  .use(captureErrorsMiddleware)
+  .use(isOrgUser);
 
 export default authedProcedure;

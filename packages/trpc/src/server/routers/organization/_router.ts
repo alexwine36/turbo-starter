@@ -1,4 +1,6 @@
-import authedProcedure from '@repo/trpc/src/server/procedures/authed-procedure';
+import authedProcedure, {
+  authedOrgMemberProcedure,
+} from '@repo/trpc/src/server/procedures/authed-procedure';
 import { router } from '@repo/trpc/src/server/trpc';
 import { organizationCreateHandler } from './organization-create-handler';
 import { OrganizationCreateSchema } from './organization-create-schema';
@@ -14,7 +16,7 @@ import { OrganizationUpdateSchema } from './organization-update-schema';
 export const organizationRouter = router({
   // Handlers
 
-  update: authedProcedure
+  update: authedOrgMemberProcedure
     .input(OrganizationUpdateSchema)
     .mutation(organizationUpdateHandler),
 
@@ -26,7 +28,7 @@ export const organizationRouter = router({
     .input(OrganizationGetOneSchema)
     .query(organizationGetOneHandler),
 
-  getAll: authedProcedure
+  getAll: authedOrgMemberProcedure
     .input(OrganizationGetAllSchema)
     .query(organizationGetAllHandler),
 });

@@ -72,6 +72,16 @@ export const isAuthed = middleware(async ({ ctx, next }) => {
   });
 });
 
+export const isOrgUser = isAuthed.unstable_pipe(({ ctx, next }) => {
+  const { user } = ctx;
+  // NOTE: This is a placeholder for now. We need to implement this in the future.
+  if (!user.currentOrganizationId) {
+    throw new TRPCError({ code: 'UNAUTHORIZED' });
+  }
+
+  return next({ ctx: { user: user } });
+});
+
 export const isAdminMiddleware = isAuthed.unstable_pipe(({ ctx, next }) => {
   const { user } = ctx;
   // if (user?.role !== 'ADMIN') {
@@ -81,12 +91,13 @@ export const isAdminMiddleware = isAuthed.unstable_pipe(({ ctx, next }) => {
 });
 
 // Org admins can be admins or owners
-export const isOrgAdminMiddleware = isAuthed.unstable_pipe(({ ctx, next }) => {
+export const isOrgAdminMiddleware = isOrgUser.unstable_pipe(({ ctx, next }) => {
   const { user } = ctx;
   // NOTE: This is a placeholder for now. We need to implement this in the future.
-  // if (!user?.organization?.isOrgAdmin) {
-  //   throw new TRPCError({ code: 'UNAUTHORIZED' });
-  // }
+  if (!['ADMIN', 'OWNER'].includes(user?.currentRole || '')) {
+    throw new TRPCError({ code: 'UNAUTHORIZED' });
+  }
+
   return next({ ctx: { user: user } });
 });
 

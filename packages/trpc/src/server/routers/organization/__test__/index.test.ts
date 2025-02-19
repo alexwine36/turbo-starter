@@ -24,4 +24,24 @@ describe('Organization', () => {
       expect(updatedUser?.currentRole).toBe('OWNER');
     });
   });
+  describe('get-all', () => {
+    test('should return organizations for org-user', async () => {
+      const { trpc } = await getTestCaller('org-admin');
+      const res = await trpc.organization.getAll({});
+      expect(res).toBeTruthy();
+      expect(res.length).toBeGreaterThan(0);
+    });
+    test('should error for guest', async () => {
+      const { trpc } = await getTestCaller('guest');
+      await expect(async () =>
+        trpc.organization.getAll({})
+      ).rejects.toThrowError('UNAUTHORIZED');
+    });
+    test('should error for user', async () => {
+      const { trpc } = await getTestCaller('user');
+      await expect(async () =>
+        trpc.organization.getAll({})
+      ).rejects.toThrowError('UNAUTHORIZED');
+    });
+  });
 });
