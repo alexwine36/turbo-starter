@@ -9,8 +9,9 @@ import {
 import React from 'react';
 import { CompanyDialog } from '../company-dialog';
 import { CompanyTable } from '../company-table';
+import type { CompanyTypes } from '../company-types';
 
-export const CompanyCard: React.FC = () => {
+export const CompanyCard: React.FC<CompanyTypes> = (props) => {
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -18,13 +19,18 @@ export const CompanyCard: React.FC = () => {
       <CardHeader>
         <CardTitle>
           <div className="flex items-center gap-2">
-            Companies
-            <CompanyDialog open={open} onOpenChange={setOpen} showTrigger />
+            Company
+            <CompanyDialog
+              open={open}
+              onOpenChange={setOpen}
+              showTrigger
+              {...props}
+            />
           </div>
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <CompanyTable />
+        <CompanyTable {...props} />
       </CardContent>
     </Card>
   );

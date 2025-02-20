@@ -1,5 +1,11 @@
-import type { TRPCContextInnerWithSession } from '@/server/create-context';
+import type { TRPCContextInnerWithSession } from '@repo/trpc/src/server/create-context';
 import type { {{ schemaName }} } from './{{ baseHandlerFile }}-schema'
+import { z } from 'zod';
+{{#if handlerReturnType}}
+import { format{{ handleDataType }},
+{{ prismaTable }}SelectFields
+ } from "@repo/common-types";
+{{/if}}
 
 type {{ handlerOptions }} = {
     ctx: TRPCContextInnerWithSession;
@@ -10,9 +16,12 @@ export const {{ handlerName }} = async ({ ctx, input }: {{handlerOptions}}) => {
 
     const { prisma, session } = ctx;
     
-    const res = []
-
+    const res = {{ handlerContent }}
+    {{#if handlerReturnType}}
+    return {{ handlerReturnType }};
+    {{else}}
     return res;
+    {{/if}}
 }
 
 export type {{ handlerResponse }} = Awaited<ReturnType<typeof {{ handlerName }}>>;

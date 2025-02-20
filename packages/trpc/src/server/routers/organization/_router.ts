@@ -1,34 +1,34 @@
-import { router } from '@/server/trpc';
-import authedProcedure from '../../procedures/authed-procedure';
-// Imports
-
-import { createHandler } from './create-handler';
-import { CreateSchema } from './create-schema';
-import { getOneHandler } from './get-one-handler';
-import { GetOneSchema } from './get-one-schema';
+import authedProcedure, {
+  authedOrgMemberProcedure,
+} from '@repo/trpc/src/server/procedures/authed-procedure';
+import { router } from '@repo/trpc/src/server/trpc';
+import { organizationCreateHandler } from './organization-create-handler';
+import { OrganizationCreateSchema } from './organization-create-schema';
 import { organizationGetAllHandler } from './organization-get-all-handler';
 import { OrganizationGetAllSchema } from './organization-get-all-schema';
-import { updateHandler } from './update-handler';
-import { UpdateSchema } from './update-schema';
+import { organizationGetOneHandler } from './organization-get-one-handler';
+import { OrganizationGetOneSchema } from './organization-get-one-schema';
+import { organizationUpdateHandler } from './organization-update-handler';
+import { OrganizationUpdateSchema } from './organization-update-schema';
+
+// Imports
+
 export const organizationRouter = router({
   // Handlers
 
-  getAll: authedProcedure
+  update: authedOrgMemberProcedure
+    .input(OrganizationUpdateSchema)
+    .mutation(organizationUpdateHandler),
+
+  create: authedProcedure
+    .input(OrganizationCreateSchema)
+    .mutation(organizationCreateHandler),
+
+  getOne: authedProcedure
+    .input(OrganizationGetOneSchema)
+    .query(organizationGetOneHandler),
+
+  getAll: authedOrgMemberProcedure
     .input(OrganizationGetAllSchema)
     .query(organizationGetAllHandler),
-
-  update: authedProcedure.input(UpdateSchema).mutation(updateHandler),
-
-  create: authedProcedure.input(CreateSchema).mutation(createHandler),
-
-  getOne: authedProcedure.input(GetOneSchema).query(getOneHandler),
-
-  // getAll: authedProcedure.query(async ({ ctx }) => {
-  //   const data = await ctx.prisma.page.findMany();
-  //   const orgs = await ctx.prisma.user.findMany();
-  //   return {
-  //     data,
-  //     orgs,
-  //   };
-  // }),
 });

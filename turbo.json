@@ -14,6 +14,10 @@
     "analyze": {
       "dependsOn": ["^analyze"]
     },
+    "analyze:ci": {
+      "dependsOn": ["build"],
+      "outputs": [".next/analyze/**"]
+    },
     "dev": {
       "cache": false,
       "persistent": true
@@ -25,7 +29,10 @@
       "dependsOn": ["^build"]
     },
     "db:migrate:deploy": {},
-    "db:push": {},
-    "db:seed": {}
+    "db:push": {
+      "cache": false
+    },
+    "db:seed": {},
+    "infisical:export": {}
   }
 }

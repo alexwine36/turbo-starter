@@ -1,5 +1,5 @@
-import type { TRPCContextInnerWithSession } from '@/server/create-context';
-import { CompanyData } from '@repo/common-types';
+import { companySelectFields, formatCompanyData } from '@repo/common-types';
+import type { TRPCContextInnerWithSession } from '@repo/trpc/src/server/create-context';
 import type { CompanyGetAllSchema } from './company-get-all-schema';
 
 type CompanyGetAllOptions = {
@@ -15,11 +15,11 @@ export const companyGetAllHandler = async ({
 
   const res = await prisma.company.findMany({
     where: {
-      organizationId: session?.user.currentOrganizationId,
+      ...input,
     },
+    ...companySelectFields,
   });
-
-  return res.map((company) => CompanyData.parse(company));
+  return res.map(formatCompanyData);
 };
 
 export type CompanyGetAllResponse = Awaited<

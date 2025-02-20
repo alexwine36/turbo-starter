@@ -1,8 +1,8 @@
-import type { TRPCContextInner } from '@/server/create-context';
-import type { OrganizationGetAllSchema } from './organization-get-all-schema.ts';
+import type { TRPCContextInnerWithSession } from '@repo/trpc/src/server/create-context';
+import type { OrganizationGetAllSchema } from './organization-get-all-schema';
 
 type OrganizationGetAllOptions = {
-  ctx: TRPCContextInner;
+  ctx: TRPCContextInnerWithSession;
   input: OrganizationGetAllSchema;
 };
 
@@ -29,6 +29,7 @@ export const organizationGetAllHandler = async ({
       ...rest,
     };
   });
+  // return res.map(formatOrganizationData);
 };
 
 export type OrganizationGetAllResponse = Awaited<

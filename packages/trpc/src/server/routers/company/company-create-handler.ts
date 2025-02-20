@@ -1,5 +1,5 @@
-import type { TRPCContextInnerWithSession } from '@/server/create-context';
-import { CompanyData } from '@repo/common-types';
+import { companySelectFields, formatCompanyData } from '@repo/common-types';
+import type { TRPCContextInnerWithSession } from '@repo/trpc/src/server/create-context';
 import type { CompanyCreateSchema } from './company-create-schema';
 
 type CompanyCreateOptions = {
@@ -12,21 +12,12 @@ export const companyCreateHandler = async ({
   input,
 }: CompanyCreateOptions) => {
   const { prisma, session } = ctx;
-  const { currentOrganizationId } = session.user;
 
-  if (!currentOrganizationId) {
-    throw new Error('No current organization');
-  }
-
-  const { social, ...rest } = input;
   const res = await prisma.company.create({
-    data: {
-      ...rest,
-      organizationId: currentOrganizationId,
-    },
+    data: { ...input },
+    ...companySelectFields,
   });
-
-  return CompanyData.parse(res);
+  return formatCompanyData(res);
 };
 
 export type CompanyCreateResponse = Awaited<

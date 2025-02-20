@@ -1,16 +1,12 @@
-import { router } from '@/server/trpc';
-import { z } from 'zod';
-import publicProcedure from '../procedures/public-procedure';
+import { router } from '@repo/trpc/src/server/trpc';
+import { userRouter } from './user/_router';
 
-// Imports
+import { organizationRouter } from './organization/_router';
 
 import { companyRouter } from './company/_router';
 
-import { memberRouter } from './member/_router';
-
-import { userRouter } from './user/_router';
-
-import { organizationRouter } from '@/server/routers/organization/_router'; //'./organization/_router';
+import { z } from 'zod';
+import publicProcedure from '../procedures/public-procedure';
 
 export const appRouter = router({
   hello: publicProcedure
@@ -26,13 +22,11 @@ export const appRouter = router({
     }),
   // Handlers
 
-  company: companyRouter,
-
-  member: memberRouter,
-
   user: userRouter,
 
   organization: organizationRouter,
+
+  company: companyRouter,
 });
 // export type definition of API
 export type AppRouter = typeof appRouter;

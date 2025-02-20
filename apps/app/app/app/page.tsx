@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { CompanyCard } from './company/components/company-card';
 import { Header } from './components/header';
 const title = 'Acme Inc';
 const description = 'My application.';
@@ -17,7 +18,7 @@ const App = () => {
           <div className="aspect-video rounded-xl bg-muted/50" />
           <div className="aspect-video rounded-xl bg-muted/50" />
         </div>
-        <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
+        <CompanyCard />
       </div>
     </>
   );
