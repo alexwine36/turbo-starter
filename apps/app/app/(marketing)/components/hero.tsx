@@ -32,7 +32,7 @@ export const Hero = () => {
         </p>
 
         <div className="space-y-4 md:space-x-4 md:space-y-0">
-          <Button className="w-full md:w-1/3" asChild>
+          <Button className="w-full md:w-1/3" variant="default" asChild>
             <Link href={getStarted.href}>{getStarted.label}</Link>
           </Button>
 
