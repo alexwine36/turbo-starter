@@ -1,84 +1,81 @@
 @import "tailwindcss";
 
+:root {
+  --background: hsl(0 0% 99%);
+  --foreground: hsl(0 0% 5%);
+  --card: hsl(0 0% 98%);
+  --card-foreground: hsl(0 0% 5%);
+  --popover: hsl(0 0% 96%);
+  --popover-foreground: hsl(0 0% 5%);
+  --primary: hsl(226 68% 46%);
+  --primary-foreground: hsl(0 0% 100%);
+  --secondary: hsl(256 68% 53%);
+  --secondary-foreground: hsl(0 0% 100%);
+  --muted: hsl(0 0% 82%);
+  --muted-foreground: hsl(0 0% 30%);
+  --accent: hsl(196 68% 48%);
+  --accent-foreground: hsl(0 0% 0%);
+  --destructive: hsl(350 91% 55%);
+  --destructive-foreground: hsl(0 0% 100%);
+  --border: hsl(0 0% 69%);
+  --input: hsl(0 0% 73%);
+  --ring: hsl(214 68% 35%);
+  --chart-1: hsl(226 68% 41%);
+  --chart-2: hsl(16 68% 41%);
+  --chart-3: hsl(76 68% 41%);
+  --chart-4: hsl(196 68% 41%);
+  --chart-5: hsl(256 68% 41%);
+  --radius: 0.15rem;
 
-  :root {
-    --background: hsl(0 0% 99%);
-    --foreground: hsl(0 0% 5%);
-    --card: hsl(0 0% 98%);
-    --card-foreground: hsl(0 0% 5%);
-    --popover: hsl(0 0% 96%);
-    --popover-foreground: hsl(0 0% 5%);
-    --primary: hsl(226 68% 46%);
-    --primary-foreground: hsl(0 0% 100%);
-    --secondary: hsl(256 68% 53%);
-    --secondary-foreground: hsl(0 0% 100%);
-    --muted: hsl(0 0% 82%);
-    --muted-foreground: hsl(0 0% 30%);
-    --accent: hsl(196 68% 48%);
-    --accent-foreground: hsl(0 0% 0%);
-    --destructive: hsl(350 91% 55%);
-    --destructive-foreground: hsl(0 0% 100%);
-    --border: hsl(0 0% 69%);
-    --input: hsl(0 0% 73%);
-    --ring: hsl(214 68% 35%);
-    --chart-1: hsl(226 68% 41%);
-    --chart-2: hsl(16 68% 41%);
-    --chart-3: hsl(76 68% 41%);
-    --chart-4: hsl(196 68% 41%);
-    --chart-5: hsl(256 68% 41%);
-    --radius: 0.15rem;
+  --sidebar-background: hsl(0 0% 98%);
+  --sidebar-foreground: hsl(240 5.3% 26.1%);
+  --sidebar-primary: hsl(226 68% 46%);
+  --sidebar-primary-foreground: hsl(0 0% 98%);
+  --sidebar-accent: hsl(240 4.8% 95.9%);
+  --sidebar-accent-foreground: hsl(240 5.9% 10%);
+  --sidebar-border: hsl(220 13% 91%);
+  --sidebar-ring: hsl(217.2 91.2% 59.8% / 0.1);
 
-    --sidebar-background: hsl(0 0% 98%);
-    --sidebar-foreground: hsl(240 5.3% 26.1%);
-    --sidebar-primary: hsl(226 68% 46%);
-    --sidebar-primary-foreground: hsl(0 0% 98%);
-    --sidebar-accent: hsl(240 4.8% 95.9%);
-    --sidebar-accent-foreground: hsl(240 5.9% 10%);
-    --sidebar-border: hsl(220 13% 91%);
-    --sidebar-ring: hsl(217.2 91.2% 59.8% / 0.1);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
-    --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif,
-      "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-      "Noto Color Emoji";
+  --font-mono: var(--font-roboto-mono);
+}
+.dark {
+  --background: hsl(0 0% 2%);
+  --foreground: hsl(0 0% 95%);
+  --card: hsl(0 0% 9%);
+  --card-foreground: hsl(0 0% 95%);
+  --popover: hsl(0 0% 9%);
+  --popover-foreground: hsl(0 0% 95%);
+  --primary: hsl(226 68% 60%);
+  --primary-foreground: hsl(0 0% 95%);
+  --secondary: hsl(256 68% 32%);
+  --secondary-foreground: hsl(0 0% 95%);
+  --muted: hsl(0 0% 32%);
+  --muted-foreground: hsl(0 0% 70%);
+  --accent: hsl(196 68% 26%);
+  --accent-foreground: hsl(0 0% 95%);
+  --destructive: hsl(350 91% 36%);
+  --destructive-foreground: hsl(0 0% 100%);
+  --border: hsl(0 0% 25%);
+  --input: hsl(0 0% 25%);
+  --ring: hsl(214 68% 35%);
+  --chart-1: hsl(226 68% 41%);
+  --chart-2: hsl(16 68% 41%);
+  --chart-3: hsl(76 68% 41%);
+  --chart-4: hsl(196 68% 41%);
+  --chart-5: hsl(256 68% 41%);
 
-    --font-mono: var(--font-roboto-mono);
-  }
-  .dark {
-    --background: hsl(0 0% 2%);
-    --foreground: hsl(0 0% 95%);
-    --card: hsl(0 0% 9%);
-    --card-foreground: hsl(0 0% 95%);
-    --popover: hsl(0 0% 9%);
-    --popover-foreground: hsl(0 0% 95%);
-    --primary: hsl(226 68% 60%);
-    --primary-foreground: hsl(0 0% 95%);
-    --secondary: hsl(256 68% 32%);
-    --secondary-foreground: hsl(0 0% 95%);
-    --muted: hsl(0 0% 32%);
-    --muted-foreground: hsl(0 0% 70%);
-    --accent: hsl(196 68% 26%);
-    --accent-foreground: hsl(0 0% 95%);
-    --destructive: hsl(350 91% 36%);
-    --destructive-foreground: hsl(0 0% 100%);
-    --border: hsl(0 0% 25%);
-    --input: hsl(0 0% 25%);
-    --ring: hsl(214 68% 35%);
-    --chart-1: hsl(226 68% 41%);
-    --chart-2: hsl(16 68% 41%);
-    --chart-3: hsl(76 68% 41%);
-    --chart-4: hsl(196 68% 41%);
-    --chart-5: hsl(256 68% 41%);
-
-    --sidebar-background: hsl(240 5.9% 10%);
-    --sidebar-foreground: hsl(240 4.8% 95.9%);
-    --sidebar-primary: hsl(224.3 76.3% 48%);
-    --sidebar-primary-foreground: hsl(0 0% 100%);
-    --sidebar-accent: hsl(240 3.7% 15.9%);
-    --sidebar-accent-foreground: hsl(240 4.8% 95.9%);
-    --sidebar-border: hsl(240 3.7% 15.9%);
-    --sidebar-ring: hsl(217.2 91.2% 59.8%);
-  }
-
+  --sidebar-background: hsl(240 5.9% 10%);
+  --sidebar-foreground: hsl(240 4.8% 95.9%);
+  --sidebar-primary: hsl(224.3 76.3% 48%);
+  --sidebar-primary-foreground: hsl(0 0% 100%);
+  --sidebar-accent: hsl(240 3.7% 15.9%);
+  --sidebar-accent-foreground: hsl(240 4.8% 95.9%);
+  --sidebar-border: hsl(240 3.7% 15.9%);
+  --sidebar-ring: hsl(217.2 91.2% 59.8%);
+}
 
 @theme inline {
   --color-background: var(--background);
@@ -105,7 +102,7 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
-  
+
   --color-sidebar-background: var(--sidebar-background);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -114,27 +111,4 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-}
-
-/* This layer is added by shadcn/ui */
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-}
-
-/* This layer is by next-forge */
-@layer base {
-  * {
-    @apply min-w-0;
-  }
-  html {
-    text-rendering: optimizelegibility;
-  }
-  body {
-    @apply min-h-[100dvh];
-  }
 }
