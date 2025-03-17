@@ -8,7 +8,7 @@ export const Hero = () => {
   const { getStarted, githubRepo } = MarketingLinks;
 
   return (
-    <section className="container grid place-items-center gap-10 overflow-x-hidden py-20 md:py-32 lg:grid-cols-2">
+    <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid place-items-center gap-10 overflow-x-hidden py-20 md:py-32 lg:grid-cols-2">
       <div className="space-y-6 text-center lg:text-start">
         <main className="font-bold text-5xl md:text-6xl">
           <h1 className="inline">
@@ -32,7 +32,7 @@ export const Hero = () => {
         </p>
 
         <div className="space-y-4 md:space-x-4 md:space-y-0">
-          <Button className="w-full md:w-1/3" variant="default" asChild>
+          <Button  variant="default" asChild>
             <Link href={getStarted.href}>{getStarted.label}</Link>
           </Button>
 

@@ -42,6 +42,7 @@
     "@radix-ui/react-tooltip": "1.1.8",
     "@repo/rich-text": "workspace:*",
     "@tailwindcss/postcss": "^4.0.14",
+    "@tailwindcss/typography": "0.5.15",
     "@tanstack/react-table": "8.20.6",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
@@ -79,7 +80,7 @@
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
     "autoprefixer": "^10.4.20",
-    "postcss": "^8.4.49",
+    "postcss": "^8.5.3",
     "tailwindcss": "^4.0.14",
     "typescript": "^5.7.2",
     "vitest": "^2.1.8"

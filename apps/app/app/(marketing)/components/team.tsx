@@ -131,7 +131,9 @@ export const TeamCard = ({
         className
       )}
     >
-      <CardHeader className="mt-8 flex items-center justify-center pb-2">
+      <CardHeader 
+      className="mt-8 flex items-center justify-center pb-2 flex-col"
+      >
         <img
           src={imageUrl}
           alt={`${name} ${position}`}

@@ -1,3 +1,4 @@
+import { Container } from '@repo/design-system/components/ui/container';
 import { About } from './components/about';
 import { Cta } from './components/cta';
 import { Features } from './components/features';
@@ -9,11 +10,11 @@ import { Services } from './components/services';
 import { Sponsors } from './components/sponsors';
 import { Team } from './components/team';
 import { Testimonials } from './components/testimonials';
-
 const IndexPage = () => {
   return (
     <>
       <Hero />
+      <Container>
       <Sponsors />
       <About />
       <HowItWorks />
@@ -23,6 +24,8 @@ const IndexPage = () => {
       <Testimonials />
       <Team />
       <Pricing />
+
+      </Container>
       <Footer />
     </>
   );
