@@ -15,16 +15,15 @@ const IndexPage = () => {
     <>
       <Hero />
       <Container>
-      <Sponsors />
-      <About />
-      <HowItWorks />
-      <Features />
-      <Services />
-      <Cta />
-      <Testimonials />
-      <Team />
-      <Pricing />
-
+        <Sponsors />
+        <About />
+        <HowItWorks />
+        <Features />
+        <Services />
+        <Cta />
+        <Testimonials />
+        <Team />
+        <Pricing />
       </Container>
       <Footer />
     </>
