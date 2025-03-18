@@ -1,0 +1,38 @@
+---
+
+import { Heading } from '@repo/design-system/components/custom/typography';
+import { Placeholder } from '@repo/design-system/components/ui/placeholder';
+import { CircleChevronRight } from 'lucide-react';
+import Layout from '../layouts/Layout.astro';
+
+---
+
+<Layout>
+	<div class="flex flex-col gap-4 flex-1">
+	<Heading level={2} className="flex items-center gap-2"><CircleChevronRight /> Hello there!</Heading>
+	<div class="grid grid-cols-2 gap-4">
+		<div class="flex flex-col gap-4">
+			<Placeholder client:load title="Sample Chart" notes={`
+			- Here are some notes
+			- This is *important*
+			- How are you?
+			- This is important
+			- Also important
+			`} chart />
+			<Placeholder title="Sales Funnel Overview" description='Chart with stuff'  />
+	
+		</div>
+
+		<div class="flex flex-col gap-4">
+		<Placeholder title="Notifications" />
+		<Placeholder title="Upcoming Services" table={{
+			columnNames: ['Sample', 'Thing', ],
+			
+		}} />
+		</div>
+
+	</div>
+<Placeholder title="Something Cool" aspect={"fill"} table />
+	</div>
+	
+</Layout>

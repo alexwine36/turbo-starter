@@ -1,0 +1,32 @@
+---
+import '@repo/design-system/styles/globals.css';
+import {NavBar} from '../components/nav-bar';
+import {Container} from '@repo/design-system/components/ui/container';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro Basics</title>
+	</head>
+	<body class="min-h-screen">
+		<NavBar />
+		<Container className="p-4 min-h-[calc(100vh-4rem)]">
+					<slot />
+		</Container>
+
+	</body>
+</html>
+
+<!-- <style>
+	html,
+	body {
+		margin: 0;
+		width: 100%;
+		height: 100%;
+	}
+</style> -->
