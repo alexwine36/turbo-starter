@@ -21,16 +21,16 @@
     "zod": "3.24.1"
   },
   "devDependencies": {
-    "@faker-js/faker": "^9.3.0",
+    "@faker-js/faker": "9.3.0",
     "@repo/testing": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@trpc/server": "11.0.0-rc.708",
-    "@types/node": "^22.10.5",
-    "@types/react": "^19.0.2",
-    "@types/react-dom": "^19.0.2",
-    "inquirer-directory": "^2.2.0",
-    "typescript": "^5.7.2",
-    "vitest": "^2.1.8"
+    "@types/node": "22.10.5",
+    "@types/react": "19.0.2",
+    "@types/react-dom": "19.0.2",
+    "inquirer-directory": "2.2.0",
+    "typescript": "5.7.2",
+    "vitest": "2.1.8"
   },
   "peerDependencies": {
     "@repo/common-types": "workspace:*",

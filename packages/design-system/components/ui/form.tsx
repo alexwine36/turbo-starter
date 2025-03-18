@@ -1,8 +1,8 @@
 "use client"
 
-import * as React from "react"
 import * as LabelPrimitive from "@radix-ui/react-label"
 import { Slot } from "@radix-ui/react-slot"
+import * as React from "react"
 import {
   Controller,
   FormProvider,
@@ -13,8 +13,8 @@ import {
   type FieldValues,
 } from "react-hook-form"
 
-import { cn } from "@repo/design-system/lib/utils"
 import { Label } from "@repo/design-system/components/ui/label"
+import { cn } from "@repo/design-system/lib/utils"
 
 const Form = FormProvider
 
@@ -23,6 +23,7 @@ type FormFieldContextValue<
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > = {
   name: TName
+  required: boolean
 }
 
 const FormFieldContext = React.createContext<FormFieldContextValue>(
@@ -34,9 +35,11 @@ const FormField = <
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >({
   ...props
-}: ControllerProps<TFieldValues, TName>) => {
+}: ControllerProps<TFieldValues, TName> & {
+  required?: boolean
+}) => {
   return (
-    <FormFieldContext.Provider value={{ name: props.name }}>
+    <FormFieldContext.Provider value={{ name: props.name, required: props.required || false }}>
       <Controller {...props} />
     </FormFieldContext.Provider>
   )
@@ -58,6 +61,7 @@ const useFormField = () => {
   return {
     id,
     name: fieldContext.name,
+    required: fieldContext.required,
     formItemId: `${id}-form-item`,
     formDescriptionId: `${id}-form-item-description`,
     formMessageId: `${id}-form-item-message`,
@@ -67,6 +71,7 @@ const useFormField = () => {
 
 type FormItemContextValue = {
   id: string
+  required?: boolean
 }
 
 const FormItemContext = React.createContext<FormItemContextValue>(
@@ -91,13 +96,15 @@ function FormLabel({
   className,
   ...props
 }: React.ComponentProps<typeof LabelPrimitive.Root>) {
-  const { error, formItemId } = useFormField()
+  const { error, formItemId, required } = useFormField()
 
   return (
     <Label
       data-slot="form-label"
       data-error={!!error}
-      className={cn("data-[error=true]:text-destructive", className)}
+      className={cn("data-[error=true]:text-destructive",
+        required && 'after:ml-0.5 after:text-destructive after:content-["*"]',
+        className)}
       htmlFor={formItemId}
       {...props}
     />
@@ -156,12 +163,8 @@ function FormMessage({ className, ...props }: React.ComponentProps<"p">) {
 }
 
 export {
-  useFormField,
-  Form,
-  FormItem,
-  FormLabel,
-  FormControl,
-  FormDescription,
-  FormMessage,
-  FormField,
+  Form, FormControl,
+  FormDescription, FormField, FormItem,
+  FormLabel, FormMessage, useFormField
 }
+

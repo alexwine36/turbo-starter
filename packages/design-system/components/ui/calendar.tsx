@@ -3,9 +3,9 @@
 import * as React from "react"
 import { DayPicker } from "react-day-picker"
 
-import { cn } from "@repo/design-system/lib/utils"
-import { buttonVariants } from "@repo/design-system/components/ui/button"
 import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons"
+import { buttonVariants } from "@repo/design-system/components/ui/button"
+import { cn } from "@repo/design-system/lib/utils"
 
 function Calendar({
   className,
@@ -60,10 +60,10 @@ function Calendar({
         ...classNames,
       }}
       components={{
-        IconLeft: ({ className, ...props }) => (
+        IconLeft: ({ className, children, ...props }) => (
           <ChevronLeftIcon className={cn("size-4", className)} {...props} />
         ),
-        IconRight: ({ className, ...props }) => (
+        IconRight: ({ className, children, ...props }) => (
           <ChevronRightIcon className={cn("size-4", className)} {...props} />
         ),
       }}
