@@ -1,0 +1,22 @@
+{
+  "name": "web",
+  "version": "0.0.1",
+  "scripts": {
+    "astro": "astro",
+    "build": "astro build",
+    "dev": "astro dev",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/react": "4.2.1",
+    "@repo/design-system": "workspace:*",
+    "@tailwindcss/vite": "4.0.14",
+    "astro": "5.5.2",
+    "lucide-react": "0.482.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "recharts": "2.15.1",
+    "tailwindcss": "4.0.14"
+  },
+  "type": "module"
+}

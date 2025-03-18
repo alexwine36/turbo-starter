@@ -22,7 +22,5 @@
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "emmet.showExpandedAbbreviation": "never",
-  "prettier.enable": false,
-  "tailwindCSS.experimental.configFile": "./packages/tailwind-config/config.ts",
   "typescript.tsdk": "node_modules/typescript/lib"
 }

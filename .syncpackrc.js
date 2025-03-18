@@ -35,7 +35,7 @@ const config = {
       packages: ['**'],
       dependencyTypes: ['dev'],
       dependencies: ['**'],
-      range: '^',
+      range: '',
     },
   ],
   versionGroups: [

@@ -100,8 +100,8 @@ export const HeroCards = () => {
       {/* Service */}
       <Card className="absolute right-[20px] bottom-[35px] w-80 shadow-black/10 drop-shadow-xl dark:shadow-white/10">
         <CardHeader className="flex items-start justify-start gap-4 space-y-1 md:flex-row">
-          <div className="mt-1 rounded-2xl bg-primary/20 p-1">
-            <LightbulbIcon />
+          <div className="min-w-fit rounded-2xl bg-primary/20 p-1">
+            <LightbulbIcon size={24} />
           </div>
           <div>
             <CardTitle>Light & dark mode</CardTitle>

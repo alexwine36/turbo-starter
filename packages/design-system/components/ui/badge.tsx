@@ -1,47 +1,26 @@
-import { cva, type VariantProps } from "class-variance-authority";
-import * as React from "react";
+import { Slot } from "@radix-ui/react-slot"
+import { cva, type VariantProps } from "class-variance-authority"
+import * as React from "react"
 
-import { cn } from "@repo/design-system/lib/utils";
-
-// Generator for outline color options
-// const outlineColors = [
-//   "orange",
-//   "cyan",
-//   "blue",
-//   "red",
-//   "green",
-//   "slate",
-//   "purple",
-//   "pink",
-//   "yellow",
-//   "indigo",
-//   "teal",
-//   "violet",
-// ];
-// const colorOpts = outlineColors.reduce((acc, color) => {
-//   acc[
-//     color
-//   ] = `border-${color}-500 bg-${color}-100/25 text-${color}-700 dark:bg-${color}-900 dark:text-${color}-100`;
-//   return acc;
-// }, {});
-// console.log(colorOpts);
+import { cn } from "@repo/design-system/lib/utils"
 
 const badgeVariants = cva(
-  "inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+  "inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden",
   {
     variants: {
       variant: {
         default:
-          "border-transparent bg-primary text-primary-foreground shadow hover:bg-primary/80",
+          "border-transparent bg-primary text-primary-foreground [a&]:hover:bg-primary/90",
         secondary:
-          "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
+          "border-transparent bg-secondary text-secondary-foreground [a&]:hover:bg-secondary/90",
         destructive:
-          "border-transparent bg-destructive text-destructive-foreground shadow hover:bg-destructive/80",
-        destructiveOutline:
+          "border-transparent bg-destructive text-white [a&]:hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/70",
+        outline:
+          "text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
+          destructiveOutline:
           "border-background bg-background/15 text-destructive-foreground hover:bg-destructive/80",
-        outline: "text-foreground",
+    
         muted: "border-transparent bg-muted text-muted-foreground hover:bg-muted/80",
-        dumb: "rounded-t-none rounded-b-none"
       },
       outlineColor: {
         default: "",
@@ -67,25 +46,30 @@ const badgeVariants = cva(
           "border-violet-500 bg-violet-100/25 text-violet-700 dark:bg-violet-900 dark:text-violet-100",
       },
     },
-
     defaultVariants: {
       variant: "default",
-      outlineColor: "default",
+      outlineColor: 'default'
     },
   }
-);
+)
 
-export interface BadgeProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof badgeVariants> {}
+function Badge({
+  className,
+  variant,
+  outlineColor,
+  asChild = false,
+  ...props
+}: React.ComponentProps<"span"> &
+  VariantProps<typeof badgeVariants> & { asChild?: boolean }) {
+  const Comp = asChild ? Slot : "span"
 
-function Badge({ className, outlineColor, variant, ...props }: BadgeProps) {
   return (
-    <div
+    <Comp
+      data-slot="badge"
       className={cn(badgeVariants({ variant, outlineColor }), className)}
       {...props}
     />
-  );
+  )
 }
 
-export { Badge, badgeVariants };
+export { Badge, badgeVariants }

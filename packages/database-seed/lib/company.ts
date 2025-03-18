@@ -16,11 +16,10 @@ export const seedCompanies = async (
     return;
   }
   new Array(faker.number.int({ min: 5, max: 10 })).fill(0).map(async () => {
-    const companyMock = generateMock(
-      CompanyInput.omit({
-        id: true,
-      })
-    );
+    const CreateCompanyInput = CompanyInput.omit({
+      id: true,
+    });
+    const companyMock = generateMock(CreateCompanyInput);
 
     await prisma.company.create({
       data: {
