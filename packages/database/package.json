@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "analyze": "prisma generate --no-hints",
-    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "clean": "git clean -xdf .cache .turbo dist node_modules client",
     "db:migrate:deploy": "prisma migrate deploy",
     "db:migrate:dev": "prisma migrate dev",
     "db:push": "prisma db push",
@@ -14,8 +14,6 @@
     "studio": "prisma studio",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
-  "main": "./index.ts",
-  "types": "./index.ts",
   "dependencies": {
     "@neondatabase/serverless": "0.10.4",
     "@prisma/adapter-neon": "6.1.0",
