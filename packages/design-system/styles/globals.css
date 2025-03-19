@@ -1,91 +1,152 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer base {
-  :root {
-    --background: 0 0% 99%;
-    --foreground: 0 0% 5%;
-    --card: 0 0% 98%;
-    --card-foreground: 0 0% 5%;
-    --popover: 0 0% 96%;
-    --popover-foreground: 0 0% 5%;
-    --primary: 226 68% 46%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 256 68% 53%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 0 0% 82%;
-    --muted-foreground: 0 0% 30%;
-    --accent: 196 68% 48%;
-    --accent-foreground: 0 0% 0%;
-    --destructive: 350 91% 55%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 69%;
-    --input: 0 0% 73%;
-    --ring: 214 68% 35%;
-    --chart-1: 226 68% 41%;
-    --chart-2: 16 68% 41%;
-    --chart-3: 76 68% 41%;
-    --chart-4: 196 68% 41%;
-    --chart-5: 256 68% 41%;
-    --radius: 0.15rem;
+@source "../**/*.{ts,tsx}";
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 226 68% 46%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8% / 0.1;
+@plugin 'tailwindcss-animate';
+@plugin '@tailwindcss/typography';
 
-    --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif,
-      "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-      "Noto Color Emoji";
+@custom-variant dark (&:is(.dark *));
 
-    --font-mono: var(--font-roboto-mono);
+:root {
+  --background: oklch(99.2% 0 0);
+  --foreground: oklch(15.8% 0 0);
+  --card: oklch(98.5% 0 0);
+  --card-foreground: oklch(15.8% 0 0);
+  --popover: oklch(97% 0 0);
+  --popover-foreground: oklch(15.8% 0 0);
+  --primary: oklch(46.8% 0.195 265.8);
+  --primary-foreground: oklch(100% 0 0);
+  --secondary: oklch(49.2% 0.229 286.8);
+  --secondary-foreground: oklch(100% 0 0);
+  --muted: oklch(86.1% 0 0);
+  --muted-foreground: oklch(41.8% 0 0);
+  --accent: oklch(66.5% 0.12 228.3);
+  --accent-foreground: oklch(0% 0 0);
+  --destructive: oklch(62.4% 0.235 20.2);
+  --destructive-foreground: oklch(100% 0 0);
+  --border: oklch(75.7% 0 0);
+  --input: oklch(78.9% 0 0);
+  --ring: oklch(44% 0.126 256.7);
+  --chart-1: oklch(43.1% 0.178 265.9);
+  --chart-2: oklch(53.3% 0.145 39.2);
+  --chart-3: oklch(70.3% 0.165 124.3);
+  --chart-4: oklch(59.3% 0.106 228.1);
+  --chart-5: oklch(40.6% 0.204 285);
+  --radius: 0.15rem;
+
+  --sidebar-background: oklch(98.5% 0 0);
+  --sidebar-foreground: oklch(37% 0.012 285.8);
+  --sidebar-primary: oklch(46.8% 0.195 265.8);
+  --sidebar-primary-foreground: oklch(98.5% 0 0);
+  --sidebar-accent: oklch(96.8% 0.001 286.4);
+  --sidebar-accent-foreground: oklch(21% 0.006 285.9);
+  --sidebar-border: oklch(92.8% 0.006 264.5);
+  --sidebar-ring: oklch(62.3% 0.188 259.8);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  --font-mono: var(--font-roboto-mono);
+}
+.dark {
+  --background: oklch(11.6% 0 0);
+  --foreground: oklch(96.2% 0 0);
+  --card: oklch(20.4% 0 0);
+  --card-foreground: oklch(96.2% 0 0);
+  --popover: oklch(20.4% 0 0);
+  --popover-foreground: oklch(96.2% 0 0);
+  --primary: oklch(58.9% 0.166 268.3);
+  --primary-foreground: oklch(96.2% 0 0);
+  --secondary: oklch(34.3% 0.168 285.6);
+  --secondary-foreground: oklch(96.2% 0 0);
+  --muted: oklch(43.7% 0 0);
+  --muted-foreground: oklch(76.5% 0 0);
+  --accent: oklch(42.9% 0.074 227.4);
+  --accent-foreground: oklch(96.2% 0 0);
+  --destructive: oklch(47.9% 0.19 22.9);
+  --destructive-foreground: oklch(100% 0 0);
+  --border: oklch(37.1% 0 0);
+  --input: oklch(37.1% 0 0);
+  --ring: oklch(44% 0.126 256.7);
+  --chart-1: oklch(43.1% 0.178 265.9);
+  --chart-2: oklch(53.3% 0.145 39.2);
+  --chart-3: oklch(70.3% 0.165 124.3);
+  --chart-4: oklch(59.3% 0.106 228.1);
+  --chart-5: oklch(40.6% 0.204 285);
+
+  --sidebar-background: oklch(21% 0.006 285.9);
+  --sidebar-foreground: oklch(96.8% 0.001 286.4);
+  --sidebar-primary: oklch(48.8% 0.217 264.4);
+  --sidebar-primary-foreground: oklch(100% 0 0);
+  --sidebar-accent: oklch(27.4% 0.005 286);
+  --sidebar-accent-foreground: oklch(96.8% 0.001 286.4);
+  --sidebar-border: oklch(27.4% 0.005 286);
+  --sidebar-ring: oklch(62.3% 0.188 259.8);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: calc(var(--radius) * 1.5);
+  --radius-lg: calc(var(--radius) * 2);
+  --radius-xl: calc(var(--radius) * 2.5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
   }
-  .dark {
-    --background: 0 0% 2%;
-    --foreground: 0 0% 95%;
-    --card: 0 0% 9%;
-    --card-foreground: 0 0% 95%;
-    --popover: 0 0% 9%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 226 68% 60%;
-    --primary-foreground: 0 0% 95%;
-    --secondary: 256 68% 32%;
-    --secondary-foreground: 0 0% 95%;
-    --muted: 0 0% 32%;
-    --muted-foreground: 0 0% 70%;
-    --accent: 196 68% 26%;
-    --accent-foreground: 0 0% 95%;
-    --destructive: 350 91% 36%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 25%;
-    --input: 0 0% 25%;
-    --ring: 214 68% 35%;
-    --chart-1: 226 68% 41%;
-    --chart-2: 16 68% 41%;
-    --chart-3: 76 68% 41%;
-    --chart-4: 196 68% 41%;
-    --chart-5: 256 68% 41%;
 
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
   }
 }
 
 /* This layer is added by shadcn/ui */
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border outline-ring/50;
   }
   body {
     @apply bg-background text-foreground;
@@ -94,6 +155,12 @@
 
 /* This layer is by next-forge */
 @layer base {
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    @apply border-border;
+  }
   * {
     @apply min-w-0;
   }
@@ -103,4 +170,48 @@
   body {
     @apply min-h-[100dvh];
   }
+  input::placeholder,
+  textarea::placeholder {
+    @apply text-muted-foreground;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+/* Typography plugin */
+@utility prose {
+  --tw-prose-body: var(--color-foreground);
+  --tw-prose-headings: var(--color-foreground);
+  --tw-prose-lead: var(--color-muted-foreground);
+  --tw-prose-links: var(--color-primary);
+  --tw-prose-bold: var(--color-foreground);
+  --tw-prose-counters: var(--color-foreground);
+  --tw-prose-bullets: var(--color-muted-foreground);
+  --tw-prose-hr: var(--color-muted-foreground);
+  --tw-prose-quotes: var(--color-muted-foreground);
+  --tw-prose-quote-borders: var(--color-border);
+  --tw-prose-captions: var(--color-muted-foreground);
+  --tw-prose-code: var(--color-foreground);
+  --tw-prose-pre-code: var(--color-foreground);
+  --tw-prose-pre-bg: var(--color-background);
+  --tw-prose-th-borders: var(--color-border);
+  --tw-prose-td-borders: var(--color-border);
+  --tw-prose-invert-body: var(--color-foreground);
+  --tw-prose-invert-headings: var(--color-foreground);
+  --tw-prose-invert-lead: var(--color-muted-foreground);
+  --tw-prose-invert-links: var(--color-primary);
+  --tw-prose-invert-bold: var(--color-foreground);
+  --tw-prose-invert-counters: var(--color-foreground);
+  --tw-prose-invert-bullets: var(--color-foreground);
+  --tw-prose-invert-hr: var(--color-muted-foreground);
+  --tw-prose-invert-quotes: var(--color-muted-foreground);
+  --tw-prose-invert-quote-borders: var(--color-border);
+  --tw-prose-invert-captions: var(--color-muted-foreground);
+  --tw-prose-invert-code: var(--color-foreground);
+  --tw-prose-invert-pre-code: var(--color-foreground);
+  --tw-prose-invert-pre-bg: var(--color-background);
+  --tw-prose-invert-th-borders: var(--color-border);
+  --tw-prose-invert-td-borders: var(--color-border);
 }
