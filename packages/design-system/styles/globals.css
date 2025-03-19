@@ -1,8 +1,8 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
 @source "../**/*.{ts,tsx}";
 
-@plugin 'tailwindcss-animate';
 @plugin '@tailwindcss/typography';
 
 @custom-variant dark (&:is(.dark *));
@@ -214,4 +214,9 @@
   --tw-prose-invert-pre-bg: var(--color-background);
   --tw-prose-invert-th-borders: var(--color-border);
   --tw-prose-invert-td-borders: var(--color-border);
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
 }
