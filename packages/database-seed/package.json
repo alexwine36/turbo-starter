@@ -12,19 +12,19 @@
     "@repo/common-types": "workspace:*",
     "@repo/database": "workspace:*",
     "@repo/trpc": "workspace:*",
-    "@t3-oss/env-nextjs": "0.11.1",
-    "react": "19.0.0"
+    "@t3-oss/env-nextjs": "catalog:",
+    "react": "catalog:"
   },
   "devDependencies": {
-    "@anatine/zod-mock": "^3.13.5",
-    "@faker-js/faker": "^9.3.0",
+    "@anatine/zod-mock": "catalog:",
+    "@faker-js/faker": "catalog:",
     "@repo/typescript-config": "workspace:*",
-    "@types/node": "^22.10.5",
-    "@types/react": "^19.0.2",
-    "@types/react-dom": "^19.0.2",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
     "tsx": "^4.19.2",
-    "typescript": "^5.7.2",
-    "vitest": "^2.1.8",
-    "zod": "^3.24.1"
+    "typescript": "catalog:",
+    "vitest": "catalog:",
+    "zod": "catalog:"
   }
 }

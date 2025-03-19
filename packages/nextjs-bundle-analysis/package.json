@@ -9,18 +9,18 @@
   },
   "files": ["dist"],
   "dependencies": {
-    "react": "19.0.0"
+    "react": "catalog:"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
-    "@types/node": "^22.10.5",
-    "@types/react": "^19.0.2",
-    "@types/react-dom": "^19.0.2",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
     "gzip-size": "^6.0.0",
     "mkdirp": "^3.0.1",
     "tsup": "^8.3.6",
-    "typescript": "^5.7.2",
-    "vitest": "^2.1.8"
+    "typescript": "catalog:",
+    "vitest": "catalog:"
   },
   "bin": {
     "nextjs-bundle-analysis": "dist/index.js"
