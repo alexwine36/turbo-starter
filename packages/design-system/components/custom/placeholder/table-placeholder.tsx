@@ -41,7 +41,7 @@ export const TablePlaceholder = ({
               {col ? (
                 <Text variant="muted">{col}</Text>
               ) : (
-                <Skeleton className="h-4 w-full"></Skeleton>
+                <Skeleton className="h-4 w-full" />
               )}
             </TableHead>
           ))}
@@ -52,7 +52,7 @@ export const TablePlaceholder = ({
           <TableRow key={index}>
             {Array.from({ length: columns }).map((_, index) => (
               <TableCell key={index}>
-                <Skeleton className="h-4 w-full"></Skeleton>
+                <Skeleton className="h-4 w-full" />
               </TableCell>
             ))}
           </TableRow>

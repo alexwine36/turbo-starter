@@ -15,13 +15,20 @@
       "apps/docs/**/*.json",
       "apps/email/.react-email/**",
       "packages/rich-text/types.ts",
-      "packages/database/client/**"
+      "packages/database/client/**",
+      "**/.astro/**"
     ]
   },
   "linter": {
     "rules": {
       "complexity": {
         "noForEach": "off"
+      },
+      "style": {
+        "useSelfClosingElements": {
+          "level": "error",
+          "fix": "safe"
+        }
       }
     }
   },

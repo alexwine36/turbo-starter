@@ -58,24 +58,24 @@ export const BarChartPlaceholder = () => {
   return (
     <div className="flex h-full max-h-full w-full items-end gap-2 overflow-hidden border-b border-l p-2">
       <Skeleton className="h-9/10 w-1/10" />
-      <Skeleton className="h-7/10 w-1/10"></Skeleton>
-      <Skeleton className="h-8/10 w-1/10"></Skeleton>
-      <Skeleton className="w-1/10"></Skeleton>
-      <Skeleton className="h-9/10 w-1/10"></Skeleton>
-      <Skeleton className="h-7/10 w-1/10"></Skeleton>
-      <Skeleton className="h-8/10 w-1/10"></Skeleton>
-      <Skeleton className="w-1/10"></Skeleton>
-      <Skeleton className="h-9/10 w-1/10"></Skeleton>
-      <Skeleton className="h-7/10 w-1/10"></Skeleton>
-      <Skeleton className="h-8/10 w-1/10"></Skeleton>
-      <Skeleton className="w-1/10"></Skeleton>
-      <Skeleton className="h-9/10 w-1/10"></Skeleton>
-      <Skeleton className="h-7/10 w-1/10"></Skeleton>
-      <Skeleton className="h-8/10 w-1/10"></Skeleton>
-      <Skeleton className="w-1/10"></Skeleton>
-      <Skeleton className="h-9/10 w-1/10"></Skeleton>
-      <Skeleton className="h-7/10 w-1/10"></Skeleton>
-      <Skeleton className="h-8/10 w-1/10"></Skeleton>
+      <Skeleton className="h-7/10 w-1/10" />
+      <Skeleton className="h-8/10 w-1/10" />
+      <Skeleton className="w-1/10" />
+      <Skeleton className="h-9/10 w-1/10" />
+      <Skeleton className="h-7/10 w-1/10" />
+      <Skeleton className="h-8/10 w-1/10" />
+      <Skeleton className="w-1/10" />
+      <Skeleton className="h-9/10 w-1/10" />
+      <Skeleton className="h-7/10 w-1/10" />
+      <Skeleton className="h-8/10 w-1/10" />
+      <Skeleton className="w-1/10" />
+      <Skeleton className="h-9/10 w-1/10" />
+      <Skeleton className="h-7/10 w-1/10" />
+      <Skeleton className="h-8/10 w-1/10" />
+      <Skeleton className="w-1/10" />
+      <Skeleton className="h-9/10 w-1/10" />
+      <Skeleton className="h-7/10 w-1/10" />
+      <Skeleton className="h-8/10 w-1/10" />
     </div>
   );
 };
