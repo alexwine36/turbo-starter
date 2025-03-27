@@ -23,9 +23,6 @@ export const NotesDisplay = ({
     <Popover>
       <PopoverTrigger asChild>
         <div className="absolute top-0 right-0">
-          {/* <button className="text-gray-100/50 bg-gray-500/50">
-                    <NotebookIcon className="size-4" />
-                </button> */}
           <Button size="icon" variant="ghost">
             <NotebookIcon className="size-4" />
           </Button>
