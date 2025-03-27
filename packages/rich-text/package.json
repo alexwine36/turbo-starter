@@ -9,20 +9,20 @@
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "dependencies": {
-    "@t3-oss/env-nextjs": "0.11.1",
+    "@t3-oss/env-nextjs": "catalog:",
     "quill": "2.0.3",
     "quill-delta": "5.1.0",
-    "react": "19.0.0",
-    "remeda": "2.20.1"
+    "react": "catalog:",
+    "remeda": "catalog:"
   },
   "devDependencies": {
     "@repo/testing": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@types/node": "^22.10.5",
+    "@types/node": "catalog:",
     "@types/quill": "^2.0.14",
-    "@types/react": "^19.0.2",
-    "@types/react-dom": "^19.0.2",
-    "typescript": "^5.7.2",
-    "vitest": "^2.1.8"
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
   }
 }

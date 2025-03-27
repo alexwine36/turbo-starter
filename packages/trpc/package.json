@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "clean": "git clean -xdf .cache .turbo dist node_modules",
-    "typecheck": "tsc --noEmit --emitDeclarationOnly false",
+    "int:test": "NODE_ENV=test vitest run",
     "int:test:watch": "infisical run --env=dev -- vitest watch",
-    "int:test": "NODE_ENV=test vitest run"
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "dependencies": {
     "@repo/auth": "workspace:*",
@@ -14,23 +14,23 @@
     "@trpc/client": "11.0.0-rc.708",
     "@trpc/next": "11.0.0-rc.708",
     "@trpc/react-query": "11.0.0-rc.708",
-    "next": "15.1.5",
-    "react": "19.0.0",
-    "remeda": "2.20.1",
+    "next": "catalog:",
+    "react": "catalog:",
+    "remeda": "catalog:",
     "superjson": "2.2.2",
-    "zod": "3.24.1"
+    "zod": "catalog:"
   },
   "devDependencies": {
-    "@faker-js/faker": "^9.3.0",
+    "@faker-js/faker": "catalog:",
     "@repo/testing": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@trpc/server": "11.0.0-rc.708",
-    "@types/node": "^22.10.5",
-    "@types/react": "^19.0.2",
-    "@types/react-dom": "^19.0.2",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
     "inquirer-directory": "^2.2.0",
-    "typescript": "^5.7.2",
-    "vitest": "^2.1.8"
+    "typescript": "catalog:",
+    "vitest": "catalog:"
   },
   "peerDependencies": {
     "@repo/common-types": "workspace:*",

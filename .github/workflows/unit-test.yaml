@@ -9,8 +9,9 @@ on:
 env:
   DATABASE_URL: postgres://postgres:postgres@localhost:5432/test
 
-concurrency: ${{ github.workflow }}-${{ github.ref }}
-
+concurrency: 
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   test:
