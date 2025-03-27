@@ -15,17 +15,39 @@
       "apps/docs/**/*.json",
       "apps/email/.react-email/**",
       "packages/rich-text/types.ts",
-      "packages/database/client/**"
+      "packages/database/client/**",
+      "**/.astro/**"
     ]
   },
   "linter": {
     "rules": {
       "complexity": {
         "noForEach": "off"
+      },
+      "style": {
+        "useSelfClosingElements": {
+          "level": "error",
+          "fix": "safe"
+        }
       }
     }
   },
   "overrides": [
+    {
+      "include": ["*.svelte", "*.astro", "*.vue"],
+      "linter": {
+        "rules": {
+          "correctness": {
+            "noUnusedImports": "off",
+            "noUnusedVariables": "off"
+          },
+          "style": {
+            "useConst": "off",
+            "useImportType": "off"
+          }
+        }
+      }
+    },
     {
       "include": ["packages/rich-text/**"],
       "linter": {
