@@ -45,7 +45,7 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@repo/nextjs-bundle-analysis": "workspace:*",
+    "awine-nextjs-bundle-analysis": "^1.1.1",
     "@repo/testing": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@testing-library/dom": "^10.4.0",
