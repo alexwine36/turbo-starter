@@ -45,7 +45,6 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "awine-nextjs-bundle-analysis": "^1.1.1",
     "@repo/testing": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@testing-library/dom": "^10.4.0",
@@ -53,6 +52,7 @@
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
+    "awine-nextjs-bundle-analysis": "^1.1.1",
     "inquirer-directory": "^2.2.0",
     "jsdom": "^25.0.1",
     "next-public": "^0.5.0",
